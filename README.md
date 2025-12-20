@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# 🍕 Playground Eats
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fun and interactive web app for Playground employees to vote on their favorite office snacks before each office snack order.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Browse Snacks**: Browse a curated catalog of 269+ snacks from Costco via Instacart
+- **Vote for Favorites**: Click to vote on snacks you want to see in the next office snack order
+- **Multiple Views**:
+  - **Most Popular**: Static snapshot view showing all snacks in random order (updated when you click on it)
+  - **Up and Coming**: Coming soon - for recently voted snacks
+  - **Categories**: Browse snacks by category (Chips, Chocolate, Drinks, etc.)
+- **Smart Search**: Search across snack names, categories, and tags with debounced input for smooth performance
+- **Sticky Navigation**: Header and categories stay visible while scrolling through products
+- **Responsive Design**: Works great on mobile, tablet, and desktop
+- **Real-time Voting**: Vote counts update immediately when you click the vote button
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19.2.0** with TypeScript
+- **Vite** for fast development and builds
+- **Material-UI (MUI)** for professional UI components
+- **Emotion** for CSS-in-JS styling
 
-## Expanding the ESLint configuration
+## How It Works
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Vote** for your favorite snacks before the voting deadline
+2. **Vote counts reset** with each new snack drop/order
+3. **Hover over "Next Snack Drop"** to see the deadline and voting rules
+4. **Search** to find specific snacks across all categories
+5. **Browse categories** to explore snacks by type
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+```
+src/
+├── components/
+│   ├── Header.tsx          # Sticky header with logo, search, and deadline
+│   ├── Categories.tsx      # Scrollable category sidebar
+│   ├── SnacksGrid.tsx      # Responsive product grid
+│   ├── SnackCard.tsx       # Individual snack card with vote button
+│   ├── Hero.tsx            # Welcome section
+│   ├── Footer.tsx          # Page footer
+│   └── index.ts            # Component exports
+├── App.tsx                 # Main app component with state management
+├── App.css                 # Global styles and CSS variables
+├── main.tsx                # React entry point
+└── index.css               # Base styles
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+products-catalog.json      # 269 snacks with images, prices, and metadata
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Snack Data
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The app loads snack data from `products-catalog.json` which includes:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 269 snack products from Costco
+- 25 snack categories
+- Product images, prices, and tags
+- Search-optimized metadata
+
+## Future Features
+
+- Persistent vote storage (localStorage or backend)
+- "Up and Coming" view with recently voted items
+- Sorting options (by votes, price, date)
+- Product detail modals
+- User authentication
+- Voting analytics and leaderboards
+- Backend API integration
+
+## Color Scheme
+
+- **Primary**: Navy Blue (#1a3a52)
+- **Accent**: Green (#2ecc71)
+- **Background**: Light Gray (#f8fafb)
+
+## License
+
+MIT
