@@ -5,13 +5,67 @@ import {
   CircularProgress,
   Tooltip,
   Switch,
-  FormControlLabel,
   ButtonGroup,
   Button,
+  IconButton,
+  Avatar,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-import EventIcon from "@mui/icons-material/Event";
 import SearchIcon from "@mui/icons-material/Search";
 import logo from "../assets/pgeats-logo-2.png";
+import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
+
+function LoginBox() {
+  const { login } = useAuth();
+
+  return (
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 1,
+          padding: "0.75rem 1rem",
+          backgroundColor: "#f8fafb",
+          borderRadius: "8px",
+          border: "1px solid #e0e4e8",
+        }}
+      >
+        <Typography
+          variant="caption"
+          sx={{
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            color: "#666666",
+            textAlign: "center",
+          }}
+        >
+          Sign in with your playground email to start voting!
+        </Typography>
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            if (credentialResponse.credential) {
+              login(credentialResponse.credential);
+            }
+          }}
+          onError={() => {
+            console.error("Login Failed");
+            alert("Login failed. Please try again.");
+          }}
+          size="medium"
+          text="signin_with"
+          shape="rectangular"
+        />
+      </Box>
+    </GoogleOAuthProvider>
+  );
+}
 
 interface HeaderProps {
   votingDeadline?: string;
@@ -38,11 +92,27 @@ export function Header({
   onLanguageChange,
   isSearching,
 }: HeaderProps) {
+  const { user, logout } = useAuth();
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
       onSearch?.();
     }
+  };
+
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout();
+    handleMenuClose();
   };
 
   return (
@@ -324,6 +394,48 @@ export function Header({
           </Box>
         </Box>
       </Tooltip>
+
+      {/* User Profile Menu / Login */}
+      {user ? (
+        <>
+          <Tooltip title="Account" arrow>
+            <IconButton onClick={handleMenuOpen} sx={{ p: 0 }}>
+              <Avatar
+                src={user.picture}
+                alt={user.name}
+                sx={{ width: 36, height: 36 }}
+              />
+            </IconButton>
+          </Tooltip>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            <MenuItem disabled>
+              <Box>
+                <Typography variant="body2" fontWeight={600}>
+                  {user.name}
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  {user.email}
+                </Typography>
+              </Box>
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          </Menu>
+        </>
+      ) : (
+        <LoginBox />
+      )}
     </Box>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import "./App.css";
-import { Header, Hero, SnacksGrid, Footer, Categories } from "./components";
+import { Header, SnacksGrid, Footer, Categories } from "./components";
 
 const theme = createTheme({
   typography: {
