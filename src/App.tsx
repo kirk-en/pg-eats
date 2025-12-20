@@ -148,6 +148,14 @@ function App() {
     setAppliedSearch(searchQuery);
   }, [searchQuery]);
 
+  // Scroll page to top when search or category changes
+  useEffect(() => {
+    // Use setTimeout to ensure DOM has updated before scrolling
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+  }, [appliedSearch, selectedCategory]);
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
