@@ -1,12 +1,8 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Button,
-  Typography,
-  Box,
-} from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { useState, useRef } from "react";
+import pgCoinImg from "../assets/pg-coin.webp";
 
 interface SnackCardProps {
   id: string;
@@ -14,7 +10,13 @@ interface SnackCardProps {
   image: string;
   price?: number;
   votes?: number;
-  onVote?: (id: string) => void;
+  onVote?: (id: string, direction: "up" | "down") => void;
+}
+
+interface FloatingCoin {
+  id: number;
+  x: number;
+  y: number;
 }
 
 export function SnackCard({
@@ -25,18 +27,52 @@ export function SnackCard({
   votes,
   onVote,
 }: SnackCardProps) {
+  const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
+  const coinIdRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleVoteWithCoin = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    direction: "up" | "down"
+  ) => {
+    // Don't show animation if downvoting at 0 votes
+    const shouldShowAnimation = !(direction === "down" && (votes ?? 0) === 0);
+
+    onVote?.(id, direction);
+
+    // Create floating coin animation
+    if (shouldShowAnimation && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const buttonRect = e.currentTarget.getBoundingClientRect();
+
+      // Add variance to the x position along the button width
+      const variance = (Math.random() - 0.5) * buttonRect.width * 0.6;
+      const coinId = coinIdRef.current++;
+      const newCoin: FloatingCoin = {
+        id: coinId,
+        x: buttonRect.left - rect.left + buttonRect.width / 2 + variance,
+        y: buttonRect.top - rect.top + buttonRect.height / 2,
+      };
+
+      setFloatingCoins((prev) => [...prev, newCoin]);
+
+      // Remove coin after animation completes
+      setTimeout(() => {
+        setFloatingCoins((prev) => prev.filter((coin) => coin.id !== coinId));
+      }, 1000);
+    }
+  };
+
   return (
     <Card
+      ref={containerRef}
       className="snack-card"
       sx={{
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        transition: "all 0.2s ease",
-        "&:hover": {
-          boxShadow: 3,
-          transform: "translateY(-2px)",
-        },
+        position: "relative",
+        overflow: "visible",
       }}
     >
       <CardMedia
@@ -85,22 +121,56 @@ export function SnackCard({
           </Typography>
         )}
       </CardContent>
-      <Box sx={{ padding: "0 1rem 1rem" }}>
-        <Button
-          fullWidth
-          variant="contained"
-          startIcon={<ThumbUpIcon />}
-          onClick={() => onVote?.(id)}
+      <Box sx={{ padding: "0 1rem 1rem", display: "flex", gap: "0.5rem" }}>
+        <button
+          className="upvote-btn"
+          onClick={(e) => handleVoteWithCoin(e, "up")}
+        >
+          <ThumbUpIcon sx={{ fontSize: "1rem" }} />
+          Up
+        </button>
+        <button
+          className="downvote-btn"
+          onClick={(e) => handleVoteWithCoin(e, "down")}
+        >
+          <ThumbDownIcon sx={{ fontSize: "1rem" }} />
+          Down
+        </button>
+      </Box>
+
+      {/* Floating coins */}
+      {floatingCoins.map((coin) => (
+        <Box
+          key={coin.id}
           sx={{
-            backgroundColor: "#2ecc71",
-            "&:hover": {
-              backgroundColor: "#27ae60",
+            position: "absolute",
+            left: `${coin.x}px`,
+            top: `${coin.y}px`,
+            pointerEvents: "none",
+            animation: "float-up 1s ease-out forwards",
+            "@keyframes float-up": {
+              "0%": {
+                opacity: 1,
+                transform: "translate(-50%, -50%) scale(1)",
+              },
+              "100%": {
+                opacity: 0,
+                transform: "translate(-50%, -150px) scale(0.8)",
+              },
             },
           }}
         >
-          Vote
-        </Button>
-      </Box>
+          <img
+            src={pgCoinImg}
+            alt="pg-coin"
+            style={{
+              width: "24px",
+              height: "24px",
+              display: "block",
+            }}
+          />
+        </Box>
+      ))}
     </Card>
   );
 }

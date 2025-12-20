@@ -6,6 +6,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 
 interface Category {
   id: string;
@@ -36,12 +37,16 @@ export function Categories({
         variant="subtitle1"
         sx={{
           fontWeight: 700,
-          color: "#1a3a52",
+          color: "#3f62f7",
           padding: "0.75rem",
           borderBottom: "1px solid #e0e4e8",
           flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
         }}
       >
+        <RestaurantMenuIcon sx={{ fontSize: "1.25rem" }} />
         Categories
       </Typography>
       <List
@@ -50,16 +55,16 @@ export function Categories({
           overflowY: "auto",
           flex: 1,
           "&::-webkit-scrollbar": {
-            width: "6px",
+            width: "5px",
           },
           "&::-webkit-scrollbar-track": {
-            background: "#f1f1f1",
+            background: "transparent",
           },
           "&::-webkit-scrollbar-thumb": {
-            background: "#888",
+            background: "rgba(0, 0, 0, 0.2)",
             borderRadius: "3px",
             "&:hover": {
-              background: "#555",
+              background: "rgba(0, 0, 0, 0.4)",
             },
           },
         }}
@@ -71,7 +76,7 @@ export function Categories({
             onClick={() => onSelectCategory?.(category.id)}
             sx={{
               borderLeft:
-                selectedCategory === category.id ? "4px solid #2ecc71" : "none",
+                selectedCategory === category.id ? "4px solid #3f62f7" : "none",
               paddingLeft:
                 selectedCategory === category.id ? "0.65rem" : "1rem",
               fontSize: "0.9rem",

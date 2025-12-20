@@ -11,7 +11,7 @@ export function Hero() {
         marginBottom: "3rem",
         textAlign: "center",
         boxShadow: 2,
-        borderLeft: "4px solid #2ecc71",
+        borderLeft: "4px solid #3f62f7",
       }}
     >
       <Typography variant="h4" sx={{ fontWeight: 700, color: "#1a3a52" }}>

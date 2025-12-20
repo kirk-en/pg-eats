@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
+
+:root {
+  --button-text: #382b22;
+  --button-light-pink: #fff0f0;
+  --button-pink: #ffe9e9;
+  --button-dark-pink: #f9c4d2;
+  --button-border: #b18597;
+  --button-shadow: #ffe3e2;
+}
+
+/* Base button styles */
+button {
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+/* Vote button styling (3D pink effect) */
+button.upvote-btn,
+button.downvote-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  vertical-align: middle;
+  font-weight: 600;
+  color: var(--button-text);
+  text-transform: uppercase;
+  padding: 0.85em 1.2em;
+  font-size: 0.85rem;
+  background: var(--button-light-pink);
+  border: 2px solid var(--button-border);
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+    background 150ms cubic-bezier(0, 0, 0.58, 1);
+  pointer-events: auto;
+  width: 100%;
+  min-width: 0;
+  flex: 1;
+}
+
+button.upvote-btn::before,
+button.downvote-btn::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--button-dark-pink);
+  border-radius: inherit;
+  box-shadow: 0 0 0 2px var(--button-border), 0 0.625em 0 0 var(--button-shadow);
+  transform: translate3d(0, 0.75em, -1em);
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+    box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  pointer-events: auto;
+  z-index: -1;
+}
+
+button.upvote-btn::after,
+button.downvote-btn::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.75em;
+  top: -0.75em;
+  left: 0;
+  right: 0;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+button.upvote-btn:hover,
+button.downvote-btn:hover {
+  background: var(--button-pink);
+  transform: translate(0, 0.25em);
+}
+
+button.upvote-btn:hover::before,
+button.downvote-btn:hover::before {
+  box-shadow: 0 0 0 2px var(--button-border), 0 0.5em 0 0 var(--button-shadow);
+  transform: translate3d(0, 0.5em, -1em);
+}
+
+button.upvote-btn:active,
+button.downvote-btn:active {
+  background: var(--button-pink);
+  transform: translate(0em, 0.75em);
+}
+
+button.upvote-btn:active::before,
+button.downvote-btn:active::before {
+  box-shadow: 0 0 0 2px var(--button-border), 0 0 var(--button-shadow);
+  transform: translate3d(0, 0, -1em);
+}
+
+/* Upvote button - Green */
+button.upvote-btn {
+  --button-light-pink: #d4f4dd;
+  --button-pink: #b8ead5;
+  --button-dark-pink: #7dd3a5;
+  --button-border: #4a9d6f;
+  --button-shadow: #a8e6c1;
+  --button-text: #1b5e20;
+}
+
+/* Downvote button - Red */
+button.downvote-btn {
+  --button-light-pink: #ffcccc;
+  --button-pink: #ffb3b3;
+  --button-dark-pink: #ff8080;
+  --button-border: #cc0000;
+  --button-shadow: #ff9999;
+  --button-text: #660000;
+}

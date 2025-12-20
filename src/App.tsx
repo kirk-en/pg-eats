@@ -1,7 +1,13 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { CssBaseline, Box } from "@mui/material";
+import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import "./App.css";
 import { Header, Hero, SnacksGrid, Footer, Categories } from "./components";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Inter", system-ui, sans-serif',
+  },
+});
 
 interface Snack {
   id: string;
@@ -23,11 +29,14 @@ interface Category {
 function App() {
   const [snacks, setSnacks] = useState<Snack[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("most-popular");
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [appliedSearch, setAppliedSearch] = useState<string>("");
-  const [snapshotSnacks, setSnapshotSnacks] = useState<Snack[]>([]);
+  const [randomizedSnacks, setRandomizedSnacks] = useState<Snack[]>([]);
+  const [office, setOffice] = useState<"nyc" | "denver">("nyc");
+  const [language, setLanguage] = useState<"en" | "es">("en");
   const debounceTimerRef = useRef<NodeJS.Timeout>();
 
   // Calculate next voting deadline (Friday of next week)
@@ -69,8 +78,7 @@ function App() {
 
         // Create categories from the catalog
         const categoryList: Category[] = [
-          { id: "all", name: "Most Popular" },
-          { id: "upcoming", name: "Up and Coming" },
+          { id: "most-popular", name: "Most Popular" },
           ...data.metadata.categories.map((cat: string) => ({
             id: cat.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
             name: cat,
@@ -78,6 +86,9 @@ function App() {
         ];
 
         setSnacks(transformedProducts);
+        setRandomizedSnacks(
+          [...transformedProducts].sort(() => Math.random() - 0.5).slice(0, 30)
+        );
         setCategories(categoryList);
         setIsLoading(false);
       })
@@ -87,11 +98,31 @@ function App() {
       });
   }, []);
 
-  const handleVote = (snackId: string) => {
-    setSnacks(
-      snacks.map((snack) =>
+  const handleVote = (snackId: string, direction: "up" | "down") => {
+    const updatedSnacks = snacks.map((snack) =>
+      snack.id === snackId
+        ? {
+            ...snack,
+            votes: Math.max(
+              0,
+              (snack.votes ?? 0) + (direction === "up" ? 1 : -1)
+            ),
+          }
+        : snack
+    );
+    setSnacks(updatedSnacks);
+
+    // Update votes in randomized snacks as well
+    setRandomizedSnacks(
+      randomizedSnacks.map((snack) =>
         snack.id === snackId
-          ? { ...snack, votes: (snack.votes ?? 0) + 1 }
+          ? {
+              ...snack,
+              votes: Math.max(
+                0,
+                (snack.votes ?? 0) + (direction === "up" ? 1 : -1)
+              ),
+            }
           : snack
       )
     );
@@ -101,27 +132,21 @@ function App() {
     setSelectedCategory(categoryId);
     setAppliedSearch("");
     setSearchQuery("");
-    // Capture snapshot for Most Popular when selected
-    if (categoryId === "all") {
-      // Shuffle the snacks randomly
-      const shuffled = [...snacks].sort(() => Math.random() - 0.5);
-      setSnapshotSnacks(shuffled);
-    }
+  };
+
+  const handleLogoClick = () => {
+    setSelectedCategory("most-popular");
+    setAppliedSearch("");
+    setSearchQuery("");
   };
 
   const handleSearchInput = useCallback((query: string) => {
     setSearchQuery(query);
-
-    // Clear existing timer
-    if (debounceTimerRef.current) {
-      clearTimeout(debounceTimerRef.current);
-    }
-
-    // Set new timer for debounced search
-    debounceTimerRef.current = setTimeout(() => {
-      setAppliedSearch(query);
-    }, 200); // 200ms delay for snappy feel
   }, []);
+
+  const handleSearch = useCallback(() => {
+    setAppliedSearch(searchQuery);
+  }, [searchQuery]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -131,6 +156,10 @@ function App() {
       }
     };
   }, []);
+
+  const randomizedSnacksForFilter = useMemo(() => {
+    return randomizedSnacks;
+  }, [randomizedSnacks]);
 
   const filteredSnacks = useMemo(() => {
     if (appliedSearch) {
@@ -142,15 +171,15 @@ function App() {
           snack.tags?.some((tag) => tag.toLowerCase().includes(searchLower))
         );
       });
-    } else if (selectedCategory === "all") {
-      return [...snapshotSnacks];
+    } else if (selectedCategory === "most-popular") {
+      return randomizedSnacksForFilter;
     } else {
       return snacks.filter((snack) => snack.categoryId === selectedCategory);
     }
-  }, [appliedSearch, selectedCategory, snapshotSnacks, snacks]);
+  }, [appliedSearch, selectedCategory, randomizedSnacksForFilter, snacks]);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box
         className="app-container"
@@ -158,13 +187,19 @@ function App() {
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
-          backgroundColor: "#f8fafb",
+          backgroundColor: "#fef5e4",
         }}
       >
         <Header
           votingDeadline={votingDeadline}
           searchQuery={searchQuery}
           onSearchChange={handleSearchInput}
+          onSearch={handleSearch}
+          onLogoClick={handleLogoClick}
+          office={office}
+          onOfficeChange={setOffice}
+          language={language}
+          onLanguageChange={setLanguage}
         />
         <Box
           component="main"
@@ -187,6 +222,19 @@ function App() {
               top: { xs: 0, md: "5.5rem" },
               height: { xs: "auto", md: "calc(100vh - 5.5rem)" },
               overflow: "auto",
+              "&::-webkit-scrollbar": {
+                width: "5px",
+              },
+              "&::-webkit-scrollbar-track": {
+                background: "transparent",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "rgba(0, 0, 0, 0.2)",
+                borderRadius: "3px",
+                "&:hover": {
+                  background: "rgba(0, 0, 0, 0.4)",
+                },
+              },
             }}
           >
             <Categories
@@ -197,17 +245,26 @@ function App() {
           </Box>
 
           {/* Main Content - Products Grid */}
-          <Box sx={{ flex: 1, width: "100%", overflow: "auto" }}>
-            <SnacksGrid
-              snacks={filteredSnacks}
-              onVote={handleVote}
-              isLoading={isLoading}
-            />
+          <Box
+            sx={{
+              flex: 1,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Box sx={{ flex: 1, overflow: "auto" }}>
+              <SnacksGrid
+                snacks={filteredSnacks}
+                onVote={handleVote}
+                isLoading={isLoading}
+              />
+            </Box>
+            <Footer />
           </Box>
         </Box>
-        <Footer />
       </Box>
-    </>
+    </ThemeProvider>
   );
 }
 
