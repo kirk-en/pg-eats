@@ -1,8 +1,21 @@
 import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import pgCoinImg from "../assets/pg-coin.webp";
+
+// Preload the pg-coin image on module load
+const preloadImage = (src: string): Promise<void> => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve(); // Resolve even on error to not block
+    img.src = src;
+  });
+};
+
+// Start preloading immediately
+const pgCoinLoadPromise = preloadImage(pgCoinImg);
 
 interface SnackCardProps {
   id: string;
@@ -28,8 +41,16 @@ export function SnackCard({
   onVote,
 }: SnackCardProps) {
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
+  const [coinImageReady, setCoinImageReady] = useState(false);
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Ensure pg-coin image is loaded before allowing animations
+  useEffect(() => {
+    pgCoinLoadPromise.then(() => {
+      setCoinImageReady(true);
+    });
+  }, []);
 
   const handleVoteWithCoin = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -40,8 +61,8 @@ export function SnackCard({
 
     onVote?.(id, direction);
 
-    // Create floating coin animation
-    if (shouldShowAnimation && containerRef.current) {
+    // Create floating coin animation only if the coin image is ready
+    if (shouldShowAnimation && coinImageReady && containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const buttonRect = e.currentTarget.getBoundingClientRect();
 

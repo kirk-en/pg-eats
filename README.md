@@ -2,6 +2,12 @@
 
 A fun and interactive web app for Playground employees to vote on their favorite office snacks before each office snack order.
 
+## 🔐 Authentication
+
+This app requires Google OAuth authentication. **Only users with @tryplayground.com email addresses can log in.**
+
+See [OAUTH_SETUP.md](OAUTH_SETUP.md) for detailed setup instructions.
+
 ## Features
 
 - **Browse Snacks**: Browse a curated catalog of 269+ snacks from Costco via Instacart

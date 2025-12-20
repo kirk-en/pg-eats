@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import "./App.css";
-import { Header, Hero, SnacksGrid, Footer, Categories } from "./components";
+import { Header, SnacksGrid, Footer, Categories } from "./components";
 
 const theme = createTheme({
   typography: {
@@ -147,6 +147,14 @@ function App() {
   const handleSearch = useCallback(() => {
     setAppliedSearch(searchQuery);
   }, [searchQuery]);
+
+  // Scroll page to top when search or category changes
+  useEffect(() => {
+    // Use setTimeout to ensure DOM has updated before scrolling
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+  }, [appliedSearch, selectedCategory]);
 
   // Cleanup on unmount
   useEffect(() => {
