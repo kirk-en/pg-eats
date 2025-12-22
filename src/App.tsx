@@ -41,11 +41,8 @@ function App() {
 
   // Calculate next voting deadline (Friday of next week)
   const getNextVotingDeadline = () => {
-    const today = new Date();
-    const daysUntilFriday = (5 - today.getDay() + 7) % 7 || 7;
-    const nextFriday = new Date(today);
-    nextFriday.setDate(today.getDate() + daysUntilFriday);
-    return nextFriday.toLocaleDateString("en-US", {
+    const deadline = new Date(2026, 0, 9); // January 9, 2026
+    return deadline.toLocaleDateString("en-US", {
       weekday: "short",
       month: "short",
       day: "numeric",

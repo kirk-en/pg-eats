@@ -11,8 +11,19 @@ import {
   Avatar,
   Menu,
   MenuItem,
+  AppBar,
+  Toolbar,
+  useTheme,
+  useMediaQuery,
+  Drawer,
+  Stack,
+  Divider,
+  Paper,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import logo from "../assets/pgeats-logo-2.png";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
@@ -31,7 +42,7 @@ function LoginBox() {
           flexDirection: "column",
           alignItems: "center",
           gap: 1,
-          padding: "0.75rem 1rem",
+          padding: "0.25rem 1rem",
           backgroundColor: "#f8fafb",
           borderRadius: "8px",
           border: "1px solid #e0e4e8",
@@ -46,7 +57,7 @@ function LoginBox() {
             textAlign: "center",
           }}
         >
-          Sign in with your playground email to start voting!
+          Sign in with your @tryplayground.com email to start voting!
         </Typography>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
@@ -66,6 +77,143 @@ function LoginBox() {
     </GoogleOAuthProvider>
   );
 }
+
+interface OfficeSelectorProps {
+  office?: "nyc" | "denver";
+  onOfficeChange?: (office: "nyc" | "denver") => void;
+}
+
+const OfficeSelector = ({ office, onOfficeChange }: OfficeSelectorProps) => (
+  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+    <Typography
+      variant="caption"
+      sx={{
+        fontWeight: 700,
+        color: "text.secondary",
+        textTransform: "uppercase",
+        minWidth: 50,
+      }}
+    >
+      Office
+    </Typography>
+    <Stack direction="row" spacing={1} alignItems="center">
+      <Typography
+        variant="body2"
+        sx={{
+          color: office === "nyc" ? "#1E90FF" : "text.disabled",
+          fontWeight: 600,
+        }}
+      >
+        🗽NYC
+      </Typography>
+      <Switch
+        checked={office === "denver"}
+        onChange={(e) => onOfficeChange?.(e.target.checked ? "denver" : "nyc")}
+        size="small"
+        sx={{
+          "& .MuiSwitch-switchBase.Mui-checked": { color: "#FB4F14" },
+          "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+            backgroundColor: "#FB4F14",
+          },
+          "& .MuiSwitch-track": {
+            backgroundColor: office === "nyc" ? "#1E90FF" : undefined,
+          },
+        }}
+      />
+      <Typography
+        variant="body2"
+        sx={{
+          color: office === "denver" ? "#FB4F14" : "text.disabled",
+          fontWeight: 600,
+        }}
+      >
+        🏔️DEN
+      </Typography>
+    </Stack>
+  </Box>
+);
+
+interface LanguageSelectorProps {
+  language?: "en" | "es";
+  onLanguageChange?: (language: "en" | "es") => void;
+}
+
+const LanguageSelector = ({
+  language,
+  onLanguageChange,
+}: LanguageSelectorProps) => (
+  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+    <Typography
+      variant="caption"
+      sx={{
+        fontWeight: 700,
+        color: "text.secondary",
+        textTransform: "uppercase",
+        minWidth: 50,
+      }}
+    >
+      Lang
+    </Typography>
+    <ButtonGroup size="small" variant="outlined">
+      <Button
+        onClick={() => onLanguageChange?.("en")}
+        variant={language === "en" ? "contained" : "outlined"}
+        sx={{ px: 2 }}
+      >
+        En
+      </Button>
+      <Button
+        onClick={() => onLanguageChange?.("es")}
+        variant={language === "es" ? "contained" : "outlined"}
+        sx={{ px: 2 }}
+      >
+        Es
+      </Button>
+    </ButtonGroup>
+  </Box>
+);
+
+interface DeadlineDisplayProps {
+  votingDeadline?: string;
+}
+
+const DeadlineDisplay = ({ votingDeadline }: DeadlineDisplayProps) => (
+  <Tooltip
+    title="Vote for your favorite snacks before this date! Vote counts reset after each snack order."
+    arrow={true}
+  >
+    <Paper
+      elevation={0}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: 1.5,
+        px: 2,
+        py: 0.75,
+        bgcolor: "primary.main",
+        color: "primary.contrastText",
+        borderRadius: 2,
+        cursor: "help",
+        transition: "transform 0.2s",
+        minWidth: 140,
+        "&:hover": { transform: "translateY(-2px)" },
+      }}
+    >
+      <CalendarTodayIcon fontSize="small" />
+      <Box>
+        <Typography
+          variant="caption"
+          sx={{ display: "block", opacity: 0.9, lineHeight: 1 }}
+        >
+          Next Drop
+        </Typography>
+        <Typography variant="subtitle2" fontWeight={700} lineHeight={1.2}>
+          {votingDeadline || "TBD"}
+        </Typography>
+      </Box>
+    </Paper>
+  </Tooltip>
+);
 
 interface HeaderProps {
   votingDeadline?: string;
@@ -94,6 +242,10 @@ export function Header({
 }: HeaderProps) {
   const { user, logout, isLoadingBalance } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -115,477 +267,266 @@ export function Header({
     handleMenuClose();
   };
 
+  const toggleMobileDrawer = (newOpen: boolean) => () => {
+    setMobileOpen(newOpen);
+  };
+
   return (
-    <Box
-      component="header"
-      className="app-header"
-      sx={{
-        backgroundColor: "#ffffff",
-        boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
-        width: "100%",
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}
+    <AppBar
+      position="sticky"
+      color="inherit"
+      elevation={1}
+      sx={{ bgcolor: "#ffffff", zIndex: 1100 }}
     >
-      {/* Top Row: Logo, Search, Actions */}
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "0.75rem 2rem",
-          gap: 3,
-        }}
-      >
-        {/* Logo Section */}
+      <Toolbar sx={{ gap: 2, py: 1, justifyContent: "space-between" }}>
+        {/* Logo */}
         <Box
           onClick={onLogoClick}
           sx={{
+            cursor: "pointer",
             display: "flex",
             alignItems: "center",
-            cursor: "pointer",
-            transition: "opacity 0.2s ease",
-            flex: { xs: 0, sm: 0, md: 0 },
-            "&:hover": {
-              opacity: 0.8,
-            },
+            flexShrink: 0,
+            transition: "opacity 0.2s",
+            "&:hover": { opacity: 0.8 },
           }}
         >
           <img
             src={logo}
             alt="Playground Eats"
-            style={{
-              height: "32px",
-              width: "auto",
-            }}
+            style={{ height: "28px", width: "auto" }}
           />
         </Box>
 
-        {/* Search Bar - Center */}
-        <Box
+        {/* Search Bar */}
+        <Paper
+          component="form"
+          elevation={0}
           sx={{
+            p: "2px 4px",
             display: "flex",
             alignItems: "center",
-            backgroundColor: "#f5f7fa",
-            borderRadius: "8px",
+            width: "100%",
+            maxWidth: 600,
+            bgcolor: "#f5f7fa",
             border: "1px solid #e1e8f0",
-            flex: 1,
-            maxWidth: "500px",
-            overflow: "hidden",
-            padding: "0 1rem",
-            gap: 0.75,
-            transition: "all 0.2s ease",
+            borderRadius: 2,
+            transition: "all 0.2s",
             "&:focus-within": {
-              borderColor: "#3f62f7",
+              bgcolor: "#fff",
+              borderColor: "primary.main",
               boxShadow: "0 0 0 3px rgba(63, 98, 247, 0.1)",
-              backgroundColor: "#ffffff",
             },
           }}
         >
-          <SearchIcon sx={{ color: "#9ca3af", fontSize: "1.1rem" }} />
+          <IconButton sx={{ p: "10px" }} aria-label="search" onClick={onSearch}>
+            <SearchIcon />
+          </IconButton>
           <InputBase
+            sx={{ ml: 1, flex: 1 }}
             placeholder="Search snacks..."
             value={searchQuery || ""}
             onChange={(e) => onSearchChange?.(e.target.value)}
             onKeyPress={handleKeyPress}
-            sx={{
-              flex: 1,
-              fontSize: "0.95rem",
-              color: "#1f2937",
-              "& input": {
-                padding: "0.75rem 0",
-                "&::placeholder": {
-                  color: "#9ca3af",
-                  opacity: 1,
-                },
-              },
-            }}
           />
-          <button
-            onClick={onSearch}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: "0.4rem 0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#3f62f7",
-              fontSize: "1.1rem",
-              transition: "opacity 0.2s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          >
-            {isSearching ? (
-              <CircularProgress size={18} sx={{ color: "#3f62f7" }} />
-            ) : (
-              <SearchIcon sx={{ fontSize: "1.1rem" }} />
-            )}
-          </button>
-        </Box>
+          {isSearching && <CircularProgress size={20} sx={{ mr: 1.5 }} />}
+        </Paper>
 
-        {/* Right Section: Deadline, Settings, User */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 2,
-            justifyContent: "flex-end",
-          }}
-        >
-          {/* Voting Deadline */}
-          <Tooltip
-            title="Vote for your favorite snacks before this date! Vote counts reset after each snack order."
-            arrow
-            placement="bottom"
-            slotProps={{
-              tooltip: {
-                sx: {
-                  fontSize: "0.9rem",
-                  padding: "0.75rem 1rem",
-                  backgroundColor: "rgba(0, 0, 0, 0.85)",
-                  borderRadius: "6px",
-                },
-              },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                padding: "0.75rem 1.25rem",
-                backgroundColor:
-                  "linear-gradient(135deg, #3f62f7 0%, #2d4ce5 100%)",
-                borderRadius: "8px",
-                boxShadow: "0 4px 12px rgba(63, 98, 247, 0.3)",
-                cursor: "help",
-                transition: "all 0.2s ease",
-                "&:hover": {
-                  boxShadow: "0 6px 16px rgba(63, 98, 247, 0.4)",
-                  transform: "translateY(-2px)",
-                },
-              }}
-            >
-              <Box sx={{ fontSize: "1.3rem" }}>📅</Box>
-              <Box>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    color: "rgba(255, 255, 255, 0.8)",
-                    fontSize: "0.65rem",
-                    display: "block",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    fontWeight: 700,
-                  }}
-                >
-                  Deadline
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    fontWeight: 700,
-                    color: "white",
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {votingDeadline || "Friday, Dec 27"}
-                </Typography>
-              </Box>
-            </Box>
-          </Tooltip>
+        {/* Desktop Actions */}
+        {!isMobile && (
+          <Stack direction="row" spacing={3} alignItems="center">
+            <DeadlineDisplay votingDeadline={votingDeadline} />
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{ my: "auto", height: 24 }}
+            />
+            <Stack spacing={1}>
+              <OfficeSelector office={office} onOfficeChange={onOfficeChange} />
+              <LanguageSelector
+                language={language}
+                onLanguageChange={onLanguageChange}
+              />
+            </Stack>
 
-          {/* Settings Menu */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2.5,
-              paddingLeft: 2,
-              borderLeft: "1px solid #e5e7eb",
-            }}
-          >
-            {/* Office Switch */}
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  color: "#6b7280",
-                  letterSpacing: "0.5px",
-                }}
-              >
-                Office
-              </Typography>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0.75 }}>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    minWidth: "35px",
-                    textAlign: "right",
-                    color: office === "nyc" ? "#3f62f7" : "#9ca3af",
-                  }}
-                >
-                  🗽
-                </Typography>
-                <Switch
-                  checked={office === "denver"}
-                  onChange={(e) =>
-                    onOfficeChange?.(e.target.checked ? "denver" : "nyc")
-                  }
-                  size="small"
-                  sx={{
-                    "& .MuiSwitch-switchBase": {
-                      color: "#d1d5db",
-                      "&.Mui-checked": {
-                        color: "#ef6820",
-                      },
-                      "&.Mui-checked + .MuiSwitch-track": {
-                        backgroundColor: "#ef6820",
-                      },
-                    },
-                    "& .MuiSwitch-track": {
-                      backgroundColor: "#d1d5db",
-                    },
-                  }}
-                />
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    minWidth: "35px",
-                    color: office === "denver" ? "#ef6820" : "#9ca3af",
-                  }}
-                >
-                  🏔️
-                </Typography>
-              </Box>
-            </Box>
-
-            {/* Language Toggle */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <Typography
-                variant="caption"
-                sx={{
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  color: "#6b7280",
-                  letterSpacing: "0.5px",
-                }}
-              >
-                Lang
-              </Typography>
-              <ButtonGroup
-                size="small"
-                variant="outlined"
-                sx={{
-                  height: "32px",
-                  backgroundColor: "#f5f7fa",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "6px",
-                  "& .MuiButton-root": {
-                    borderRadius: 0,
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    textTransform: "uppercase",
-                    padding: "4px 10px",
-                    borderRight: "1px solid #e5e7eb",
-                    "&:last-child": {
-                      borderRight: "none",
-                    },
-                  },
-                }}
-              >
-                <Button
-                  onClick={() => onLanguageChange?.("en")}
-                  variant={language === "en" ? "contained" : "text"}
-                  sx={{
-                    backgroundColor:
-                      language === "en" ? "#3f62f7" : "transparent",
-                    color: language === "en" ? "white" : "#6b7280",
-                    border: "none",
-                    "&:hover": {
-                      backgroundColor:
-                        language === "en" ? "#2d4ce5" : "#f0f0f0",
-                    },
-                  }}
-                >
-                  En
-                </Button>
-                <Button
-                  onClick={() => onLanguageChange?.("es")}
-                  variant={language === "es" ? "contained" : "text"}
-                  sx={{
-                    backgroundColor:
-                      language === "es" ? "#3f62f7" : "transparent",
-                    color: language === "es" ? "white" : "#6b7280",
-                    border: "none",
-                    "&:hover": {
-                      backgroundColor:
-                        language === "es" ? "#2d4ce5" : "#f0f0f0",
-                    },
-                  }}
-                >
-                  Es
-                </Button>
-              </ButtonGroup>
-            </Box>
-          </Box>
-
-          {/* User Profile / Login */}
-          {user ? (
-            <>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  paddingLeft: 2,
-                  borderLeft: "1px solid #e5e7eb",
-                }}
-              >
-                {/* Compact Balance */}
-                {user && (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-end",
-                      gap: 0,
-                    }}
+            {user ? (
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <Box sx={{ textAlign: "right" }}>
+                  <Typography
+                    variant="caption"
+                    color="primary"
+                    fontWeight={700}
+                    display="block"
                   >
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        color: "#3f62f7",
-                        fontSize: "0.65rem",
-                        fontWeight: 700,
-                        textTransform: "uppercase",
-                        letterSpacing: "0.5px",
-                      }}
+                    BALANCE
+                  </Typography>
+                  {isLoadingBalance ? (
+                    <CircularProgress size={16} />
+                  ) : (
+                    <Tooltip
+                      title="Your PG coin balance. Use coins to vote on which snacks get ordered for the office. Same coins as playgroundbets.com!"
+                      arrow={true}
                     >
-                      Balance
-                    </Typography>
-                    {isLoadingBalance ? (
-                      <CircularProgress size={16} sx={{ color: "#3f62f7" }} />
-                    ) : (
                       <Typography
-                        sx={{
-                          fontWeight: 700,
-                          color: "#3f62f7",
-                          fontSize: "1.5rem",
-                          lineHeight: 1,
-                        }}
+                        variant="h6"
+                        color="primary"
+                        fontWeight={700}
+                        lineHeight={1}
+                        sx={{ whiteSpace: "nowrap", cursor: "help" }}
                       >
                         {user.balance !== undefined
                           ? Math.floor(user.balance).toLocaleString()
                           : "—"}{" "}
                         pg
                       </Typography>
-                    )}
-                  </Box>
-                )}
-                <Tooltip title="Account menu" arrow placement="bottom">
-                  <IconButton
-                    onClick={handleMenuOpen}
-                    sx={{
-                      p: 0.5,
-                      transition: "all 0.2s ease",
-                      "&:hover": {
-                        backgroundColor: "#f5f7fa",
-                        borderRadius: "8px",
-                      },
-                    }}
-                  >
-                    <Avatar
-                      src={user.picture}
-                      alt={user.name}
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        border: "2px solid #e5e7eb",
-                      }}
-                    />
-                  </IconButton>
-                </Tooltip>
+                    </Tooltip>
+                  )}
+                </Box>
+                <IconButton onClick={handleMenuOpen} sx={{ p: 0 }}>
+                  <Avatar
+                    src={user.picture}
+                    alt={user.name}
+                    sx={{ border: "2px solid #e5e7eb" }}
+                  />
+                </IconButton>
               </Box>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                slotProps={{
-                  paper: {
-                    sx: {
-                      borderRadius: "8px",
-                      boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
-                      backgroundColor: "#ffffff",
-                    },
-                  },
+            ) : (
+              <LoginBox />
+            )}
+          </Stack>
+        )}
+
+        {/* Mobile Menu Button */}
+        {isMobile && (
+          <IconButton onClick={toggleMobileDrawer(true)}>
+            <MenuIcon />
+          </IconButton>
+        )}
+      </Toolbar>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={toggleMobileDrawer(false)}
+      >
+        <Box sx={{ width: 280, p: 2 }} role="presentation">
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 3,
+            }}
+          >
+            <Typography variant="h6" fontWeight={700}>
+              Menu
+            </Typography>
+            <IconButton onClick={toggleMobileDrawer(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
+
+          <Stack spacing={3}>
+            {user ? (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                  p: 2,
+                  bgcolor: "grey.50",
+                  borderRadius: 2,
                 }}
               >
-                <MenuItem disabled>
-                  <Box>
-                    <Typography
-                      variant="body2"
-                      fontWeight={700}
-                      sx={{ color: "#1f2937" }}
-                    >
-                      {user.name}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      sx={{ color: "#9ca3af" }}
-                    >
-                      {user.email}
-                    </Typography>
-                  </Box>
-                </MenuItem>
-                <Box sx={{ borderTop: "1px solid #e5e7eb", my: 1 }} />
-                <MenuItem onClick={handleLogout}>
-                  <Typography
-                    sx={{
-                      fontSize: "0.9rem",
-                      color: "#1f2937",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Logout
+                <Avatar
+                  src={user.picture}
+                  alt={user.name}
+                  sx={{ width: 48, height: 48 }}
+                />
+                <Box>
+                  <Typography variant="subtitle1" fontWeight={600}>
+                    {user.name}
                   </Typography>
-                </MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <Box sx={{ minWidth: "180px" }}>
-              <LoginBox />
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ mb: 0.5 }}
+                  >
+                    Balance:{" "}
+                    {user.balance !== undefined
+                      ? Math.floor(user.balance).toLocaleString()
+                      : "—"}{" "}
+                    pg
+                  </Typography>
+                  <Button size="small" color="error" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </Box>
+              </Box>
+            ) : (
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <LoginBox />
+              </Box>
+            )}
+
+            <Divider />
+
+            <Box>
+              <Typography variant="overline" color="text.secondary">
+                Settings
+              </Typography>
+              <Stack spacing={2} sx={{ mt: 1 }}>
+                <OfficeSelector
+                  office={office}
+                  onOfficeChange={onOfficeChange}
+                />
+                <LanguageSelector
+                  language={language}
+                  onLanguageChange={onLanguageChange}
+                />
+              </Stack>
             </Box>
-          )}
+
+            <Divider />
+
+            <Box>
+              <Typography variant="overline" color="text.secondary">
+                Information
+              </Typography>
+              <Box sx={{ mt: 1 }}>
+                <DeadlineDisplay votingDeadline={votingDeadline} />
+              </Box>
+            </Box>
+          </Stack>
         </Box>
-      </Box>
-    </Box>
+      </Drawer>
+
+      {/* User Menu (Desktop) */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        PaperProps={{
+          elevation: 3,
+          sx: { mt: 1.5, borderRadius: 2, minWidth: 180 },
+        }}
+      >
+        <MenuItem disabled>
+          <Box>
+            <Typography variant="subtitle2" fontWeight={600}>
+              {user?.name}
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              {user?.email}
+            </Typography>
+          </Box>
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
+    </AppBar>
   );
 }

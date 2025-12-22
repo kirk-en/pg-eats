@@ -4,7 +4,7 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useState, useRef, useEffect } from "react";
 import pgCoinImg from "../assets/pg-coin.webp";
 
-// Preload the pg-coin image on module load
+// Aggressive image preloading with multiple strategies
 const preloadImage = (src: string): Promise<void> => {
   return new Promise((resolve) => {
     const img = new Image();
@@ -14,8 +14,123 @@ const preloadImage = (src: string): Promise<void> => {
   });
 };
 
-// Start preloading immediately
-const pgCoinLoadPromise = preloadImage(pgCoinImg);
+// Fetch with retries for aggressive loading
+const fetchImageWithRetries = (
+  src: string,
+  maxRetries = 3
+): Promise<Blob | null> => {
+  const attempt = (retriesLeft: number): Promise<Blob | null> => {
+    return fetch(src)
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.blob();
+      })
+      .catch((error) => {
+        if (retriesLeft > 0) {
+          console.warn(
+            `Coin image fetch failed, retrying... (${retriesLeft} left)`,
+            error
+          );
+          return new Promise((res) => {
+            setTimeout(() => {
+              attempt(retriesLeft - 1).then(res);
+            }, 300);
+          });
+        }
+        console.warn("Failed to preload coin image after retries", error);
+        return null;
+      });
+  };
+  return attempt(maxRetries);
+};
+
+// Cache blob in IndexedDB for persistence across sessions
+const cacheImageBlob = (blobData: Blob): Promise<void> => {
+  return new Promise((resolve) => {
+    const request = indexedDB.open("pgEatsCache", 1);
+
+    request.onupgradeneeded = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result;
+      if (!db.objectStoreNames.contains("images")) {
+        db.createObjectStore("images");
+      }
+    };
+
+    request.onsuccess = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result;
+      const transaction = db.transaction(["images"], "readwrite");
+      const store = transaction.objectStore("images");
+      store.put(blobData, "pg-coin");
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => resolve();
+      db.close();
+    };
+
+    request.onerror = () => resolve();
+  });
+};
+
+// Retrieve cached image from IndexedDB
+const getCachedImageBlob = (): Promise<Blob | null> => {
+  return new Promise((resolve) => {
+    const request = indexedDB.open("pgEatsCache", 1);
+
+    request.onsuccess = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result;
+      const transaction = db.transaction(["images"], "readonly");
+      const store = transaction.objectStore("images");
+      const getRequest = store.get("pg-coin");
+
+      getRequest.onsuccess = () => {
+        resolve(getRequest.result || null);
+      };
+      getRequest.onerror = () => resolve(null);
+
+      transaction.oncomplete = () => db.close();
+    };
+
+    request.onerror = () => resolve(null);
+  });
+};
+
+// Multi-strategy preload: try cache first, then fetch with retries, then regular preload
+let pgCoinLoadPromise: Promise<void> | null = null;
+const initImagePreload = async () => {
+  if (pgCoinLoadPromise) return pgCoinLoadPromise;
+
+  pgCoinLoadPromise = (async () => {
+    try {
+      // Try to get from IndexedDB cache first
+      const cachedBlob = await getCachedImageBlob();
+      if (cachedBlob) {
+        const blobUrl = URL.createObjectURL(cachedBlob);
+        // Pre-create an image to verify it loads
+        await preloadImage(blobUrl);
+        return;
+      }
+    } catch (error) {
+      console.warn("IndexedDB cache retrieval failed", error);
+    }
+
+    try {
+      // Fetch with retries and cache the result
+      const blob = await fetchImageWithRetries(pgCoinImg);
+      if (blob) {
+        await cacheImageBlob(blob);
+        const blobUrl = URL.createObjectURL(blob);
+        await preloadImage(blobUrl);
+        return;
+      }
+    } catch (error) {
+      console.warn("Fetch-based preload failed", error);
+    }
+
+    // Fallback: regular preload
+    await preloadImage(pgCoinImg);
+  })();
+
+  return pgCoinLoadPromise;
+};
 
 interface SnackCardProps {
   id: string;
@@ -41,15 +156,12 @@ export function SnackCard({
   onVote,
 }: SnackCardProps) {
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
-  const [coinImageReady, setCoinImageReady] = useState(false);
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Ensure pg-coin image is loaded before allowing animations
+  // Start preloading the coin image on mount
   useEffect(() => {
-    pgCoinLoadPromise.then(() => {
-      setCoinImageReady(true);
-    });
+    initImagePreload();
   }, []);
 
   const handleVoteWithCoin = (
@@ -61,8 +173,8 @@ export function SnackCard({
 
     onVote?.(id, direction);
 
-    // Create floating coin animation only if the coin image is ready
-    if (shouldShowAnimation && coinImageReady && containerRef.current) {
+    // Create floating coin animation
+    if (shouldShowAnimation && containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       const buttonRect = e.currentTarget.getBoundingClientRect();
 
@@ -94,6 +206,7 @@ export function SnackCard({
         height: "100%",
         position: "relative",
         overflow: "visible",
+        cursor: "default",
       }}
     >
       <CardMedia
@@ -146,6 +259,7 @@ export function SnackCard({
         <button
           className="upvote-btn"
           onClick={(e) => handleVoteWithCoin(e, "up")}
+          style={{ cursor: "pointer" }}
         >
           <ThumbUpIcon sx={{ fontSize: "1rem" }} />
           Up
@@ -153,6 +267,7 @@ export function SnackCard({
         <button
           className="downvote-btn"
           onClick={(e) => handleVoteWithCoin(e, "down")}
+          style={{ cursor: "pointer" }}
         >
           <ThumbDownIcon sx={{ fontSize: "1rem" }} />
           Down
