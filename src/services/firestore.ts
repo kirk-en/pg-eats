@@ -7,14 +7,47 @@ import {
   query,
   where,
   getDocs,
+  onSnapshot,
   Timestamp,
   addDoc,
   deleteDoc,
   increment,
   runTransaction,
+  QueryConstraint,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import type { User, Product, Office } from "../types/firestore";
+
+// Simple in-memory cache for products
+let productsCache: Product[] | null = null;
+let productsCacheTimestamp = 0;
+const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutes
+
+// Helper to find top voter and downvoter
+export const getTopVoters = (userVotes: Record<string, number>) => {
+  let topVoterId: string | null = null;
+  let topVoterCount = 0;
+  let topDownvoterId: string | null = null;
+  let topDownvoterCount = 0;
+
+  Object.entries(userVotes).forEach(([userId, votes]) => {
+    if (votes > topVoterCount) {
+      topVoterId = userId;
+      topVoterCount = votes;
+    }
+    if (votes < topDownvoterCount) {
+      topDownvoterId = userId;
+      topDownvoterCount = votes;
+    }
+  });
+
+  return {
+    topVoterId: topVoterId ? { id: topVoterId, votes: topVoterCount } : null,
+    topDownvoterId: topDownvoterId
+      ? { id: topDownvoterId, votes: topDownvoterCount }
+      : null,
+  };
+};
 
 // User Services
 export const getUser = async (uid: string): Promise<User | null> => {
@@ -71,11 +104,72 @@ export const updateUser = async (
 
 // Product Services
 export const getProducts = async (): Promise<Product[]> => {
+  // Check cache first
+  const now = Date.now();
+  if (productsCache && now - productsCacheTimestamp < CACHE_DURATION_MS) {
+    console.log("Using cached products");
+    return productsCache;
+  }
+
   const q = query(collection(db, "products"), where("isActive", "==", true));
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(
-    (doc) => ({ id: doc.id, ...doc.data() } as Product)
+  const products = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    name: doc.data().name,
+    category: doc.data().category,
+    price: doc.data().price,
+    imageUrl: doc.data().imageUrl,
+    votes_nyc: doc.data().votes_nyc || 0,
+    votes_denver: doc.data().votes_denver || 0,
+    tags: doc.data().tags || [],
+    isActive: doc.data().isActive,
+    userVotes: doc.data().userVotes || {},
+  })) as Product[];
+
+  // Update cache
+  productsCache = products;
+  productsCacheTimestamp = now;
+
+  return products;
+};
+
+export const clearProductsCache = () => {
+  productsCache = null;
+  productsCacheTimestamp = 0;
+};
+
+// Real-time listener for products
+export const subscribeToProducts = (
+  callback: (products: Product[]) => void,
+  onError?: (error: Error) => void
+): (() => void) => {
+  const q = query(collection(db, "products"), where("isActive", "==", true));
+
+  const unsubscribe = onSnapshot(
+    q,
+    (querySnapshot) => {
+      const products = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        name: doc.data().name,
+        category: doc.data().category,
+        price: doc.data().price,
+        imageUrl: doc.data().imageUrl,
+        votes_nyc: doc.data().votes_nyc || 0,
+        votes_denver: doc.data().votes_denver || 0,
+        tags: doc.data().tags || [],
+        isActive: doc.data().isActive,
+        userVotes: doc.data().userVotes || {},
+      })) as Product[];
+
+      callback(products);
+    },
+    (error) => {
+      console.error("Error listening to products:", error);
+      onError?.(error as Error);
+    }
   );
+
+  return unsubscribe;
 };
 
 export const getAllProducts = async (): Promise<Product[]> => {
@@ -88,11 +182,13 @@ export const getAllProducts = async (): Promise<Product[]> => {
 export const deleteProduct = async (productId: string): Promise<void> => {
   const productRef = doc(db, "products", productId);
   await updateDoc(productRef, { isActive: false });
+  clearProductsCache();
 };
 
 export const undeleteProduct = async (productId: string): Promise<void> => {
   const productRef = doc(db, "products", productId);
   await updateDoc(productRef, { isActive: true });
+  clearProductsCache();
 };
 
 // Office Services
@@ -153,6 +249,9 @@ export const voteForProduct = async (
       lastVotedAt: Timestamp.now(),
     });
   });
+
+  // Invalidate cache after vote
+  clearProductsCache();
 };
 
 export const voteForProductBatch = async (
@@ -187,6 +286,9 @@ export const voteForProductBatch = async (
       lastVotedAt: Timestamp.now(),
     });
   });
+
+  // Invalidate cache after vote
+  clearProductsCache();
 };
 
 export const resetOfficeVotes = async (

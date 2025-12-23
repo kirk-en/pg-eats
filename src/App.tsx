@@ -3,7 +3,7 @@ import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import "./App.css";
 import { Header, SnacksGrid, Footer, Categories } from "./components";
 import {
-  getProducts,
+  subscribeToProducts,
   getOffice,
   voteForProductBatch,
 } from "./services/firestore";
@@ -54,10 +54,58 @@ function App() {
   }>({});
 
   useEffect(() => {
-    const fetchData = async () => {
+    let unsubscribe: (() => void) | null = null;
+
+    const setupListener = async () => {
       try {
-        // 1. Fetch Products
-        const products = await getProducts();
+        // 1. Subscribe to Products with real-time listener
+        unsubscribe = subscribeToProducts(
+          (products) => {
+            // Transform products to match our Snack interface
+            const transformedProducts: Snack[] = products.map((product) => ({
+              id: product.id,
+              name: product.name,
+              image: product.imageUrl,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              votes:
+                office === "nyc" ? product.votes_nyc : product.votes_denver,
+              category: product.category,
+              tags: product.tags || [],
+              categoryId: product.category
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-"),
+              userVotes: product.userVotes,
+            }));
+
+            // Extract unique categories
+            const uniqueCategories = Array.from(
+              new Set(products.map((p) => p.category))
+            );
+
+            // Create categories list
+            const categoryList: Category[] = [
+              { id: "most-popular", name: "Most Popular" },
+              ...uniqueCategories.map((cat) => ({
+                id: cat.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+                name: cat,
+              })),
+            ];
+
+            setSnacks(transformedProducts);
+            setRandomizedSnacks(
+              [...transformedProducts]
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 30)
+            );
+            setCategories(categoryList);
+            setIsLoading(false);
+          },
+          (error) => {
+            console.error("Error with real-time listener:", error);
+            setIsLoading(false);
+          }
+        );
 
         // 2. Fetch Office Data
         const officeData = await getOffice(office);
@@ -84,49 +132,20 @@ function App() {
           console.warn("No voting period found for office:", office);
           setIsVotingActive(false);
         }
-
-        // Transform products to match our Snack interface
-        const transformedProducts: Snack[] = products.map((product) => ({
-          id: product.id,
-          name: product.name,
-          image: product.imageUrl,
-          imageUrl: product.imageUrl,
-          price: product.price,
-          votes: office === "nyc" ? product.votes_nyc : product.votes_denver,
-          category: product.category,
-          tags: product.tags || [],
-          categoryId: product.category
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-"),
-        }));
-
-        // Extract unique categories
-        const uniqueCategories = Array.from(
-          new Set(products.map((p) => p.category))
-        );
-
-        // Create categories list
-        const categoryList: Category[] = [
-          { id: "most-popular", name: "Most Popular" },
-          ...uniqueCategories.map((cat) => ({
-            id: cat.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-            name: cat,
-          })),
-        ];
-
-        setSnacks(transformedProducts);
-        setRandomizedSnacks(
-          [...transformedProducts].sort(() => Math.random() - 0.5).slice(0, 30)
-        );
-        setCategories(categoryList);
-        setIsLoading(false);
       } catch (error) {
         console.error("Error loading data:", error);
         setIsLoading(false);
       }
     };
 
-    fetchData();
+    setupListener();
+
+    // Cleanup listener on unmount or when office changes
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+    };
   }, [office]); // Re-run only when office changes
 
   const handleVote = async (snackId: string, direction: "up" | "down") => {

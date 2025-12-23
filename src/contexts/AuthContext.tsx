@@ -73,6 +73,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             ...prev,
             balance: firestoreUser.balance,
             isAdmin: firestoreUser.isAdmin,
+            picture: firestoreUser.photoURL,
+            name: firestoreUser.displayName,
           };
           localStorage.setItem("user", JSON.stringify(updatedUser));
           return updatedUser;
