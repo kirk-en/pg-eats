@@ -253,9 +253,9 @@ export function SnackCard({
         {price !== undefined && (
           <Typography
             variant="body1"
-            sx={{ fontWeight: 700, color: "#1a3a52", marginBottom: "0.5rem" }}
+            sx={{ fontWeight: 300, color: "#1a3a52", marginBottom: "0.5rem" }}
           >
-            {price}
+            ${typeof price === "number" ? price.toFixed(2) : price}
           </Typography>
         )}
         {votes !== undefined && (

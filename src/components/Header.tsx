@@ -386,10 +386,17 @@ export function Header({
                 </Box>
                 <IconButton onClick={handleMenuOpen} sx={{ p: 0 }}>
                   <Avatar
-                    src={user.picture}
+                    src={user.picture || ""}
                     alt={user.name}
-                    sx={{ border: "2px solid #e5e7eb" }}
-                  />
+                    sx={{
+                      border: "2px solid #e5e7eb",
+                      backgroundColor: "#1E90FF",
+                      width: 40,
+                      height: 40,
+                    }}
+                  >
+                    {!user.picture && user.name?.charAt(0).toUpperCase()}
+                  </Avatar>
                 </IconButton>
               </Box>
             ) : (
@@ -442,10 +449,16 @@ export function Header({
                 }}
               >
                 <Avatar
-                  src={user.picture}
+                  src={user.picture || ""}
                   alt={user.name}
-                  sx={{ width: 48, height: 48 }}
-                />
+                  sx={{
+                    width: 48,
+                    height: 48,
+                    backgroundColor: "#1E90FF",
+                  }}
+                >
+                  {!user.picture && user.name?.charAt(0).toUpperCase()}
+                </Avatar>
                 <Box>
                   <Typography variant="subtitle1" fontWeight={600}>
                     {user.name}
