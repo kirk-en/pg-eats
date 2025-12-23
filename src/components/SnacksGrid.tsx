@@ -8,6 +8,7 @@ interface Snack {
   imageUrl?: string;
   price?: string | number;
   votes?: number;
+  userVotes?: Record<string, number>;
 }
 
 interface SnacksGridProps {

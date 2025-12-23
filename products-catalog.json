@@ -50,7 +50,7 @@
   },
   "products": [
     {
-      "id": "prod_0001",
+      "id": "4f9beeed-fa67-4d84-b7a8-db7131c262d0",
       "name": "Fever Tree Ginger Beer, 9.3 fl oz, 12 count",
       "category": "Soda & Soft Drinks",
       "price": "$14.42",
@@ -62,7 +62,7 @@
       "createdAt": "2025-12-20T21:39:47.597Z"
     },
     {
-      "id": "prod_0002",
+      "id": "786790eb-0ecb-44fe-ab56-5f1cb8dd19ae",
       "name": "Diet Coke, 12 fl oz, 35-count",
       "category": "Soda & Soft Drinks",
       "price": "$27.36",
@@ -74,7 +74,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0003",
+      "id": "4a05b54e-7050-4628-b09e-466c5650e559",
       "name": "Coke Zero Sugar, 12 fl oz, 35-count",
       "category": "Soda & Soft Drinks",
       "price": "$27.36",
@@ -86,7 +86,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0004",
+      "id": "0d80d3c9-32b8-484d-8702-289cb27792ef",
       "name": "Coca-Cola Classic, 12 fl oz, 35-count",
       "category": "Soda & Soft Drinks",
       "price": "$27.36",
@@ -98,7 +98,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0005",
+      "id": "290be958-cc0d-473f-88ee-01b257ba4ef8",
       "name": "Sprite, 12 fl oz, 35-count",
       "category": "Soda & Soft Drinks",
       "price": "$27.36",
@@ -110,7 +110,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0006",
+      "id": "b588d9f4-12b7-423f-8930-95cf5ba208f4",
       "name": "Coca-Cola Mini, 7.5 fl oz, 30-count",
       "category": "Soda & Soft Drinks",
       "price": "$24.87",
@@ -122,7 +122,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0007",
+      "id": "6ca31fef-37cb-493a-b22b-4e0ba210f99c",
       "name": "Canada Dry Ginger Ale, 12 oz, 24-count",
       "category": "Soda & Soft Drinks",
       "price": "$16.16",
@@ -134,7 +134,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0008",
+      "id": "aaa0a1fe-3f97-436f-befa-26cbd9ee2603",
       "name": "Sunkist Orange Soda, 12 fl oz, 24 count",
       "category": "Soda & Soft Drinks",
       "price": "$16.16",
@@ -146,7 +146,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0009",
+      "id": "994a5bfe-2987-4b3f-bf7a-27161f8486c3",
       "name": "Pepsi, 12 fl oz, 36-count",
       "category": "Soda & Soft Drinks",
       "price": "$28.60",
@@ -158,7 +158,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0010",
+      "id": "b2b1a3a0-e2e2-4d22-abcc-29e6d9349040",
       "name": "Jones Soda Co. Fallout Vault-Tec Supply Pack, 12 fl oz, 12-count",
       "category": "Soda & Soft Drinks",
       "price": "$22.38",
@@ -170,7 +170,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0011",
+      "id": "b3e7336d-63a6-48d3-9207-2a99f1a40d58",
       "name": "San Pellegrino Sparkling Natural Mineral Water, 25.3 fl oz, 15-count",
       "category": "Water & Sparkling Water",
       "price": "$23.00",
@@ -182,7 +182,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0012",
+      "id": "43e1ea50-9ed5-4514-b15f-de62c6edf82d",
       "name": "Kirkland Signature Sparkling Water, Variety Pack, 12 fl oz, 35-count",
       "category": "Water & Sparkling Water",
       "price": "$14.92",
@@ -194,7 +194,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0013",
+      "id": "715c23b9-6991-4c46-b3de-f159c1983575",
       "name": "Spindrift Sparkling Water Variety Pack, 12 fl oz, 30-count",
       "category": "Water & Sparkling Water",
       "price": "$23.62",
@@ -206,7 +206,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0014",
+      "id": "fbe174a9-e87c-49d5-b1d0-e39ff816f143",
       "name": "Maison Perrier Sparkling Water, 16.9 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$29.59",
@@ -218,7 +218,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0015",
+      "id": "6bed2fdd-38f7-4eb7-9614-f506b7895a45",
       "name": "Kirkland Signature Flavored Water Zero Sugar, 17 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$13.17",
@@ -230,7 +230,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0016",
+      "id": "78aa0bcf-e21f-446a-9c39-5892bb90b8cf",
       "name": "Vintage Seltzer Water, 1 L, 15-count",
       "category": "Water & Sparkling Water",
       "price": "$11.18",
@@ -242,7 +242,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0017",
+      "id": "291f9c6e-b92b-45b6-8548-23f734bffa51",
       "name": "La Croix Sparkling Water Variety, 12 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$13.05",
@@ -254,7 +254,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0018",
+      "id": "4d2152fe-3148-48f4-913d-2abaa7a09dca",
       "name": "Sanpellegrino CIAO! Sparkling Water Variety Pack, 11.16 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$23.00",
@@ -266,7 +266,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0019",
+      "id": "45984692-1914-4851-b619-10daa1abe700",
       "name": "San Pellegrino Sparkling Natural Mineral Water, 16.9 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$29.47",
@@ -278,7 +278,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0020",
+      "id": "86228f79-267f-4834-b26e-7eaa2b365dc7",
       "name": "Spindrift Sparkling Cranberry Raspberry, 12 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$18.65",
@@ -290,7 +290,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0021",
+      "id": "68390495-8ac0-4ffe-a50d-f4d9ae7d9fda",
       "name": "Kirkland Signature Italian Sparkling Mineral Water, 16.9 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$21.14",
@@ -302,7 +302,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0022",
+      "id": "2648bea9-6de2-414f-b4dd-c7e79a08e21c",
       "name": "Chi Forrest Flavored Sparkling Water Beverage Variety, 11.16 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$24.49",
@@ -314,7 +314,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0023",
+      "id": "4e719b54-d587-49c9-9bb3-a87715eb0648",
       "name": "Waterloo Sparkling Water, Variety Pack, 12 fl oz, 24-count",
       "category": "Water & Sparkling Water",
       "price": "$12.43",
@@ -326,7 +326,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0024",
+      "id": "ca95bd0f-0a91-4edb-989e-9c4a45bb5a76",
       "name": "Kirkland Signature Purified Drinking Water, 16.9 fl oz, 40-count",
       "category": "Water & Sparkling Water",
       "price": "$4.96",
@@ -338,7 +338,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0025",
+      "id": "da8e0ffb-38ab-4a97-8d23-9e4bf2c1f652",
       "name": "Glaceau Smartwater, 1 L, 15-count",
       "category": "Water & Sparkling Water",
       "price": "$19.02",
@@ -350,7 +350,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0026",
+      "id": "82816505-e9d2-4fdb-b66e-b03172a51baf",
       "name": "Poland Spring 100% Natural Spring Water, 16.9 fl oz, 40-count",
       "category": "Water & Sparkling Water",
       "price": "$8.70",
@@ -362,7 +362,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0027",
+      "id": "e5183046-092e-46a4-92b1-e848974276e5",
       "name": "Poland Spring 100% Natural Spring Water, 1 gal, 6-count",
       "category": "Water & Sparkling Water",
       "price": "$12.30",
@@ -374,7 +374,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0028",
+      "id": "580ae500-7145-4b75-b09b-ac513e8f8b78",
       "name": "Poland 100% Natural Spring Water, 8 oz, 48 count",
       "category": "Water & Sparkling Water",
       "price": "$10.31",
@@ -386,7 +386,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0029",
+      "id": "aa8f673e-14f3-46bd-bd67-cf73d0a1966d",
       "name": "Poland Spring 100% Natural Spring Water, 23.7 fl oz, 24 count",
       "category": "Water & Sparkling Water",
       "price": "$10.44",
@@ -398,7 +398,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0030",
+      "id": "94ded53e-e3c2-4b16-8e3e-0fcbaf855a26",
       "name": "Kirkland Signature Alkaline Water, 1 L, 18-count",
       "category": "Water & Sparkling Water",
       "price": "$12.43",
@@ -410,7 +410,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0031",
+      "id": "19859517-8aa2-4feb-a4fb-5b0b129b1d64",
       "name": "Poland Spring Spring Water, 1 L, 15 count",
       "category": "Water & Sparkling Water",
       "price": "$9.82",
@@ -422,7 +422,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0032",
+      "id": "6ef01e61-c259-49cc-b778-3e2ebcf2d47c",
       "name": "Kirkland Signature Purified Water, 8 fl oz, 80-count",
       "category": "Water & Sparkling Water",
       "price": "$11.18",
@@ -434,7 +434,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0033",
+      "id": "7a1a18ee-2eec-4fe1-b7f9-2143ae834ad7",
       "name": "Celsius Sparkling Energy Drink, Vibe Variety Pack, 12 fl oz, 18-count",
       "category": "Energy Drinks",
       "price": "$29.84",
@@ -446,7 +446,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0034",
+      "id": "c84d5739-58a6-431e-baf6-84ccf9dced65",
       "name": "Red Bull Energy Drink, 8.4 fl oz, 24 count",
       "category": "Energy Drinks",
       "price": "$48.50",
@@ -458,7 +458,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0035",
+      "id": "aba451aa-3880-429a-97d9-9d810e79b595",
       "name": "Alani Nu Energy Drink, Winter Variety Pack, 12 fl oz, 18-count",
       "category": "Energy Drinks",
       "price": "$16.13",
@@ -470,7 +470,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0036",
+      "id": "31ecab2e-9c72-438e-9467-80032958d14b",
       "name": "Ghost Energy Drink, Variety Pack, 16 fl oz, 18-count",
       "category": "Energy Drinks",
       "price": "$34.45",
@@ -482,7 +482,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0037",
+      "id": "5a1ceb30-34e1-472e-a271-70ac67711be9",
       "name": "ZOA Energy Drink, Variety Pack, 12 fl oz, 18-count",
       "category": "Energy Drinks",
       "price": "$21.14",
@@ -494,7 +494,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0038",
+      "id": "0a9fe399-0c4a-468c-a8b8-501438fa9b25",
       "name": "Genius Gourmet Sparkling Clear 30g Protein, Blue Raspberry Lemonade, 12 fl oz, 15-pack",
       "category": "Energy Drinks",
       "price": "$36.06",
@@ -506,7 +506,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0039",
+      "id": "0b46be25-ae3e-472e-a7d6-a26cff7da717",
       "name": "Monster Energy Drink, Original, 16 fl oz, 24-count",
       "category": "Energy Drinks",
       "price": "$54.72",
@@ -518,7 +518,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0040",
+      "id": "29b84bfb-78ae-429a-a979-2079e127ff1f",
       "name": "Starbucks Pike Place Medium Roast Single Cup Coffee K-Cup Pod, 72-count",
       "category": "Coffee",
       "price": "$43.53",
@@ -530,7 +530,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0041",
+      "id": "3bf968dd-af66-4625-8863-af15966d010e",
       "name": "The Original Donut Shop Coffee K-Cup Pod, 80-count",
       "category": "Coffee",
       "price": "$42.28",
@@ -542,7 +542,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0042",
+      "id": "70203a58-2730-4278-adf9-88c0c37953d9",
       "name": "Starbucks French Roast Coffee, Dark, Keurig K-Cup Pods, 72 count",
       "category": "Coffee",
       "price": "$43.53",
@@ -554,7 +554,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0043",
+      "id": "6eb58822-e392-4734-ade1-3b910363451e",
       "name": "Crafted Classics Coffee K-Cup Pod Variety Pack, 72-count",
       "category": "Coffee",
       "price": "$37.31",
@@ -566,7 +566,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0044",
+      "id": "04a234fb-0c0e-4f79-aebc-0022d9b4bfc1",
       "name": "Café Bustelo Espresso Style K-Cup Pods for Keurig K-Cup Brewers, 29.63-Ounce, Dark Roast Coffee, 80",
       "category": "Coffee",
       "price": "$38.55",
@@ -578,7 +578,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0045",
+      "id": "5d159964-629c-4ba8-beb6-246f5752f283",
       "name": "Dunkin' Donuts Original Blend Coffee, Medium Roast, 72 K-Cup Pods",
       "category": "Coffee",
       "price": "$46.02",
@@ -590,7 +590,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0046",
+      "id": "6bc8a3c4-f852-4ec1-bdba-db89c0bc0473",
       "name": "Peet's Coffee Nespresso Compatible Aluminum Capsules, 80 count",
       "category": "Coffee",
       "price": "$49.75",
@@ -602,7 +602,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0047",
+      "id": "d876ab04-8f5a-4893-9939-a644dedb8185",
       "name": "Kirkland Signature Coffee Organic Pacific Bold K-Cup Pod, 120-count",
       "category": "Coffee",
       "price": "$53.48",
@@ -614,7 +614,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0048",
+      "id": "13c6f16f-1eb5-4be5-a100-3807fabfacbe",
       "name": "Kirkland Signature Coffee Organic Breakfast Blend K-Cup Pod, 120-count",
       "category": "Coffee",
       "price": "$53.48",
@@ -626,7 +626,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0049",
+      "id": "2c86c10f-21a8-4681-8bf0-eb62f2884097",
       "name": "Kirkland Signature Coffee Organic Summit Roast K-Cup Pod, 120 count",
       "category": "Coffee",
       "price": "$53.48",
@@ -638,7 +638,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0050",
+      "id": "ffb50f20-8925-4e67-80be-54f50c054da6",
       "name": "Starbucks Coffee and Espresso Capsules for Nespresso Vertuo Machines 60-count Variety Pack, 100%",
       "category": "Coffee",
       "price": "$89.99",
@@ -650,7 +650,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0051",
+      "id": "80e44cc1-7129-43f0-bf4c-464b16a2d103",
       "name": "Kirkland Signature Colombian Cold Brew Coffee, 11 fl oz, 12-count",
       "category": "Coffee",
       "price": "$21.14",
@@ -662,7 +662,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0052",
+      "id": "461c5cf1-2785-4b4c-a101-ab80cdcedfb7",
       "name": "Starbucks Frappuccino, Mocha Chilled Coffee, 9.5 fl oz, 15-count",
       "category": "Coffee",
       "price": "$32.33",
@@ -674,7 +674,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0053",
+      "id": "39965c53-20bb-4c03-8a36-9e56655c72ec",
       "name": "Fairlife Nutrition Plan, 30g Protein Shake, Chocolate, 11.5 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$42.28",
@@ -686,7 +686,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0054",
+      "id": "673aace5-b810-4ab3-ad96-51bae3cb7a54",
       "name": "Orgain 30g Milk Protein Shake, Chocolate Fudge, 11 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$29.22",
@@ -698,7 +698,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0055",
+      "id": "b3f05618-e6ab-4a3c-ab06-0882f480dce5",
       "name": "Oikos 30g Protein Shake, Vanilla, 12 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$29.84",
@@ -710,7 +710,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0056",
+      "id": "abbebef0-a273-4b9b-b0d8-7f94abc44c12",
       "name": "Muscle Milk Genuine Protein Shake Chocolate, 11 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$24.87",
@@ -722,7 +722,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0057",
+      "id": "629767b4-f76a-4a62-8fde-51fb8f08afe4",
       "name": "Vital Proteins 10g Collagen and 30g Total Protein Shake, Chocolate, 11 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$29.22",
@@ -734,7 +734,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0058",
+      "id": "716272ac-098e-4905-be5b-a6af057c6314",
       "name": "Oikos 30g Chocolate Protein Shake, 12 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$29.84",
@@ -746,7 +746,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0059",
+      "id": "16a95d18-64a5-4555-8cc5-5b085ad148d4",
       "name": "Nurri 30g Protein Shake, Chocolate, 11 fl oz, 12-pack",
       "category": "Protein Shakes",
       "price": "$24.87",
@@ -758,7 +758,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0060",
+      "id": "765f3c6c-149a-4249-bb34-587b4d167523",
       "name": "Nurri 30g Protein Shake, Vanilla, 11 fl oz, 12-pack",
       "category": "Protein Shakes",
       "price": "$24.87",
@@ -770,7 +770,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0061",
+      "id": "7c959a26-7955-476d-983c-048ec95b30bb",
       "name": "Core Power Protein Shake, Chocolate, 14 fl oz, 10-pack",
       "category": "Protein Shakes",
       "price": "$35.44",
@@ -782,7 +782,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0062",
+      "id": "db15fb08-6a06-48aa-814f-ac3314bae223",
       "name": "Premier 30g Protein PLUS Energy and Immune Support Shakes, Vanilla, 11 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$39.80",
@@ -794,7 +794,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0063",
+      "id": "479458d0-7548-458c-8e4f-95ec3200913a",
       "name": "Premier 30g Protein PLUS Energy and Immune Support Shakes, Chocolate, 11 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$39.80",
@@ -806,7 +806,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0064",
+      "id": "3d846179-064a-4f48-b4a3-7a79d4669783",
       "name": "Premier 30g Protein Shakes 11 fl. oz, 18-pack, Cafe Latte",
       "category": "Protein Shakes",
       "price": "$39.80",
@@ -818,7 +818,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0065",
+      "id": "7770f3d9-6096-4bb7-b248-ccccac621718",
       "name": "Premier 30g Protein Hormone Free Shakes 11 oz., 18-pack, Caramel",
       "category": "Protein Shakes",
       "price": "$39.80",
@@ -830,7 +830,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0066",
+      "id": "8d1218bf-9adb-4bb8-92ac-cbccb6e697d5",
       "name": "Orgain Plant-Based Protein Shake Creamy Chocolate, 11 fl oz, 18-pack",
       "category": "Protein Shakes",
       "price": "$36.06",
@@ -842,7 +842,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0067",
+      "id": "4f9c02d7-6e25-44c7-ad3b-6870b1224538",
       "name": "Langers Juice Alphonso Mango Nectar, 128 fl oz",
       "category": "Juice",
       "price": "$7.45",
@@ -854,7 +854,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0068",
+      "id": "777e2659-8520-43ec-8844-b10a983f2b0e",
       "name": "Kirkland Signature, Organic Lemonade, 96 fl oz, 2-count",
       "category": "Juice",
       "price": "$8.45",
@@ -866,7 +866,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0069",
+      "id": "a1ea0adc-07b9-48c3-8e04-7236e1d164ab",
       "name": "Grown Right Organic Strawberry Lemonade, 96 fl oz, 2-count",
       "category": "Juice",
       "price": "$8.70",
@@ -878,7 +878,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0070",
+      "id": "82c13ed0-86ca-42f4-a3af-acbd2f6c2506",
       "name": "Tropicana Pure Premium Orange Juice, 46 oz, 3-count",
       "category": "Juice",
       "price": "$14.17",
@@ -890,7 +890,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0071",
+      "id": "85fd8522-cb56-4151-a86a-42695f1318b8",
       "name": "Sunny D, Tangy Original, 11.3 fl oz, 30-Count",
       "category": "Juice",
       "price": "$17.40",
@@ -902,7 +902,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0072",
+      "id": "eca94092-2a63-4c7f-992e-2d5780ac9977",
       "name": "Honest Kids, Organic Juice Drink, Variety Pack, 6 fl oz, 40-count",
       "category": "Juice",
       "price": "$17.40",
@@ -914,7 +914,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0073",
+      "id": "f5e8d7ae-bb6b-40a3-91a7-1a95d2400554",
       "name": "Capri Sun Flavored Juice Drink Blend, Variety Pack, 6 fl oz, 40-count",
       "category": "Juice",
       "price": "$14.29",
@@ -926,7 +926,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0074",
+      "id": "8c579f6b-23b4-4af9-ad85-6a2b80be56b7",
       "name": "Apple & Eve, 100% Juice, Variety Pack, 6.75 fl oz, 36-count",
       "category": "Juice",
       "price": "$15.91",
@@ -938,7 +938,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0075",
+      "id": "a68de952-c7ac-4fc4-872b-e3c52cc8d27a",
       "name": "Kool-Aid, Jammers, Variety Pack, 6 fl oz, 40-Count",
       "category": "Juice",
       "price": "$11.93",
@@ -950,7 +950,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0076",
+      "id": "8fcad74c-b198-44ae-8618-b615c4c87827",
       "name": "Capri Sun, 100% Juice, Variety Pack, 6 fl oz, 40-count",
       "category": "Juice",
       "price": "$17.40",
@@ -962,7 +962,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0077",
+      "id": "629d7bbe-1e75-4319-93d3-b9f865dc4d5e",
       "name": "Kirkland Signature, Organic Coconut Water, 11.1 fl oz, 12-count",
       "category": "Juice",
       "price": "$15.91",
@@ -974,7 +974,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0078",
+      "id": "681fd407-2384-47c5-9f5a-562ad508a556",
       "name": "Harmless Harvest Organic Coconut Water, 14 oz, 6-count",
       "category": "Juice",
       "price": "$19.89",
@@ -986,7 +986,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0079",
+      "id": "b9a36d65-3c4c-451c-a8ac-376b93408254",
       "name": "Vita Coco, Coconut Water, 11.1 fl oz, 18-count",
       "category": "Juice",
       "price": "$28.60",
@@ -998,7 +998,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0080",
+      "id": "864fa57a-5ef7-4a28-b08f-483eda3962b6",
       "name": "Kirkland Signature, Organic Coconut Water, 33.8 fl oz, 9-count",
       "category": "Juice",
       "price": "$29.84",
@@ -1010,7 +1010,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0081",
+      "id": "db1859fe-bd0d-4fa5-b8be-bed7581eed11",
       "name": "IZZE, Sparkling Juice Beverage, Variety Pack, 8.4 fl oz, 24-Count",
       "category": "Juice",
       "price": "$16.91",
@@ -1022,7 +1022,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0082",
+      "id": "f363b800-c9f7-4ec2-b497-c12b3d507486",
       "name": "San Pellegrino Variety Pack, 11.5 oz, 24-count",
       "category": "Juice",
       "price": "$19.27",
@@ -1034,7 +1034,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0083",
+      "id": "adf8a6b4-a0bd-4af6-b399-eea728328f35",
       "name": "Martinelli's Sparkling Cider, Apple, 25.4 fl oz, 4 count",
       "category": "Juice",
       "price": "$14.92",
@@ -1046,7 +1046,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0084",
+      "id": "6315e8e7-f687-4f69-8ac6-92877a413b52",
       "name": "BODYARMOR Lyte Sports Drink, Variety Pack, 20 fl oz, 18-count",
       "category": "Sports Drinks",
       "price": "$22.38",
@@ -1058,7 +1058,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0085",
+      "id": "0b073cde-f245-4b46-90cf-6400cef2c67a",
       "name": "Gatorade Thirst Quencher Variety Pack, 12 fl oz, 28-count",
       "category": "Sports Drinks",
       "price": "$21.14",
@@ -1070,7 +1070,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0086",
+      "id": "4d7d0f82-e60a-488a-a3d8-1edfc50bbda1",
       "name": "Gatorade Thirst Quencher, Variety Pack, 20 fl oz, 24-count",
       "category": "Sports Drinks",
       "price": "$24.87",
@@ -1082,7 +1082,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0087",
+      "id": "868119ff-c3e9-49b1-91c6-70da6b64f159",
       "name": "Snapple Diet Tea Pack, Variety, 20 fl oz, 24 count",
       "category": "Tea",
       "price": "$24.87",
@@ -1094,7 +1094,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0088",
+      "id": "15ab7cd5-45c7-40c9-81bd-54a0791deb58",
       "name": "Honey Citron & Ginger Tea, 70.55 oz",
       "category": "Tea",
       "price": "$13.30",
@@ -1106,7 +1106,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0089",
+      "id": "0a9cf6fa-faa6-4e60-ace4-0a570c7d006a",
       "name": "Snapple Iced Tea Variety Pack, 20 fl oz, 24-count",
       "category": "Tea",
       "price": "$24.87",
@@ -1118,7 +1118,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0090",
+      "id": "54287361-1564-4ab1-bb13-31e277078157",
       "name": "Kirkland Signature Green Tea Bags, 1.5 g, 100-count",
       "category": "Tea",
       "price": "$14.92",
@@ -1130,7 +1130,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0091",
+      "id": "26eabf76-1459-4c7a-be83-3617ba538c5b",
       "name": "Lipton Original Tea Bags, 312 count",
       "category": "Tea",
       "price": "$15.91",
@@ -1142,7 +1142,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0092",
+      "id": "5e4b1c9f-3996-46a6-a972-9bdf560d3758",
       "name": "Sencha Naturals Organic Matcha, 12 oz",
       "category": "Tea",
       "price": "$35.19",
@@ -1154,7 +1154,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0093",
+      "id": "0088a887-4195-4921-9344-1881d5f64f36",
       "name": "Kirkland Signature Whole Milk, 1 gal",
       "category": "Milk",
       "price": "$3.21",
@@ -1166,7 +1166,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0094",
+      "id": "c303fbdf-f424-4899-b2c2-a6573371c9b7",
       "name": "Kirkland Signature 2% Reduced Fat Milk, 1 gal",
       "category": "Milk",
       "price": "$3.09",
@@ -1178,7 +1178,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0095",
+      "id": "502e3211-e872-4bf8-825c-c8134ec19a27",
       "name": "Kirkland Signature Organic A2 Whole Milk, Half Gallon, 3-count",
       "category": "Milk",
       "price": "$15.54",
@@ -1190,7 +1190,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0096",
+      "id": "d3b16f1c-d436-455d-acfc-ed2cda0610db",
       "name": "Kirkland Signature Low Fat 1% Milk, 1 gal",
       "category": "Milk",
       "price": "$3.09",
@@ -1202,7 +1202,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0097",
+      "id": "46143d7f-a2b6-418b-b99f-9a820209616f",
       "name": "Kirkland Signature Organic 1% Low Fat Milk , 64 fl oz, 3-count",
       "category": "Milk",
       "price": "$15.54",
@@ -1214,7 +1214,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0098",
+      "id": "1eb4580f-df0d-417d-b7bf-3cf8a8a8a0bf",
       "name": "Kirkland Signature, Organic Almond Beverage, Vanilla, 32 fl oz, 6-Count",
       "category": "Milk",
       "price": "$9.94",
@@ -1226,7 +1226,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0099",
+      "id": "350611e1-cc7a-4dd5-ab20-8dad1476e875",
       "name": "Kirkland Signature, Organic Non-Dairy Oat Beverage, 32 oz, 6-count",
       "category": "Milk",
       "price": "$12.43",
@@ -1238,7 +1238,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0100",
+      "id": "4babd1b6-04d3-4c8a-9d7c-88e54839bd7a",
       "name": "Silk Organic Almond Milk Unsweet, Half Gallon, 3-count",
       "category": "Milk",
       "price": "$13.67",
@@ -1250,7 +1250,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0101",
+      "id": "4b592560-7b3d-43ce-8c47-a39fe5086ca2",
       "name": "Kirkland Signature, Almond Milk, 1 qt, 12-count",
       "category": "Milk",
       "price": "$17.40",
@@ -1262,7 +1262,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0102",
+      "id": "f94b1190-e706-4346-8b46-d5228f5b7bdf",
       "name": "Oatly Original Oat Milk, 64 oz, 3-count",
       "category": "Milk",
       "price": "$14.92",
@@ -1274,7 +1274,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0103",
+      "id": "98aa6142-1a57-4ca5-a10c-303499b7e280",
       "name": "Liquid I.V. Sugar-Free Hydration Multiplier in Resealable Pouch",
       "category": "Drink Mixes",
       "price": "$36.06",
@@ -1286,7 +1286,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0104",
+      "id": "4e7cbae9-b8e8-4ab4-b2c9-b09b23f222ed",
       "name": "Liquid I.V. Hydration Multiplier 30 Individual Serving Stick Packs in Resealable Pouch, Variety Pack",
       "category": "Drink Mixes",
       "price": "$36.06",
@@ -1298,7 +1298,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0105",
+      "id": "12cf3b07-a58e-465b-8d44-ec8c86c388da",
       "name": "Nestle, Nesquik Chocolate Drink Mix, 2.81 lbs",
       "category": "Drink Mixes",
       "price": "$12.93",
@@ -1310,7 +1310,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0106",
+      "id": "1155054d-e02f-4b49-9c4e-9eb7d7e2f515",
       "name": "Liquid I.V. Energy Multiplier, 26 Individual Serving Stick Packs, Blackberry Peach",
       "category": "Drink Mixes",
       "price": "$26.09",
@@ -1322,7 +1322,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0107",
+      "id": "f84e42c5-7343-44c8-a0c6-4f64cd7f05dd",
       "name": "Country Time, Drink Mix, Lemonade, 82.5 oz",
       "category": "Drink Mixes",
       "price": "$12.18",
@@ -1334,7 +1334,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0108",
+      "id": "9ac6a780-0dce-4eac-a522-3cfe58a809f1",
       "name": "Liquid I.V. Hydration Multiplier, 30 Individual Serving Stick Packs in Resealable Pouch, Sugar",
       "category": "Drink Mixes",
       "price": "$36.06",
@@ -1346,7 +1346,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0109",
+      "id": "bb807066-4bcb-4b6d-b7b5-6f0fa49d81a8",
       "name": "Tang, Drink Mix, Orange, 72 oz",
       "category": "Drink Mixes",
       "price": "$12.18",
@@ -1358,7 +1358,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0110",
+      "id": "3993181f-47a4-4a0f-9ab7-711f40919245",
       "name": "Liquid I.V. Energy Multiplier, 26 Individual Serving Stick Packs in Resealable Pouch, Sugar Free,",
       "category": "Drink Mixes",
       "price": "$36.06",
@@ -1418,7 +1418,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0115",
+      "id": "b8b6db7a-2a98-4a58-a97e-0fa0324865e5",
       "name": "Organic Blueberries, 18 oz",
       "category": "Fresh Fruits",
       "price": "$11.18",
@@ -1454,7 +1454,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0118",
+      "id": "949564a8-2686-4f91-a7f5-75b23b80e9b4",
       "name": "Honey Crisp Apples, 4 lbs",
       "category": "Fresh Fruits",
       "price": "$11.18",
@@ -1466,7 +1466,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0119",
+      "id": "5856e88f-dd22-4271-9ba4-5f97d2d3ae87",
       "name": "Envy Apples, 4 lbs",
       "category": "Fresh Fruits",
       "price": "$9.94",
@@ -1478,7 +1478,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0120",
+      "id": "b10679be-c50e-4cb8-a279-d204667b9f9f",
       "name": "Snap Dragon Apples, 4 lbs",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1502,7 +1502,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0122",
+      "id": "020283ff-fad4-4cc6-a18f-692594f2001e",
       "name": "Navel Oranges, 8 lbs",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1514,7 +1514,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0123",
+      "id": "b98a7c79-2d64-4c33-9cac-389b555d9fda",
       "name": "Cara Cara Oranges, 5 lbs",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1526,7 +1526,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0124",
+      "id": "6394c83a-4467-4412-be3b-e8b995a00670",
       "name": "Grapefruit, 5 lbs",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1538,7 +1538,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0125",
+      "id": "c6d23415-a827-45c2-beca-01f35531c9d6",
       "name": "Sweeties Melo Gold, 5 lbs",
       "category": "Fresh Fruits",
       "price": "$12.43",
@@ -1574,7 +1574,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0128",
+      "id": "d08c76d6-6e99-4f20-94d3-f494b8c95865",
       "name": "Candy Snap Seedless Red Grapes, 3 lbs",
       "category": "Fresh Fruits",
       "price": "$11.18",
@@ -1586,7 +1586,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0129",
+      "id": "efc61078-5783-4f5c-947c-0bb344b90524",
       "name": "Black Seedless Grapes, 3 lbs",
       "category": "Fresh Fruits",
       "price": "$9.94",
@@ -1598,7 +1598,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0130",
+      "id": "aa5bcbab-bfae-4a2d-aacd-49ea4f724aff",
       "name": "Seedless Watermelon",
       "category": "Fresh Fruits",
       "price": "$9.94",
@@ -1610,7 +1610,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0131",
+      "id": "ec8ddb67-0722-4cff-88e1-03ce15b6a7f8",
       "name": "Mini Watermelon, 2-count",
       "category": "Fresh Fruits",
       "price": "$9.94",
@@ -1622,7 +1622,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0132",
+      "id": "0834a9a9-7f3c-479e-b306-029bb58182eb",
       "name": "Cantaloupe, 2-count",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1634,7 +1634,7 @@
       "createdAt": "2025-12-20T21:39:47.598Z"
     },
     {
-      "id": "prod_0133",
+      "id": "bf371e19-f1a0-4d78-ac71-ff56853b0075",
       "name": "Honeydew Melon, 1-count",
       "category": "Fresh Fruits",
       "price": "$6.21",
@@ -1646,7 +1646,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0134",
+      "id": "730861e1-efc2-4126-ba32-8c1e7fe3f6f6",
       "name": "Organic D'anjou Pears, 4 lbs",
       "category": "Fresh Fruits",
       "price": "$11.81",
@@ -1658,7 +1658,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0135",
+      "id": "a34dbfd6-f194-4bf8-947c-aada3214d7d4",
       "name": "Korean Shingo Pears, 2.8 lbs",
       "category": "Fresh Fruits",
       "price": "$14.92",
@@ -1670,7 +1670,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0136",
+      "id": "06d0d2ca-a8ea-4ceb-a410-fcef752a655b",
       "name": "Cherries, 2 lbs",
       "category": "Fresh Fruits",
       "price": "$14.92",
@@ -1682,7 +1682,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0137",
+      "id": "8433f3ec-1c10-491d-86ce-056fdb9af8a5",
       "name": "Rainier Cherries, 1 lb",
       "category": "Fresh Fruits",
       "price": "$12.43",
@@ -1718,7 +1718,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0140",
+      "id": "20fe6feb-b028-4753-8f2d-eada3486dd61",
       "name": "Plantains, 5 lbs",
       "category": "Fresh Fruits",
       "price": "$5.59",
@@ -1730,7 +1730,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0141",
+      "id": "6700bbc9-1cd8-43d5-a7fb-556659334162",
       "name": "Gold Kiwi, 3 lbs",
       "category": "Fresh Fruits",
       "price": "$16.16",
@@ -1742,7 +1742,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0142",
+      "id": "f8a61c3a-515d-4b61-9851-267902d9b96a",
       "name": "Red Kiwi, 2 lbs",
       "category": "Fresh Fruits",
       "price": "$9.94",
@@ -1754,7 +1754,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0143",
+      "id": "59134bc7-9e72-4e27-9ed0-45670d674182",
       "name": "Pomegranate Arils, 1 lb",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1766,7 +1766,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0144",
+      "id": "c3691fe6-ae58-4b8a-9dbe-dd3f14bed14c",
       "name": "Persimmons Fuyu Variety, 3 lbs",
       "category": "Fresh Fruits",
       "price": "$11.18",
@@ -1778,7 +1778,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0145",
+      "id": "974637ae-df9a-4f71-bc94-a2a55d7911a3",
       "name": "Whole Pomegranates, 4-count",
       "category": "Fresh Fruits",
       "price": "$18.65",
@@ -1790,7 +1790,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0146",
+      "id": "3d45b8ba-10c0-43d1-b30a-971a51aeeadd",
       "name": "Lemons, 5 lbs",
       "category": "Fresh Fruits",
       "price": "$9.94",
@@ -1802,7 +1802,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0147",
+      "id": "755f12ba-f2c8-49fd-b7f2-7cca698d0ea3",
       "name": "Limes, 3 lbs",
       "category": "Fresh Fruits",
       "price": "$7.45",
@@ -1814,7 +1814,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0148",
+      "id": "47b93532-c415-4063-8f0b-da3b2d4d0a7b",
       "name": "Meyer Lemons, 4 lbs",
       "category": "Fresh Fruits",
       "price": "$8.70",
@@ -1826,7 +1826,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0149",
+      "id": "a4b95470-1a62-48b5-a603-c6d0f9bba957",
       "name": "Copper Kettle Candy Company Dark Chocolates Sea Salt Truffles, 16 oz",
       "category": "Chocolate & Candy",
       "price": "$11.93",
@@ -1838,7 +1838,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0150",
+      "id": "4fd05cf4-71bf-48cd-b15f-45cda02185d2",
       "name": "Ghirardelli Premium Chocolate Squares Assortment, 23.6 oz bag",
       "category": "Chocolate & Candy",
       "price": "$17.40",
@@ -1850,7 +1850,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0151",
+      "id": "719c7b3d-fb77-48ca-a21f-a3d2af6f24a9",
       "name": "Hershey's Kisses, Milk Chocolate, 56 oz, 330-count",
       "category": "Chocolate & Candy",
       "price": "$16.78",
@@ -1862,7 +1862,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0152",
+      "id": "f6113970-fb23-4a2a-ac9a-5f8746f43f2c",
       "name": "Nature's Garden, Probiotic Strawberry Yoggies, 0.7 oz,  30-count",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$15.91",
@@ -1874,7 +1874,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0153",
+      "id": "d30da196-3bf6-41a3-aa8f-39871409365b",
       "name": "Unreal Dark Chocolate Coconut Minis, 15.3 oz",
       "category": "Chocolate & Candy",
       "price": "$13.67",
@@ -1886,7 +1886,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0154",
+      "id": "9682b6aa-7b97-42f6-bb09-b6ddb59c99a7",
       "name": "Kirkland Signature Funhouse Treats, Variety Pack, 92 oz",
       "category": "Chocolate & Candy",
       "price": "$26.11",
@@ -1898,7 +1898,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0155",
+      "id": "3c205d2c-53d4-4dc8-942b-5e4df10f58ad",
       "name": "Kirkland Signature Favorites Candy Variety, 90 oz",
       "category": "Chocolate & Candy",
       "price": "$29.47",
@@ -1910,7 +1910,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0156",
+      "id": "ceb3ff9a-f6fd-4c38-9bde-98b0a40e5e60",
       "name": "Trident Mint Variety Pack, 20-count",
       "category": "Chocolate & Candy",
       "price": "$18.65",
@@ -1922,7 +1922,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0157",
+      "id": "3a3892ce-c0cc-4c0a-8e9a-ef8e53ba427a",
       "name": "El Almendro Turrón Duro, 7 oz, 3-count",
       "category": "Chocolate & Candy",
       "price": "$17.28",
@@ -1934,7 +1934,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0158",
+      "id": "b8c7d2c8-2384-4b54-b504-f1efaef7b5aa",
       "name": "Skittles Pop'd Original, 5.5 oz, 2-count",
       "category": "Chocolate & Candy",
       "price": "$11.06",
@@ -1946,7 +1946,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0159",
+      "id": "588efed1-4a06-4ecf-8a87-7d6ccbec7589",
       "name": "BUILT Puff Protein Bar, Variety Pack, 1.41 oz, 14-count",
       "category": "Snack Bars",
       "price": "$24.87",
@@ -1958,7 +1958,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0160",
+      "id": "536feea4-c7d1-44a5-9c73-f2db9a61b062",
       "name": "Perfect Bar Refrigerated Organic Protein Bar, Variety, 12-count",
       "category": "Snack Bars",
       "price": "$24.87",
@@ -1970,7 +1970,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0161",
+      "id": "d432cdb0-e795-4cd8-8e25-05a8e7df1efd",
       "name": "Kirkland Signature Chewy Protein Bar, Peanut Butter & Semisweet Chocolate Chip, 1.41 oz, 42-Count",
       "category": "Snack Bars",
       "price": "$18.65",
@@ -1982,7 +1982,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0162",
+      "id": "0c651fc3-2675-45cb-8259-de71c104c2e7",
       "name": "Nature Valley Protein Bar, Peanut Butter Dark Chocolate, 1.42 oz, 30-count",
       "category": "Snack Bars",
       "price": "$19.89",
@@ -1994,7 +1994,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0163",
+      "id": "65f97502-98aa-4fa2-bce1-7a29eabf91a8",
       "name": "RXBAR Protein Bars, Variety Pack, 14-count",
       "category": "Snack Bars",
       "price": "$22.38",
@@ -2006,7 +2006,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0164",
+      "id": "a1af39ed-e11a-41e0-b580-03041e2275e1",
       "name": "That's it Mini Fruit Bars, 24-count",
       "category": "Snack Bars",
       "price": "$18.65",
@@ -2018,7 +2018,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0165",
+      "id": "5ff14454-4160-48d7-b99f-e2b973884e20",
       "name": "Pure Organic Layered Fruit Bars, Variety Pack, 0.63 oz, 28-count",
       "category": "Snack Bars",
       "price": "$17.40",
@@ -2030,7 +2030,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0166",
+      "id": "a13e24f5-14c1-4f40-a0c4-5044b4183885",
       "name": "Arroyo Baking Co Fig Bar Variety Pack, 2 oz, 40-count",
       "category": "Snack Bars",
       "price": "$18.52",
@@ -2042,7 +2042,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0167",
+      "id": "aa6a8a64-8a82-4847-94aa-d48259ef1e06",
       "name": "Kirkland Signature Soft & Chewy Granola Bars, 0.85 oz, 64-count",
       "category": "Snack Bars",
       "price": "$14.29",
@@ -2054,7 +2054,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0168",
+      "id": "e08e2df1-e4dd-4be8-86ca-dcbfda42b3de",
       "name": "Kirkland Signature Nut Bars, 1.41 oz, 30 count",
       "category": "Snack Bars",
       "price": "$20.64",
@@ -2066,7 +2066,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0169",
+      "id": "1882002d-9e67-477c-907c-130aa94e77f3",
       "name": "Nature Valley Crunchy Granola Bar, Oats 'n Honey, 1.49 oz, 49-count",
       "category": "Snack Bars",
       "price": "$18.65",
@@ -2078,7 +2078,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0170",
+      "id": "528f4d64-819c-49e7-a4bf-cf55d2c3e49e",
       "name": "Clif Kid Organic ZBar, Variety Pack, 1.27 oz, 36-count",
       "category": "Snack Bars",
       "price": "$27.36",
@@ -2090,7 +2090,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0171",
+      "id": "6c77453c-2cb0-4ff0-84b2-32e73bb6d524",
       "name": "KIND Nut Bar, Variety Pack, 1.4 oz, 22-count",
       "category": "Snack Bars",
       "price": "$22.01",
@@ -2102,7 +2102,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0172",
+      "id": "8b6ac52b-3af1-49b9-8fa0-8da8f3dd12d1",
       "name": "Frito Lay Simply Variety Pack, 30-count",
       "category": "Chips",
       "price": "$14.92",
@@ -2114,7 +2114,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0173",
+      "id": "e5a65c21-d9dd-441d-9458-857779ea3cb9",
       "name": "Frito Lay Classic Mix, 1 oz, Variety Pack, 54-count",
       "category": "Chips",
       "price": "$24.87",
@@ -2126,7 +2126,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0174",
+      "id": "ad82bcc4-34f7-4651-bb24-076fe647b51a",
       "name": "Siete Grain Free Tortilla Chips, Variety Pack, 1 oz, 14-count",
       "category": "Chips",
       "price": "$14.92",
@@ -2138,7 +2138,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0175",
+      "id": "18059eaa-3340-4dd9-b721-ff52084d7f01",
       "name": "Pringles Grab & Go Potato Crisps, Variety, 36-count",
       "category": "Chips",
       "price": "$24.87",
@@ -2150,7 +2150,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0176",
+      "id": "9a9a85e2-50ba-44b8-89de-28088a8d155d",
       "name": "PopCorners Popped Corn Snacks Variety Pack, 1 oz, 30-Count",
       "category": "Chips",
       "price": "$19.52",
@@ -2162,7 +2162,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0177",
+      "id": "e3eb7d7d-03ec-4470-88f4-35fa4c3c712c",
       "name": "Pirate's Booty Aged White Cheddar Snack, 0.5 oz, 40 count",
       "category": "Chips",
       "price": "$16.66",
@@ -2174,7 +2174,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0178",
+      "id": "cefe540d-bf7f-4cc4-bdc4-9c596e3de9bf",
       "name": "180 Snacks Premium Korean Sweet and Spicy Puffs, 10.58 oz",
       "category": "Chips",
       "price": "$9.82",
@@ -2186,7 +2186,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0179",
+      "id": "4161e3bd-9ef9-4037-9681-fbddc8c3cae8",
       "name": "Kirkland Signature Organic Roasted Seaweed, 0.6 oz, 10-count",
       "category": "Chips",
       "price": "$12.43",
@@ -2198,7 +2198,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0180",
+      "id": "14e0d0b6-c052-499b-a50a-e74283f09ec6",
       "name": "180 Snacks Marinara Pasta Chips, 10.58 oz",
       "category": "Chips",
       "price": "$7.33",
@@ -2210,7 +2210,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0181",
+      "id": "af623344-fbe5-482b-98be-f0635d2cdd5c",
       "name": "Lulu Plantain Strips, Lightly Salted, 16 oz",
       "category": "Chips",
       "price": "$7.45",
@@ -2222,7 +2222,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0182",
+      "id": "ba6fcd6e-92f2-4c00-a6bb-2fef3d7a1a49",
       "name": "Gimme Organic Seaweed Variety Pack, .17 oz, 20-count",
       "category": "Chips",
       "price": "$14.42",
@@ -2234,7 +2234,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0183",
+      "id": "ad485ba9-e609-4c5e-ba61-f1b571702022",
       "name": "Fritos Scoops! Corn Chips, 32 oz",
       "category": "Chips",
       "price": "$9.19",
@@ -2246,7 +2246,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0184",
+      "id": "7e716aad-cf72-4d24-a272-2e51ccd4dc97",
       "name": "Ruffles Potato Chips, Original, 28 oz",
       "category": "Chips",
       "price": "$6.83",
@@ -2258,7 +2258,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0185",
+      "id": "be1c97f8-59da-44da-afaa-0e86f3ed47f6",
       "name": "Kirkland Signature Kettle Himalayan Salt Potato Chips, 32 oz",
       "category": "Chips",
       "price": "$7.45",
@@ -2270,7 +2270,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0186",
+      "id": "86e0c0c2-c233-4c2d-997a-6a4a47b1cbd2",
       "name": "Cape Cod Kettle Cooked Potato Chips, Original, 30 oz",
       "category": "Chips",
       "price": "$9.32",
@@ -2282,7 +2282,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0187",
+      "id": "21404711-c1e2-4a2b-8b7b-8bbd8a679774",
       "name": "Jackon's Kettle Cooked Sweet Potato Chips, 16 oz",
       "category": "Chips",
       "price": "$7.33",
@@ -2294,7 +2294,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0188",
+      "id": "b2172a06-bc8a-42da-a1e4-a27f8c62e50f",
       "name": "The SnakYard Organic Sweet Potato Sticks, 2.82 oz, 6-count",
       "category": "Chips",
       "price": "$14.54",
@@ -2306,7 +2306,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0189",
+      "id": "1df299ec-5ecb-4a22-957e-c343c257fc55",
       "name": "Doritos Nacho Cheese Chips, 30 oz",
       "category": "Chips",
       "price": "$6.21",
@@ -2318,7 +2318,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0190",
+      "id": "8d16087e-b384-44c2-909e-7be598d5cd36",
       "name": "Kirkland Signature Organic Tortilla Chips, 40 oz",
       "category": "Chips",
       "price": "$8.07",
@@ -2330,7 +2330,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0191",
+      "id": "fbb691b0-2e24-4c06-bc7d-59c7e8da03b7",
       "name": "Tostitos Scoops, 22 oz",
       "category": "Chips",
       "price": "$7.45",
@@ -2342,7 +2342,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0192",
+      "id": "217af573-23e5-4005-b1ea-c83dd4d16bab",
       "name": "Stacy's Organic Simply Naked Pita Chips, 28 oz",
       "category": "Chips",
       "price": "$7.45",
@@ -2354,7 +2354,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0193",
+      "id": "8bc77c39-8660-4146-aef7-ec21120b16a6",
       "name": "Schwartz Brothers Bakery, Organic Everything Bagel Chips, 15 oz",
       "category": "Chips",
       "price": "$9.94",
@@ -2366,7 +2366,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0194",
+      "id": "9ff8526e-97b4-4aa7-95ac-031842e520f5",
       "name": "Calbee Harvest Snaps Green Pea Snacks, 20 oz",
       "category": "Chips",
       "price": "$10.56",
@@ -2378,7 +2378,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0195",
+      "id": "a28734d1-a641-40b9-9b79-9aaabe26d2c1",
       "name": "Uncle Saba's Mini Papadums, Lentil & Chickpea Chips, 18 oz",
       "category": "Chips",
       "price": "$9.94",
@@ -2390,7 +2390,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0196",
+      "id": "1bb6ccdf-e102-4bad-9ab2-199d2fda9cf9",
       "name": "Kirkland Signature Extra Fancy Mixed Nuts, Salted, 2.5 lbs",
       "category": "Nuts & Trail Mix",
       "price": "$19.89",
@@ -2402,7 +2402,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0197",
+      "id": "935f458b-d0b4-400d-826d-c5eaeea95b70",
       "name": "Kirkland Signature Fancy Whole Cashews, 2.5lbs",
       "category": "Nuts & Trail Mix",
       "price": "$19.89",
@@ -2414,7 +2414,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0198",
+      "id": "79fd814f-55a0-42de-8c5e-aed981e4f67d",
       "name": "Kirkland Signature Snacking Nuts, Variety Pack, 1.6 oz, 30-count",
       "category": "Nuts & Trail Mix",
       "price": "$23.00",
@@ -2426,7 +2426,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0199",
+      "id": "04469442-aee4-4375-a063-dd102f70b8ab",
       "name": "Kirkland Signature Walnut Halves, 3 lbs",
       "category": "Nuts & Trail Mix",
       "price": "$16.16",
@@ -2438,7 +2438,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0200",
+      "id": "eda8c4fa-1052-419e-96c2-88d3cad18b65",
       "name": "Kirkland Signature Pecan Halves, 2 lbs",
       "category": "Nuts & Trail Mix",
       "price": "$17.03",
@@ -2450,7 +2450,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0201",
+      "id": "4dfbb6f7-89a7-4698-b602-d7735dc417e4",
       "name": "Kirkland Signature Trail Mix Snack Packs, 2 oz, 28-count",
       "category": "Nuts & Trail Mix",
       "price": "$21.14",
@@ -2462,7 +2462,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0202",
+      "id": "df3050a7-5612-47b8-823c-5a8e57fcee07",
       "name": "Kirkland Signature Trail Mix, 4 lbs",
       "category": "Nuts & Trail Mix",
       "price": "$18.03",
@@ -2474,7 +2474,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0203",
+      "id": "87c0e007-263c-4a3f-8959-9e8d714c8558",
       "name": "Nature's Garden Organic Trail Mix Snack Packs, Variety Pack, 1.2 oz, 24-count",
       "category": "Nuts & Trail Mix",
       "price": "$17.28",
@@ -2486,7 +2486,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0204",
+      "id": "d20fcb8d-b691-4e45-98fb-fbc670c6bb07",
       "name": "Basse Maple Nut Mix, 28.2 oz",
       "category": "Nuts & Trail Mix",
       "price": "$12.40",
@@ -2498,7 +2498,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0205",
+      "id": "ece4270d-3e64-4ab9-a7d4-59d2981fdb9d",
       "name": "Country Archer Grass-Fed Beef Stick Minis Original, 0.5 oz, 28-Count",
       "category": "Jerky",
       "price": "$15.41",
@@ -2510,7 +2510,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0206",
+      "id": "4cd3bdd7-3e71-4bee-bc98-56112be675d8",
       "name": "Country Archer Grass Fed Beef Sticks, 1oz, 16-count",
       "category": "Jerky",
       "price": "$19.89",
@@ -2522,7 +2522,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0207",
+      "id": "51a09c44-9ec8-49f3-9ddf-27c748554cd0",
       "name": "Kirkland Signature Premium Extra Thick Steak Strips, 12 oz",
       "category": "Jerky",
       "price": "$15.91",
@@ -2534,7 +2534,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0208",
+      "id": "ce7e9b66-f61b-4ec4-b360-13da5f03d24f",
       "name": "Kirkland Signature Grass-fed Beef Sticks, 1.15 oz, 12-count",
       "category": "Jerky",
       "price": "$16.16",
@@ -2546,7 +2546,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0209",
+      "id": "ff6a1aaa-2553-4619-b3ee-30eeda99cb14",
       "name": "Anthem Snacks Hot Honey Beef Sticks, 1 oz, 12 count",
       "category": "Jerky",
       "price": "$21.14",
@@ -2558,7 +2558,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0210",
+      "id": "e9cea77d-b433-4d25-b912-d86cbacf3d1c",
       "name": "Chomps Jalapeno Grass Fed Beef Sticks, 12-count",
       "category": "Jerky",
       "price": "$23.62",
@@ -2570,7 +2570,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0211",
+      "id": "d16215f6-48f6-49ec-b75d-3c711000aa1f",
       "name": "Greenridge Naturals Beef Snack Sticks, 3 oz, 12-count",
       "category": "Jerky",
       "price": "$22.38",
@@ -2582,7 +2582,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0212",
+      "id": "dc659084-9934-49ea-b212-246dcbfcd478",
       "name": "Nabisco Cookies & Crackers, Variety Pack, 1 oz, 40-count",
       "category": "More Snacks",
       "price": "$16.16",
@@ -2594,7 +2594,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0213",
+      "id": "0a7ae2ee-7601-44b5-8b52-8a5cebf11f3a",
       "name": "Frito Lay Oven Baked Mix, Variety Pack, 30-count",
       "category": "More Snacks",
       "price": "$23.62",
@@ -2606,7 +2606,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0214",
+      "id": "a38f27e5-ca66-489e-bfd9-3e161973b741",
       "name": "MadeGood Organic Granola Minis, Variety Pack, 0.85 oz, 24-count",
       "category": "More Snacks",
       "price": "$14.92",
@@ -2618,7 +2618,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0215",
+      "id": "db7955f8-9111-4611-9b67-2891266db1a7",
       "name": "Universal Bakery Organic Aussie Bites, 30 oz",
       "category": "More Snacks",
       "price": "$14.67",
@@ -2630,7 +2630,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0216",
+      "id": "1b23012b-306a-4ad5-87fc-6b734b0c8d7b",
       "name": "Kirkland Signature Cashew Clusters, 2 lbs",
       "category": "More Snacks",
       "price": "$13.30",
@@ -2642,7 +2642,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0217",
+      "id": "7e6fa13a-8160-405e-9c8a-38ebdaec0b88",
       "name": "Heavenly Hunks Organic Oatmeal Dark Chocolate Mini Bites, 1.2 oz, 16-count",
       "category": "More Snacks",
       "price": "$13.55",
@@ -2654,7 +2654,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0218",
+      "id": "03c29252-4c96-4a6e-a573-38de0faca5b7",
       "name": "Jennies Organic Coconut Cacao Bite, 24 oz",
       "category": "More Snacks",
       "price": "$12.43",
@@ -2666,7 +2666,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0219",
+      "id": "5076f781-a85d-4f19-b033-9a0cbec9ec3e",
       "name": "Welch’s Fruit Snacks, .8 oz, 90 count",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$16.91",
@@ -2678,7 +2678,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0220",
+      "id": "161e1540-11a1-49a6-9eaf-a7678ade1074",
       "name": "Welch's Fusions Filled Fruit Snacks, .8 oz, 42-count",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$16.16",
@@ -2690,7 +2690,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0221",
+      "id": "0f3d8141-a261-48ae-bc82-ee45e3ada3cf",
       "name": "Pure Organic Twisted Fruit Bites, Variety Pack, 0.7 oz, 24-count",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$18.65",
@@ -2702,7 +2702,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0222",
+      "id": "13446ee2-88d4-4b43-ab5e-7a38053794bb",
       "name": "Apple & Eve Organics Fruit Strips, 0.5 oz, 50-count",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$19.89",
@@ -2714,7 +2714,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0223",
+      "id": "d2734029-2f80-4216-9fb3-71fca58a62b4",
       "name": "GoGo SqueeZ, Organic Applesauce, Variety Pack, 3.2 oz, 28-count",
       "category": "More Snacks",
       "price": "$13.67",
@@ -2726,7 +2726,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0224",
+      "id": "016392d5-e9a3-4307-a29e-627d58448f07",
       "name": "Kirkland Signature, Organic Fruit and Vegetable Pouches, Variety Pack, 3.17 oz, 24-count",
       "category": "More Snacks",
       "price": "$15.66",
@@ -2738,7 +2738,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0225",
+      "id": "519367e5-d15e-4c22-9009-462b77adb474",
       "name": "Hoody's Peanut Butter Chocolate Mix, 44 oz",
       "category": "More Snacks",
       "price": "$14.79",
@@ -2750,7 +2750,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0226",
+      "id": "1020d9f2-f5ed-43c6-9342-db921df4b49b",
       "name": "General Mills Chex Mix Traditional, 40 oz",
       "category": "More Snacks",
       "price": "$8.70",
@@ -2762,7 +2762,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0227",
+      "id": "1f5d8795-0323-45c7-8edf-3f0377bf2366",
       "name": "Catalina Crunch Protein Snack Mix, 18 oz",
       "category": "More Snacks",
       "price": "$13.67",
@@ -2774,7 +2774,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0228",
+      "id": "1f4e5d52-4274-4c5c-a15a-06f088d810d1",
       "name": "Snack Factory Organic Original Pretzel Crisps, 28 oz",
       "category": "Popcorn",
       "price": "$6.21",
@@ -2786,7 +2786,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0229",
+      "id": "a437f1f7-b044-41fa-87e4-7c3942f0edde",
       "name": "Dot’s Homestyle Seasoned Pretzel Twists, Variety Pack, 1 oz, 32-count",
       "category": "Popcorn",
       "price": "$12.43",
@@ -2798,7 +2798,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0230",
+      "id": "1d299f99-aa26-4ea0-869b-186e614b6d02",
       "name": "Kirkland Signature Peanut Butter Filled Pretzel Nuggets, 55 oz",
       "category": "Popcorn",
       "price": "$12.18",
@@ -2810,7 +2810,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0231",
+      "id": "149746d5-01e2-4757-850b-018209d73b04",
       "name": "Dot’s Homestyle Pretzels, Original Seasoned Pretzel Twists, 35 oz",
       "category": "Popcorn",
       "price": "$12.43",
@@ -2822,7 +2822,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0232",
+      "id": "f3246fcf-98c9-44ce-b54c-213fef4c85ca",
       "name": "Kirkland Signature Shelled Pistachios, Salted, 1.5 lbs",
       "category": "Popcorn",
       "price": "$19.89",
@@ -2834,7 +2834,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0233",
+      "id": "b69c03db-26b8-4e9d-a137-783c69610606",
       "name": "Popcornopolis Zebra Popcorn, 24 oz",
       "category": "Popcorn",
       "price": "$6.21",
@@ -2846,7 +2846,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0234",
+      "id": "e659d413-ea0e-47e7-aea0-f7efb2c8531c",
       "name": "Skinny Pop Organic Popcorn, 14 oz",
       "category": "Popcorn",
       "price": "$8.70",
@@ -2858,7 +2858,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0235",
+      "id": "11d17e83-aa43-48a0-8dd9-521947f5f4f6",
       "name": "Skinny Pop Popcorn, 0.65 oz, 28-count",
       "category": "Popcorn",
       "price": "$17.40",
@@ -2870,7 +2870,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0236",
+      "id": "51972346-5b69-47d5-99d6-e2c7aa6056f7",
       "name": "Kirkland Signature Microwave Popcorn, 3.3 oz, 44-count",
       "category": "Popcorn",
       "price": "$18.65",
@@ -2882,7 +2882,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0237",
+      "id": "2ce89dbc-1e69-43ee-bd0d-7e27762f8339",
       "name": "Lesser Evil Himalayan Gold Popcorn, 14 oz",
       "category": "Popcorn",
       "price": "$7.45",
@@ -2894,7 +2894,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0238",
+      "id": "59299aad-1c11-43fc-a7b3-ec12ac6968ee",
       "name": "La Boulangere Chocolate Croissants, 25.4 oz",
       "category": "Cookies & Sweet Treats",
       "price": "$9.19",
@@ -2906,7 +2906,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0239",
+      "id": "b35a51ac-7612-4ddf-a29a-246aba34d0d1",
       "name": "Kellogg's Rice Krispies Treats, 0.78 oz, 60-count",
       "category": "Cookies & Sweet Treats",
       "price": "$16.16",
@@ -2918,7 +2918,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0240",
+      "id": "b31a538d-e897-4db6-a5f2-c6d5fba32e20",
       "name": "Kirkland Signature Mini Muffin Bites, Chocolate Chip, 1.65 oz, 20-count",
       "category": "Cookies & Sweet Treats",
       "price": "$11.18",
@@ -2930,7 +2930,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0241",
+      "id": "d1cc9a06-637b-4b8b-ae7e-e406967c4a33",
       "name": "Tropical Fields Organic Coconut Rolls, 11 oz",
       "category": "Cookies & Sweet Treats",
       "price": "$10.93",
@@ -2942,7 +2942,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0242",
+      "id": "67b38610-57a5-47b0-ade0-c400441dad56",
       "name": "Entenmann’s Little Bites Party Cake Muffins, 1.65 oz, 20-count",
       "category": "Cookies & Sweet Treats",
       "price": "$13.05",
@@ -2954,7 +2954,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0243",
+      "id": "f84bc1c8-e726-4a18-bc4d-459d208498a8",
       "name": "OREO Chocolate Sandwich Cookies, Stay Fresh Packs, 12-count",
       "category": "Cookies & Sweet Treats",
       "price": "$10.31",
@@ -2966,7 +2966,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0244",
+      "id": "5aa1ab82-e1cd-499b-ba33-a959a4a6d17f",
       "name": "Tate's Bake Shop Chocolate Chip Cookies, 21 oz",
       "category": "Cookies & Sweet Treats",
       "price": "$9.32",
@@ -2978,7 +2978,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0245",
+      "id": "7c150204-d683-41b2-bc89-5fbf72fe0de0",
       "name": "Milano Cookies, Double Dark Chocolate, 0.98 oz, 30-count",
       "category": "Cookies & Sweet Treats",
       "price": "$15.91",
@@ -2990,7 +2990,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0246",
+      "id": "9ef2e54b-6b5d-4146-96a3-090ab7614997",
       "name": "BelVita Breakfast Biscuit, Cinnamon Brown Sugar, 1.76 oz, 30-count",
       "category": "Cookies & Sweet Treats",
       "price": "$19.64",
@@ -3002,7 +3002,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0247",
+      "id": "c9c9899f-58e7-469c-a39f-d3f5a5ab5588",
       "name": "Pepero Variety Pack Biscuit Sticks, 9.52 oz, 8-count",
       "category": "Cookies & Sweet Treats",
       "price": "$8.20",
@@ -3014,7 +3014,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0248",
+      "id": "c1343c0e-0eb3-4815-a009-26d8b61adba6",
       "name": "Kirkland Signature Dried Mangoes, Sweetened, 35 oz",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$12.43",
@@ -3026,7 +3026,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0249",
+      "id": "4688c5e6-2340-4393-a18c-02f123b1c288",
       "name": "Organic Pitted Medjool Dates, 24 oz",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$14.92",
@@ -3038,7 +3038,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0250",
+      "id": "0153c8b5-2756-49a6-8a4f-f79e8329cf38",
       "name": "Kirkland Signature Organic Dried Mangoes, 2.5 lbs",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$24.37",
@@ -3050,7 +3050,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0251",
+      "id": "0db8e883-afba-4d07-818b-8a3a4791c600",
       "name": "Sunny Fruit Organic Dates, 48 oz",
       "category": "Dried Fruit & Fruit Snacks",
       "price": "$11.18",
@@ -3062,7 +3062,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0252",
+      "id": "cd28c13b-4283-4685-a39b-ed3deb63c808",
       "name": "La Terra Fina Spinach, Artichoke & Parmesan Dip, 31 oz",
       "category": "Dips & Spreads",
       "price": "$9.44",
@@ -3074,7 +3074,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0253",
+      "id": "4d9fc165-1d2d-442e-9a33-2d40a6cda705",
       "name": "Frito Lay Tostitos Salsa Con Queso Dip, 23 oz, 2-count",
       "category": "Dips & Spreads",
       "price": "$11.18",
@@ -3086,7 +3086,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0254",
+      "id": "e4c49d74-f4e1-4935-ae50-87317856ec8b",
       "name": "Kirkland Signature Chunky Guacamole, Organic, 2.5 oz, 16-count",
       "category": "Dips & Spreads",
       "price": "$16.16",
@@ -3098,7 +3098,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0255",
+      "id": "3420b55b-180a-43e6-8e9e-044abeb9eee8",
       "name": "Good Foods Organic Avocado Mash, Sea Salt and Black Pepper, 2 oz, 16-count",
       "category": "Dips & Spreads",
       "price": "$16.16",
@@ -3110,7 +3110,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0256",
+      "id": "4eb2cd87-a87c-4aca-a3ba-06e7047cf337",
       "name": "Good Foods Organic Chunky Guacamole, 13 oz, 3-count",
       "category": "Dips & Spreads",
       "price": "$17.40",
@@ -3122,7 +3122,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0257",
+      "id": "965ea1d5-bc66-41a4-ad19-1e973911cd2b",
       "name": "Kirkland Signature Organic Hummus, 2.5 oz, 20-count",
       "category": "Dips & Spreads",
       "price": "$9.82",
@@ -3134,7 +3134,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0258",
+      "id": "47142e22-7f0d-4f2d-931b-bf327201380c",
       "name": "Kirkland Signature Organic Roasted Pine Nut Hummus, 34 oz",
       "category": "Dips & Spreads",
       "price": "$7.33",
@@ -3146,7 +3146,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0259",
+      "id": "001238ef-497e-4a7c-9c0f-1965c369966f",
       "name": "Mateo's Gourmet Salsa Medium, 32 oz",
       "category": "Sauces & Condiments",
       "price": "$8.70",
@@ -3158,7 +3158,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0260",
+      "id": "e73e70b0-3a19-4aa3-88de-b2cbfb706fb5",
       "name": "Kirkland Signature, Organic Salsa, Medium, 38 oz, 2-Count",
       "category": "Sauces & Condiments",
       "price": "$11.93",
@@ -3170,7 +3170,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0261",
+      "id": "cffb9c89-73b1-42d5-804f-2c3e8323f471",
       "name": "Boursin Garlic & Fine Herbs + Shallot & Chive, Gourmet Cheese, 5.3 oz, 3-count",
       "category": "Dips & Spreads",
       "price": "$12.43",
@@ -3182,7 +3182,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0262",
+      "id": "32cca055-3f09-43e7-9226-407230e0f648",
       "name": "Laughing Cow Original Spreadable Cheese Wedges, 5.43 oz, 4-count",
       "category": "Dips & Spreads",
       "price": "$11.18",
@@ -3194,7 +3194,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0263",
+      "id": "f41755b3-88f3-4f8a-95b9-0a700d082926",
       "name": "Extra Sugar Free Chewing Gum, Mint Variety Pack, 15 Sticks, 18-Count",
       "category": "Gum & Mints",
       "price": "$22.38",
@@ -3206,7 +3206,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0264",
+      "id": "493d5afc-ff24-4ae9-819d-7a3895b15aec",
       "name": "Trident Sugar Free Gum, Fruit Variety, 14 pieces, 20 count",
       "category": "Gum & Mints",
       "price": "$18.65",
@@ -3218,7 +3218,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0265",
+      "id": "12c45197-4dcb-43c5-8a3f-11b47ab56350",
       "name": "Trident Sugar Free Gum, Tropical Twist, 14 pieces, 15 count",
       "category": "Gum & Mints",
       "price": "$14.54",
@@ -3230,7 +3230,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0266",
+      "id": "81c719e1-ef42-45e5-86ab-64391e7639f4",
       "name": "Kirkland Signature, Organic Applesauce, 3.17 oz, 24-Count",
       "category": "Canned Goods & Soups",
       "price": "$13.42",
@@ -3242,7 +3242,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0267",
+      "id": "f2cf3abe-9a9c-4fbf-b88b-12dd81f090c4",
       "name": "Dole Diced Fruit Cup Variety Pack, 4 oz, 16-count",
       "category": "Fruit Cups & Applesauce",
       "price": "$11.93",
@@ -3254,7 +3254,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0268",
+      "id": "bc862e7f-1385-4260-aed8-76960db1a6bc",
       "name": "Mott's, Organic Apple Sauce, 3.9 oz, 36-Count",
       "category": "Canned Goods & Soups",
       "price": "$18.65",
@@ -3266,7 +3266,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0269",
+      "id": "f20e8a0c-1af7-494b-8896-b168f02d1c66",
       "name": "Gogo Squeez Pudding Chocolate, 3 oz, 20-count",
       "category": "Pudding & Gelatin",
       "price": "$6.18",
@@ -3278,7 +3278,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0270",
+      "id": "fb8f02c7-322c-4735-81e3-207cf3f10964",
       "name": "Kirkland Signature Helles-Style Lager, Oregon, 12 fl oz, 12-count",
       "category": "Beer & Cider",
       "price": "$16.99",
@@ -3290,7 +3290,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0271",
+      "id": "cd65260f-9e24-4e0b-be3d-3ff6a712119a",
       "name": "Coors Light Cans, 12 fl oz, 36-count",
       "category": "Beer & Cider",
       "price": "$33.99",
@@ -3302,7 +3302,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0272",
+      "id": "e968fc12-53a0-45f1-8b3c-9c9d413bfcee",
       "name": "Sapporo Premium Beer Cans, 12 fl oz, 24-count",
       "category": "Beer & Cider",
       "price": "$30.79",
@@ -3314,7 +3314,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0273",
+      "id": "a924950e-8ba9-4e86-8939-b8edba73feb1",
       "name": "Stella Artois Bottles, 11.2 fl oz, 24-count",
       "category": "Beer & Cider",
       "price": "$40.99",
@@ -3326,7 +3326,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0274",
+      "id": "31cf932f-0c9a-4a15-a169-f1dc798f2d14",
       "name": "Budweiser Cans, 12 fl oz, 36-count",
       "category": "Beer & Cider",
       "price": "$33.99",
@@ -3338,7 +3338,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0275",
+      "id": "f2c4c814-2908-40b6-9ddf-3cbea29d6ba1",
       "name": "Guinness Irish Pub Pack, 11.2 fl oz, 18-count",
       "category": "Beer & Cider",
       "price": "$34.99",
@@ -3350,7 +3350,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0276",
+      "id": "a7f75c3a-459d-4802-9d0c-23d532c7803a",
       "name": "Sam Adams Primetime Beers Variety Pack, 12 fl oz, 24-count",
       "category": "Beer & Cider",
       "price": "$40.99",
@@ -3362,7 +3362,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0277",
+      "id": "2211b2e0-ef5b-45d5-908a-b201b8372b40",
       "name": "Athletic Brewing Co. IPA Variety Non-Alcoholic, 12 fl oz, 24-count",
       "category": "Beer & Cider",
       "price": "$35.99",
@@ -3374,7 +3374,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0278",
+      "id": "68707b84-29ca-4ec8-8d5d-222242206ac4",
       "name": "Guinness Draught Stout, 14.9 oz, 24-count",
       "category": "Beer & Cider",
       "price": "$48.99",
@@ -3386,7 +3386,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0279",
+      "id": "6b2fb676-fc56-4077-80c0-c1d3b7017027",
       "name": "Corona Extra, 12 fl oz, 24-count",
       "category": "Beer & Cider",
       "price": "$40.99",
@@ -3398,7 +3398,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0280",
+      "id": "e7206a4e-b170-4590-b93d-8df518e5ba1a",
       "name": "Modelo Especial Beer, 12 fl oz, 24-count",
       "category": "Beer & Cider",
       "price": "$40.99",
@@ -3410,7 +3410,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0281",
+      "id": "4a0b57dc-2841-4ec0-a973-b3f0bb168925",
       "name": "Kirkland Signature Eggs, Large, 24-count",
       "category": "Eggs",
       "price": "$4.84",
@@ -3422,7 +3422,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0282",
+      "id": "5a9fcf23-df9f-4d74-ac3f-da567f6ec815",
       "name": "Kirkland Signature Organic Eggs, Large, 24 count",
       "category": "Eggs",
       "price": "$9.57",
@@ -3434,7 +3434,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0283",
+      "id": "f926946b-2b9d-460c-b7a5-c71165eb81e3",
       "name": "Kirkland Signature Eggs, Large, 5 dozen-count",
       "category": "Eggs",
       "price": "$11.81",
@@ -3446,7 +3446,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0284",
+      "id": "242c91da-fac6-453b-8883-ad2d121e0f84",
       "name": "Kirkland Signature Liquid Egg Whites, Cage Free, 16 oz, 6-count",
       "category": "Eggs",
       "price": "$14.92",
@@ -3458,7 +3458,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0285",
+      "id": "19f25f9d-8a38-4363-919f-96627a77026f",
       "name": "Amylu, Chicken Breakfast Sausage Links, 2.5 lbs",
       "category": "Hot Dogs & Sausages",
       "price": "$17.40",
@@ -3470,7 +3470,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0286",
+      "id": "420d9467-b296-44b3-883d-6dff4b086fbe",
       "name": "Kirkland Signature Mild Italian Sausage, 3.5 lbs",
       "category": "Hot Dogs & Sausages",
       "price": "$13.67",
@@ -3482,7 +3482,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0287",
+      "id": "35db285d-3e6c-4b55-b2f5-41b5d61a0f47",
       "name": "Kirkland Signature Parmesan Black Pepper & Parmesan Chicken Sausage, 3 lbs",
       "category": "Hot Dogs & Sausages",
       "price": "$16.16",
@@ -3494,7 +3494,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0288",
+      "id": "f00f5e57-685d-4439-8c9a-ab66d3675346",
       "name": "Teton Waters Ranch Polish Sausage, 2.25 lbs",
       "category": "Hot Dogs & Sausages",
       "price": "$22.38",
@@ -3506,7 +3506,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0289",
+      "id": "6c40a028-6fd9-4c55-9689-0a3611b21596",
       "name": "Amylu Paleo Andouille Sausage, 16-count",
       "category": "Hot Dogs & Sausages",
       "price": "$18.65",
@@ -3518,7 +3518,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0290",
+      "id": "147c0244-eaa8-4a80-945e-51db4fb38d65",
       "name": "Kirkland Signature Beef Hot Dogs, 12 Links, 1.5 lbs, 3-count",
       "category": "Hot Dogs & Sausages",
       "price": "$24.87",
@@ -3530,7 +3530,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0291",
+      "id": "6ceff6b7-9b46-4d18-93bf-800c29794f63",
       "name": "Hebrew National 100% Kosher Beef Franks, 12 oz, 4-count, 28 Beef Franks Total",
       "category": "Hot Dogs & Sausages",
       "price": "$18.65",
@@ -3542,7 +3542,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0292",
+      "id": "b2fbc0af-4c6b-4360-8437-5ff56b7f5fa9",
       "name": "Teton Waters Ranch Grass-Feed Beef Cocktail Franks, 36 oz",
       "category": "Hot Dogs & Sausages",
       "price": "$23.62",
@@ -3554,7 +3554,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0293",
+      "id": "da4328b9-bed3-4ca4-955d-aac7ed210af2",
       "name": "Kirkland Signature Blueberries & Cream Muffin, 8-count",
       "category": "Breakfast Pastries",
       "price": "$8.70",
@@ -3566,7 +3566,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0294",
+      "id": "d748f90b-e47b-40f7-9fc6-7f444e22a94a",
       "name": "Kirkland Signature Triple Chocolate Muffin, 8-count",
       "category": "Breakfast Pastries",
       "price": "$8.70",
@@ -3578,7 +3578,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0295",
+      "id": "db82916e-2229-4907-abae-21693b320b01",
       "name": "Kirkland Signature Corn Muffins, 8-count",
       "category": "Breakfast Pastries",
       "price": "$8.70",
@@ -3590,7 +3590,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0296",
+      "id": "2f08558e-d524-4ed1-ba86-b8818521d237",
       "name": "Blueberry Caramelized Cheesecake Croissant, 6-count",
       "category": "Breakfast Pastries",
       "price": "$16.16",
@@ -3602,7 +3602,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0297",
+      "id": "4eb174bd-8714-47b8-8f86-31f6a1c2ed00",
       "name": "Belgian Boys Mini Pancakes,  26.45 oz",
       "category": "Breakfast Pastries",
       "price": "$12.93",
@@ -3614,7 +3614,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0298",
+      "id": "2b963e60-c6a3-4037-8099-6130912fc4c9",
       "name": "Kirkland Signature Butter Croissants, 12-count",
       "category": "Breakfast Pastries",
       "price": "$8.70",
@@ -3626,7 +3626,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0299",
+      "id": "d3bf1202-a99f-47e7-b097-1da9d11925a8",
       "name": "Schwartz Brothers Croissant Loaves, 15 oz, 2-count",
       "category": "Breakfast Pastries",
       "price": "$11.06",
@@ -3638,7 +3638,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0300",
+      "id": "8ace5af3-ef85-418b-8253-5f70938ddf53",
       "name": "Kirkland Signature Twice Baked Almond Filled Croissant, 6-count",
       "category": "Breakfast Pastries",
       "price": "$12.43",
@@ -3650,7 +3650,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0301",
+      "id": "b22da05a-fb21-47d6-b6cd-689d8a4ca71a",
       "name": "Ace Bakery Mini Cheese Croissants, 19.8 oz",
       "category": "Breakfast Pastries",
       "price": "$9.82",
@@ -3662,7 +3662,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0302",
+      "id": "532972f8-b630-4d65-a809-2ae3229a44f8",
       "name": "Gen Bake Apple Fritter Donut Bites, 28 oz",
       "category": "Breakfast Pastries",
       "price": "$7.45",
@@ -3674,7 +3674,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0303",
+      "id": "40acb075-2129-4317-bb73-104ba09f8f21",
       "name": "Krispy Kreme Doughnuts Merry Mix Variety Pack, 12-count",
       "category": "Breakfast Pastries",
       "price": "$22.26",
@@ -3686,7 +3686,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0304",
+      "id": "4b550b84-db52-41c4-b208-0f2cd083ffb9",
       "name": "Kirkland Signature Tuxedo Chocolate Mousse Cake",
       "category": "Cakes & Pies",
       "price": "$23.62",
@@ -3698,7 +3698,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0305",
+      "id": "606b0d6c-ad66-4c57-b583-075f3154ab09",
       "name": "Dessert Italiano Tiramisu Cups, 3 oz, 6 count",
       "category": "Cakes & Pies",
       "price": "$12.43",
@@ -3710,7 +3710,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0306",
+      "id": "016d0883-361b-4993-b4b8-6d030a527a08",
       "name": "Kirkland Signature 10\" Chocolate Cake Filled with Chocolate Mousse",
       "category": "Cakes & Pies",
       "price": "$22.38",
@@ -3722,7 +3722,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0307",
+      "id": "69851ce1-61d4-481f-901c-af7c3913b1ef",
       "name": "Kirkland Signature 10\" White Cake with Vanilla Mousse",
       "category": "Cakes & Pies",
       "price": "$22.38",
@@ -3734,7 +3734,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0308",
+      "id": "ad49151b-dcfd-4e32-8a61-19fc3a65d88d",
       "name": "Jean's Posh Pantry Cinnamon Swirl Butter Cake, 64 oz",
       "category": "Cakes & Pies",
       "price": "$21.14",
@@ -3746,7 +3746,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0309",
+      "id": "5a4336cb-c961-421d-bf62-2eb10989efee",
       "name": "Kirkland Signature Pumpkin Pie, 58 oz",
       "category": "Cakes & Pies",
       "price": "$7.45",
@@ -3758,7 +3758,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0310",
+      "id": "5266b21d-2c7c-4b81-bd4c-0dc501e47b20",
       "name": "Kirkland Signature Apple Pie",
       "category": "Cakes & Pies",
       "price": "$16.16",
@@ -3770,7 +3770,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0311",
+      "id": "f025f25f-5859-4fb3-a3b4-727601869588",
       "name": "Kirkland Signature Pecan Pie",
       "category": "Cakes & Pies",
       "price": "$21.14",
@@ -3782,7 +3782,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0312",
+      "id": "2416e48a-d0ee-4471-89bb-83f2fa055ef7",
       "name": "Kirkland Signature 12\" Cheesecake",
       "category": "Cakes & Pies",
       "price": "$24.87",
@@ -3794,7 +3794,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0313",
+      "id": "aee23e12-3214-4c55-a601-d534ed94fa78",
       "name": "Kirkland Signature Strawberry Cheesecake",
       "category": "Cakes & Pies",
       "price": "$29.84",
@@ -3806,7 +3806,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0314",
+      "id": "42d33cc1-d307-49a3-9201-59034442951f",
       "name": "Dave's Killer Bread Organic 21 Whole Grain, 27 oz, 2-count",
       "category": "Bread",
       "price": "$11.18",
@@ -3818,7 +3818,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0315",
+      "id": "fa456747-8ec4-4279-8f86-efe60cdab238",
       "name": "Pepperidge Farm 15 Grain Whole Grain Bread, 24 oz, 2-count",
       "category": "Bread",
       "price": "$7.08",
@@ -3830,7 +3830,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0316",
+      "id": "7861a6be-0f1e-489a-be1a-53fdaf5f0e9e",
       "name": "Stroehmann Dutch Country Whole Wheat Bread, 24 oz, 2 count",
       "category": "Bread",
       "price": "$6.83",
@@ -3842,7 +3842,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0317",
+      "id": "2ebbe615-7e21-42bc-a65b-97bc65ada022",
       "name": "Canyon Bakehouse Gluten-Free 100% Whole Grain Bread, 32 oz",
       "category": "Bread",
       "price": "$11.18",
@@ -3854,7 +3854,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0318",
+      "id": "3624d014-4d93-4584-8fd4-a61dc93d358a",
       "name": "Dave's Killer Bread Good Seed Organic Bread, 24 oz, 2-count",
       "category": "Bread",
       "price": "$12.43",
@@ -3866,7 +3866,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0319",
+      "id": "13de06a2-2d44-4f18-aeb0-e3ec62266f63",
       "name": "Kirkland Signature Cranberry Walnut Round Bread",
       "category": "Bread",
       "price": "$9.94",
@@ -3878,7 +3878,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0320",
+      "id": "13bd7f83-bf15-4acf-8a1d-0848c588d7a2",
       "name": "Martin's Potato Bread, 18 oz, 2-count",
       "category": "Bread",
       "price": "$8.57",
@@ -3890,7 +3890,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0321",
+      "id": "10f6e191-0b99-4fe3-bef4-cd84d14cc150",
       "name": "Pepperidge Farm Cinnamon Raisin Swirl Bread, 16 oz, 2-count",
       "category": "Bread",
       "price": "$7.33",
@@ -3902,7 +3902,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0322",
+      "id": "8da89cb0-121a-4c12-a07d-b4c866cd9cb5",
       "name": "Kirkland Signature Rustic Italian Bread, 32 oz",
       "category": "Bread",
       "price": "$7.45",
@@ -3914,7 +3914,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0323",
+      "id": "1474a669-7490-49b3-97fc-54cb79f7b701",
       "name": "Schmidt / Old Tyme 647 Italian Bread, 18 oz, 2 count",
       "category": "Bread",
       "price": "$8.70",
@@ -3926,7 +3926,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0324",
+      "id": "25ac0441-6fd7-4953-ba42-7df91d90b826",
       "name": "Pepperidge Farm Hearty White Bread, 24 oz, 2 count",
       "category": "Bread",
       "price": "$7.20",
@@ -3938,7 +3938,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0325",
+      "id": "812a7175-3465-4f63-9cbc-f81931e05db8",
       "name": "Wonder Classic White Bread, 20 oz, 2 count",
       "category": "Bread",
       "price": "$6.21",
@@ -3950,7 +3950,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0326",
+      "id": "84d6d87e-121c-496a-8baf-d84b7e1bebed",
       "name": "Jessica's Brick Oven Artisan Tuscan White Bread, 1.69 lbs, 2-count",
       "category": "Bread",
       "price": "$11.06",
@@ -3962,7 +3962,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0327",
+      "id": "46dbc8b1-b069-43d8-af7f-a77bb68eca8f",
       "name": "Jessica's Banana Nut Bread, 3 lbs",
       "category": "Bread",
       "price": "$15.41",
@@ -3974,7 +3974,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0328",
+      "id": "5e6cdbf3-2ea0-4b66-9967-d81c2ccf30c9",
       "name": "Kirkland Signature Triple Chocolate Loaf",
       "category": "Bread",
       "price": "$11.18",
@@ -3986,7 +3986,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0329",
+      "id": "63fb7a0f-48fb-4dfa-9229-9797a60e7f0c",
       "name": "Kirkland Signature Mini Chocolate Chip Cookies, 60-count",
       "category": "Cookies & Brownies",
       "price": "$12.43",
@@ -3998,7 +3998,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0330",
+      "id": "3be70a0e-91d0-456c-8f56-13ca4dd0f189",
       "name": "La Dolce Vita Classic Italian Biscotti, 40 oz",
       "category": "Cookies & Brownies",
       "price": "$10.56",
@@ -4010,7 +4010,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0331",
+      "id": "22aa680b-2e1f-4a1b-b07b-bd50cd063309",
       "name": "Kirkland Signature Christmas Sugar Cookie with Sprinkles, 24-count",
       "category": "Cookies & Brownies",
       "price": "$8.70",
@@ -4022,7 +4022,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0332",
+      "id": "16e7a4e8-b14e-4819-b770-731564228e0a",
       "name": "Kirkland Signature Gourmet Chocolate Chunk Cookies, 24-count",
       "category": "Cookies & Brownies",
       "price": "$12.43",
@@ -4034,7 +4034,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0333",
+      "id": "faf563d2-dfc5-42e0-ac6e-03045171e77c",
       "name": "Kirkland Signature Variety Cookies, 24-count",
       "category": "Cookies & Brownies",
       "price": "$12.43",
@@ -4046,7 +4046,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0334",
+      "id": "e681925f-a29f-4f1a-a137-305cfc98d652",
       "name": "Kirkland Signature Variety Dessert Bars, 32-count",
       "category": "Cookies & Brownies",
       "price": "$24.87",
@@ -4058,7 +4058,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0335",
+      "id": "039a646b-de7a-499d-aebf-5fb890ad1e95",
       "name": "Kirkland Signature Vanilla Creme Brulee Bar Cake",
       "category": "Cookies & Brownies",
       "price": "$19.89",
@@ -4070,7 +4070,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0336",
+      "id": "7d6b082b-abe2-4b6f-86c2-ed4424f717b4",
       "name": "Kirkland Signature  Plain & Everything Bagels, Mix & Match, 12-count",
       "category": "Bagels & English Muffins",
       "price": "$9.94",
@@ -4082,7 +4082,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0337",
+      "id": "83540f6b-8fba-4393-9528-fbe7fbc978c0",
       "name": "Thomas' Original Nooks and Crannies English Muffin, 18 ct",
       "category": "Bagels & English Muffins",
       "price": "$9.82",
@@ -4094,7 +4094,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0338",
+      "id": "8d010d42-857c-4df0-afd4-1cf21cedc5c9",
       "name": "Kirkland Signature, Albacore Solid White Tuna in Water, 7 oz, 8-Count",
       "category": "Canned Goods & Soups",
       "price": "$21.76",
@@ -4106,7 +4106,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0339",
+      "id": "2ecb64ad-7739-4c9e-b222-5dbff7ca5c02",
       "name": "Chicken of the Sea, Chunk Light Premium Tuna in Water, 7 oz, 12-Count",
       "category": "Canned Goods & Soups",
       "price": "$21.88",
@@ -4118,7 +4118,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0340",
+      "id": "c30b330a-4f2a-4e8f-942e-f320e6eb5473",
       "name": "Wild Planet, Albacore Wild Tuna, 5 oz, 6-count",
       "category": "Canned Goods & Soups",
       "price": "$22.38",
@@ -4130,7 +4130,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0341",
+      "id": "7417cf33-62dd-417e-8932-63575ed1d858",
       "name": "Wild Planet Wild Pacific Sardines in Extra Virgin Olive Oil, 4.4 oz., 6-count",
       "category": "Canned Goods & Soups",
       "price": "$13.67",
@@ -4142,7 +4142,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0342",
+      "id": "33bbaef4-36c4-470c-bcce-c141b56ab1c6",
       "name": "Genova, Yellowfin Tuna, 7 oz, 6-Count",
       "category": "Canned Goods & Soups",
       "price": "$19.77",
@@ -4154,7 +4154,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0343",
+      "id": "1d93da24-68f6-4ec5-9972-e59e73807057",
       "name": "Kirkland Signature, Chicken Breast, 12.5 oz, 6-Count",
       "category": "Canned Goods & Soups",
       "price": "$16.16",
@@ -4166,7 +4166,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0344",
+      "id": "2ac727db-e8f2-43be-8324-6afa7e33f5dc",
       "name": "Libby's, Vienna Sausage, 4.6 oz, 18-count",
       "category": "Canned Goods & Soups",
       "price": "$15.41",
@@ -4178,7 +4178,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0345",
+      "id": "7701dc53-f2a1-455c-bec8-17e7f93e2500",
       "name": "SPAM Canned Meat, 25% Less Sodium, 12 oz, 8-Count",
       "category": "Canned Goods & Soups",
       "price": "$30.34",
@@ -4190,7 +4190,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0346",
+      "id": "67f605c6-f1fc-479b-b401-f831a9653540",
       "name": "Kirkland Signature, Organic Chicken Stock, 32 fl oz, 6-Count",
       "category": "Canned Goods & Soups",
       "price": "$11.18",
@@ -4202,7 +4202,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0347",
+      "id": "a23ba5af-1c92-4e59-b8f7-f1a907f0b5b4",
       "name": "Bare Bones Beef Bone Broth Sticks, 12-count",
       "category": "Canned Goods & Soups",
       "price": "$8.20",
@@ -4214,7 +4214,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0348",
+      "id": "00530384-0a0f-4e24-9eed-3e60c52d8a59",
       "name": "Kirkland Signature Organic Chicken Bone Broth 32 oz, 6-count",
       "category": "Canned Goods & Soups",
       "price": "$24.74",
@@ -4226,7 +4226,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0349",
+      "id": "625fae2b-8c02-44e0-98bb-dac908e34105",
       "name": "Goya, Chick Peas, 15.5 oz, 8-Count",
       "category": "Canned Goods & Soups",
       "price": "$8.32",
@@ -4238,7 +4238,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0350",
+      "id": "b12dea4b-3172-4904-b03d-24cb7b5bcd81",
       "name": "Goya, Black Beans, 15.5 oz, 8-Count",
       "category": "Canned Goods & Soups",
       "price": "$8.32",
@@ -4250,7 +4250,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0351",
+      "id": "a2214248-bd87-4518-8b11-9b644ddd47f3",
       "name": "Goya Red Kidney Beans, 15.5 oz., 8-count",
       "category": "Canned Goods & Soups",
       "price": "$8.32",
@@ -4262,7 +4262,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0352",
+      "id": "90c8b427-bd5a-4ae2-962e-c73fd052ba39",
       "name": "Kirkland Signature, Organic Diced Tomatoes, 14.5 oz, 8-Count",
       "category": "Canned Goods & Soups",
       "price": "$11.18",
@@ -4274,7 +4274,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0353",
+      "id": "a003cbbf-5d82-4766-bc97-1103dacc84c0",
       "name": "Cento San Marzano Tomatoes, Peeled, 28 oz, 3-count",
       "category": "Canned Goods & Soups",
       "price": "$14.92",
@@ -4286,7 +4286,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0354",
+      "id": "eb674371-30f1-45bf-ac3e-38a583a26632",
       "name": "Kirkland Signature, Organic Tomato Sauce, 15 oz, 12-Count",
       "category": "Canned Goods & Soups",
       "price": "$16.16",
@@ -4298,7 +4298,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0355",
+      "id": "d14b3094-fbe0-4ffe-920a-f0888bfc6468",
       "name": "Kirkland Signature, Organic Tomato Paste, 6 oz, 12-Count",
       "category": "Canned Goods & Soups",
       "price": "$12.43",
@@ -4310,7 +4310,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0356",
+      "id": "172aee75-e9b0-4e37-a36e-4d9f9b8d5160",
       "name": "Sole Bonta Muffuletta Olive Salad, 33.9 oz",
       "category": "Canned Goods & Soups",
       "price": "$8.70",
@@ -4322,7 +4322,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0357",
+      "id": "d8c8b8c6-6137-4774-a4c7-ff230ef38e53",
       "name": "Del Monte, Canned Corn-Whole Kernel, 15.25 oz, 12-Count",
       "category": "Canned Goods & Soups",
       "price": "$13.67",
@@ -4334,7 +4334,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0358",
+      "id": "e06e2b5b-603d-4c22-b96d-897b330b9919",
       "name": "Del Monte, Canned Cut Green Beans, 14.5 oz, 12-Count",
       "category": "Canned Goods & Soups",
       "price": "$13.67",
@@ -4346,7 +4346,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0359",
+      "id": "455cd4ad-ce07-4141-a9d0-ec37350094ed",
       "name": "Kirkland Signature Artichoke Hearts, 33 oz, 2-count",
       "category": "Canned Goods & Soups",
       "price": "$13.55",
@@ -4358,7 +4358,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0360",
+      "id": "3e1e8b9b-d6da-4d1d-9b94-4f15bc65a342",
       "name": "Kirkland Signature Sliced Peaches, 24 oz, 2-count",
       "category": "Canned Goods & Soups",
       "price": "$16.04",
@@ -4370,7 +4370,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0361",
+      "id": "e8baecc3-ff2a-4ca7-8b7a-2e0dca8c470f",
       "name": "Zalea Gourmet Peach In Light Syrup, 94 oz",
       "category": "Canned Goods & Soups",
       "price": "$13.67",
@@ -4382,7 +4382,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0362",
+      "id": "e43da53c-0fdf-48b8-aeae-e6ce62843f47",
       "name": "General Mills, Cheerios Cereal, 20.35 oz, 2-count",
       "category": "Breakfast",
       "price": "$6.21",
@@ -4394,7 +4394,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0363",
+      "id": "2ec917c1-7de9-415c-b7c0-27ffd4f9829e",
       "name": "Kellogg's Frosted Flakes Cereal, 30.95 oz, 2-count",
       "category": "Breakfast",
       "price": "$8.45",
@@ -4406,7 +4406,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0364",
+      "id": "78476da6-bf91-4648-824e-6f06aa516768",
       "name": "General Mills, Cheerios Cereal, Honey Nut, 27.5 oz, 2-count",
       "category": "Breakfast",
       "price": "$11.18",
@@ -4418,7 +4418,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0365",
+      "id": "7c68b4ce-7747-4ffa-ba93-7820aa4cac41",
       "name": "Post, Honey Bunches of Oats with Almonds Cereal, 50 oz",
       "category": "Breakfast",
       "price": "$9.82",
@@ -4430,7 +4430,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0366",
+      "id": "9dbf73f3-25ac-4e10-b0ca-00819ae1f545",
       "name": "Organic Blueberry Almond Crunch Cereal, 2 lbs 2 oz",
       "category": "Breakfast",
       "price": "$17.40",
@@ -4442,7 +4442,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0367",
+      "id": "d323b6e1-ef74-4015-b49b-f799acd7476d",
       "name": "Nature's Path Organic Pumpkin Seed + Flax Granola, 35.3 oz",
       "category": "Breakfast",
       "price": "$7.82",
@@ -4454,7 +4454,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0368",
+      "id": "67bcc23e-2a1b-43b8-9144-88a1034df303",
       "name": "Kirkland Signature Organic Ancient Grain Granola, 35.3 oz",
       "category": "Breakfast",
       "price": "$10.81",
@@ -4466,7 +4466,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0369",
+      "id": "a9d6ee28-35d5-427b-a414-96ab2cf87d32",
       "name": "NuTrail Nut Granola, Blueberry Cinnamon, 22 oz",
       "category": "Breakfast",
       "price": "$17.40",
@@ -4478,7 +4478,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0370",
+      "id": "d69813c0-ebe7-4d26-aeb9-f20aaeda1dc2",
       "name": "Quaker, Simply Granola, 34.5 oz, 2-Count",
       "category": "Breakfast",
       "price": "$12.43",
@@ -4490,7 +4490,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0371",
+      "id": "9ea3a186-90a0-425d-a975-44372279b1a7",
       "name": "Purely Elizabeth Organic Granola, 34 oz",
       "category": "Breakfast",
       "price": "$13.67",
@@ -4502,7 +4502,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0372",
+      "id": "56061122-42d0-4c7d-baee-4c9db2ccce95",
       "name": "One Degree Gluten-Free Organic Rolled Oats, 80 oz",
       "category": "Breakfast",
       "price": "$12.43",
@@ -4514,7 +4514,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0373",
+      "id": "9c282876-729d-4125-9895-4f03616011b4",
       "name": "Quaker Instant Oatmeal, Variety Pack, 1.51 oz, 52-count",
       "category": "Breakfast",
       "price": "$14.17",
@@ -4526,7 +4526,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0374",
+      "id": "8a2dd1d3-b7a8-4f34-8608-5a9599e22ff8",
       "name": "Quaker Oats Old Fashioned Rolled Oats, 10 lbs",
       "category": "Breakfast",
       "price": "$9.82",
@@ -4538,7 +4538,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0375",
+      "id": "34cf41db-1bcb-461d-baf5-d8cd40c1b6b9",
       "name": "Kirkland Signature Organic Pure Maple Syrup, 33.8 oz",
       "category": "Breakfast",
       "price": "$15.66",
@@ -4550,7 +4550,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0376",
+      "id": "bed56ffe-42ec-4859-84b6-a5291827ea5f",
       "name": "Crown Organic Maple Syrup, 25 oz",
       "category": "Breakfast",
       "price": "$13.67",
@@ -4562,7 +4562,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0377",
+      "id": "bff9aa56-d147-4836-bdc8-814c1df3a83c",
       "name": "Kirkland Signature Organic Golden Maple Syrup, 25 fl oz",
       "category": "Breakfast",
       "price": "$16.16",
@@ -4574,7 +4574,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0378",
+      "id": "518f04f9-59d1-493d-a0b5-2f6520b3a3d0",
       "name": "Organic Whistle Pig Barrel-Aged Maple Syrup, 12.7 fl oz, 2-count",
       "category": "Breakfast",
       "price": "$24.84",
@@ -4586,7 +4586,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0379",
+      "id": "05e5efd8-f884-4a07-9cfa-32917569d940",
       "name": "Krusteaz, Complete Buttermilk Pancake Mix, 10 lbs",
       "category": "Breakfast",
       "price": "$9.94",
@@ -4598,7 +4598,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0380",
+      "id": "3555e2af-33f5-44d5-b54c-2be7fb52b838",
       "name": "Kodiak Cakes Power Cakes Flapjack and Waffle Mix, 4.5 lbs",
       "category": "Breakfast",
       "price": "$16.53",
@@ -4610,7 +4610,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0381",
+      "id": "0f680327-391e-4163-a18d-3ee03d5dd039",
       "name": "Rao's Homemade Marinara Sauce, 28 oz, 2-count",
       "category": "Sauces & Condiments",
       "price": "$11.18",
@@ -4622,7 +4622,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0382",
+      "id": "0e8b29c1-3f7f-489c-9f5f-45b8336c3fab",
       "name": "Kirkland Signature Imported Basil Pesto, 22 oz",
       "category": "Sauces & Condiments",
       "price": "$12.43",
@@ -4634,7 +4634,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0383",
+      "id": "3fc93330-8ad8-4d55-b595-d2af5a0ced44",
       "name": "Victoria White Linen Marinara Sauce, 40 oz, 2-count",
       "category": "Sauces & Condiments",
       "price": "$13.67",
@@ -4646,7 +4646,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0384",
+      "id": "18536071-8640-405d-bb32-342dbb43d286",
       "name": "Ragu Old World Style Pasta Sauce, 45 oz, 3 count",
       "category": "Sauces & Condiments",
       "price": "$11.56",
@@ -4658,7 +4658,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0385",
+      "id": "5f04cf80-b1cb-4a73-a488-58ef1b3df6e1",
       "name": "Kirkland Signature Organic Marinara Sauce, 2 lbs, 3-pack",
       "category": "Sauces & Condiments",
       "price": "$17.15",
@@ -4670,7 +4670,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0386",
+      "id": "78c7f633-7ab6-45d3-9c90-e3a2fa3a425c",
       "name": "Sweet Baby Ray's, Barbecue Sauce, 40 oz, 2-Count",
       "category": "Sauces & Condiments",
       "price": "$8.45",
@@ -4682,7 +4682,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0387",
+      "id": "c9353ace-f990-4fee-879e-c2455b889f39",
       "name": "Bachan's Japanese Barbecue Sauce, 34 oz",
       "category": "Sauces & Condiments",
       "price": "$12.43",
@@ -4694,7 +4694,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0388",
+      "id": "9251491a-1e78-4378-bd82-53ec9a86802a",
       "name": "Galil Organic Roasted Chestnuts, 3.5 oz, 6-count",
       "category": "Sauces & Condiments",
       "price": "$8.57",
@@ -4706,7 +4706,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0389",
+      "id": "1c3737a1-5e76-46a9-9ae5-672c0f73fdd6",
       "name": "Kevin's Simmer Sauces Variety Pack, 7 oz, 6 count",
       "category": "Sauces & Condiments",
       "price": "$12.40",
@@ -4718,7 +4718,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0390",
+      "id": "ebb0f311-7641-4b45-972c-6225af8e47ba",
       "name": "Gold's Cocktail Sauce with Horseradish, 34 oz",
       "category": "Sauces & Condiments",
       "price": "$6.21",
@@ -4730,7 +4730,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0391",
+      "id": "a69aa99e-75bc-470a-a904-9a447e5a84dc",
       "name": "Hellmann's Big Squeeze Real Mayonnaise, 25 fl oz, 2-count",
       "category": "Sauces & Condiments",
       "price": "$8.70",
@@ -4742,7 +4742,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0392",
+      "id": "30ffb533-bacf-43b6-97ed-dbd8a1633688",
       "name": "Chosen Foods Avocado Oil Classic Mayo, 32 fl oz",
       "category": "Sauces & Condiments",
       "price": "$12.30",
@@ -4754,7 +4754,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0393",
+      "id": "433f039e-1696-4b92-a349-d74280591619",
       "name": "Hellmann's, Real Mayonnaise, 64 oz",
       "category": "Sauces & Condiments",
       "price": "$11.93",
@@ -4766,7 +4766,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0394",
+      "id": "229e9264-8d6f-417f-a308-bbe7a6abd5a7",
       "name": "Kewpie Mayonnaise, 24 fl oz",
       "category": "Sauces & Condiments",
       "price": "$7.95",
@@ -4778,7 +4778,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0395",
+      "id": "36835c36-9d7a-40c8-80ce-44665db67d87",
       "name": "Frank's Red Hot, 25 fl oz, 2 count",
       "category": "Sauces & Condiments",
       "price": "$12.05",
@@ -4790,7 +4790,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0396",
+      "id": "798b23ae-adbc-4fc9-8f87-130df7ba7327",
       "name": "Kinder's Organic Buttery Buffalo Sauce, 23.5 oz",
       "category": "Sauces & Condiments",
       "price": "$9.94",
@@ -4802,7 +4802,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0397",
+      "id": "2b5f00d6-1714-44b7-83db-b9f1d87d32ae",
       "name": "Something Special Red Chili Pepper Spread, 32.6 oz",
       "category": "Sauces & Condiments",
       "price": "$4.94",
@@ -4814,7 +4814,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0398",
+      "id": "e321ff68-b0d7-45cf-aae7-c93226093bcb",
       "name": "Grillo's Pickles Dill Spears, 52 oz",
       "category": "Sauces & Condiments",
       "price": "$8.70",
@@ -4826,7 +4826,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0399",
+      "id": "0225a4e9-f9bc-45f0-8be9-150263f65924",
       "name": "Kirkland Signature Peanut Butter Chocolate Fudge",
       "category": "Sauces & Condiments",
       "price": "$18.65",
@@ -4838,7 +4838,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0400",
+      "id": "b487fc73-5bba-4adc-9893-371c63313a7f",
       "name": "Kirkland Signature Spanish Queen Olives, 21 oz, 2-pack",
       "category": "Sauces & Condiments",
       "price": "$17.28",
@@ -4850,7 +4850,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0401",
+      "id": "f861ff49-6423-4195-a8d9-5e8af0d1e591",
       "name": "Asaro Organic Castelvetrano Green Olives, 19 oz",
       "category": "Sauces & Condiments",
       "price": "$11.81",
@@ -4862,7 +4862,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0402",
+      "id": "59295a28-c6c6-47c3-9333-aa39f592c12c",
       "name": "Lindsay Large Black Ripe Pitted Olives, 6 oz, 6-count",
       "category": "Sauces & Condiments",
       "price": "$12.43",
@@ -4874,7 +4874,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0403",
+      "id": "d571e83a-4e9c-41ff-8410-92beeb1a2f40",
       "name": "Parthenon Organic Pitted Kalamata Olives, 52.91 oz",
       "category": "Sauces & Condiments",
       "price": "$11.81",
@@ -4886,7 +4886,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0404",
+      "id": "02414bdf-5ecb-4cbe-b848-b863aecae3c3",
       "name": "Tassos Gourmet Greek Olive Medley, 1.7 L",
       "category": "Sauces & Condiments",
       "price": "$18.65",
@@ -4898,7 +4898,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0405",
+      "id": "75fc34b1-4b74-47a7-8476-22a9095ddce9",
       "name": "Kirkland Signature, Bacon Crumbles, 20 oz",
       "category": "Sauces & Condiments",
       "price": "$11.18",
@@ -4910,7 +4910,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0406",
+      "id": "f70a4b9b-e455-41e0-8896-f90591a2fc65",
       "name": "Fresh Gourmet Organic Seasoned Croutons, 2 lbs",
       "category": "Sauces & Condiments",
       "price": "$9.94",
@@ -4922,7 +4922,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0407",
+      "id": "59e09fb7-edb0-4b19-be53-200dc9cb3eb4",
       "name": "Fresh Gourmet Crispy Onions, 24 oz",
       "category": "Sauces & Condiments",
       "price": "$3.69",
@@ -4934,7 +4934,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0408",
+      "id": "f5988de3-127c-4c7b-97b7-cd4a850bc224",
       "name": "Kirkland Signature Organic Peanut Butter, 28 oz, 2-count",
       "category": "Nut Butters & Spreads",
       "price": "$12.18",
@@ -4946,7 +4946,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0409",
+      "id": "cc56876d-815b-400f-bdaa-410603b4881a",
       "name": "Nutella & GO! Hazelnut and Cocoa Spread With Breadsticks, 1.8 oz, 16 Pack",
       "category": "Nut Butters & Spreads",
       "price": "$21.63",
@@ -4958,7 +4958,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0410",
+      "id": "14fead02-d649-4b63-bcfe-b4ed8488ba64",
       "name": "Skippy Peanut Butter, Creamy, 48 oz, 2-count",
       "category": "Nut Butters & Spreads",
       "price": "$13.67",
@@ -4970,7 +4970,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0411",
+      "id": "a755b5fa-976e-4692-a9a2-5ed31af89bc1",
       "name": "Nutella Hazelnut Spread with Cocoa, 33.5 oz, 2-count",
       "category": "Nut Butters & Spreads",
       "price": "$18.65",
@@ -4982,7 +4982,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0412",
+      "id": "204ffadf-ef43-42cc-8c1c-c7c54722ad8d",
       "name": "Nuttzo Organic 7 Nut & Seed Butter, Power Fuel Crunchy, 26 oz",
       "category": "Nut Butters & Spreads",
       "price": "$19.77",
@@ -4994,7 +4994,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0413",
+      "id": "00074bb0-cee6-4bfe-93fc-6edd9b87e4f1",
       "name": "Kirkland Signature Organic Strawberry Spread, 42 oz",
       "category": "Nut Butters & Spreads",
       "price": "$10.44",
@@ -5006,7 +5006,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0414",
+      "id": "18eec073-6ad5-43cb-896e-76dd9b8d3b5f",
       "name": "Bonne Maman, 36 oz",
       "category": "Nut Butters & Spreads",
       "price": "$14.29",
@@ -5018,7 +5018,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0415",
+      "id": "4dd2652c-0775-4c46-9b5d-6aebbd0f10f2",
       "name": "Giant Sticker Pad Square Floor Pad, Assorted Designs",
       "category": "Holiday",
       "price": "$12.43",
@@ -5030,7 +5030,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0416",
+      "id": "75871183-388c-4718-b33b-af8a66e92826",
       "name": "Nintendo Switch 2 Power A Bundle: Advantage Wired Controller and Slim Case",
       "category": "Holiday",
       "price": "$47.26",
@@ -5042,7 +5042,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0417",
+      "id": "c910aafe-bf7c-48ac-bc08-a57fae705911",
       "name": "Phantom A10 Smart Electric Scooter",
       "category": "Holiday",
       "price": "$332.99",
@@ -5054,7 +5054,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0418",
+      "id": "0e779275-186f-47da-b334-ae69313314e1",
       "name": "Sony Playstation 5 Slim Disc Console and DualSense Controller Bundle",
       "category": "Holiday",
       "price": "$512.99",
@@ -5066,7 +5066,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0419",
+      "id": "6f821c40-966d-4768-8543-e1d86814c8c8",
       "name": "Wilson NBA Alliance Signature Trophy Basketball",
       "category": "Holiday",
       "price": "$24.87",
@@ -5078,7 +5078,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0420",
+      "id": "9876c590-5588-458d-8e9a-99984d830049",
       "name": "Novelty 4-pack Collector Puzzle, Assorted Characters",
       "category": "Holiday",
       "price": "$12.40",
@@ -5090,7 +5090,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0421",
+      "id": "8a18126a-3211-423d-af21-06079353d81a",
       "name": "Big Bad Bowser",
       "category": "Holiday",
       "price": "$62.19",
@@ -5102,7 +5102,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0422",
+      "id": "66dfa2f6-a3c4-4d7b-8ef9-27e0a267b412",
       "name": "Bluey 3 in 1 Transforming Plane Mega Playset",
       "category": "Holiday",
       "price": "$62.16",
@@ -5114,7 +5114,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0423",
+      "id": "2877a514-864f-4ca4-81aa-8ade8fada453",
       "name": "Pokemon Legends: Z-A - Nintendo Switch 2",
       "category": "Holiday",
       "price": "$75.99",
@@ -5126,7 +5126,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0424",
+      "id": "9516280c-e955-4394-94a6-ff12aaf431e8",
       "name": "Nintendo Switch 2 + Mario Kart World Bundle",
       "category": "Holiday",
       "price": "$512.99",
@@ -5138,7 +5138,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0425",
+      "id": "4339fbbc-f596-4c0f-ae66-fbea8387d84d",
       "name": "Potensic ATOM 2 4K Drone Bundle with 128GB MicroSD Card, Remote Lanyard and 2 Spare Propeller Kits.",
       "category": "Holiday",
       "price": "$362.99",
@@ -5150,7 +5150,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0426",
+      "id": "86077a8b-5dfa-4c6a-ae5b-ffd7047de30c",
       "name": "Tomatoes on the Vine, Greenhouse Grown, 4 lbs",
       "category": "Fresh Vegetables",
       "price": "$8.70",
@@ -5162,7 +5162,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0427",
+      "id": "b3d09814-1932-46fc-9f04-bc45aa4113c2",
       "name": "Grape Tomatoes, 2 lbs",
       "category": "Fresh Vegetables",
       "price": "$8.32",
@@ -5174,7 +5174,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0428",
+      "id": "24910e10-ab12-4692-9fb8-6af46b809d8e",
       "name": "Campari Tomatoes, 2 lbs",
       "category": "Fresh Vegetables",
       "price": "$7.45",
@@ -5186,7 +5186,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0429",
+      "id": "a34fd8c5-3ccf-47b6-9171-0842332a3708",
       "name": "Gourmet Tomato Medley, Greenhouse Grown, 2 lbs",
       "category": "Fresh Vegetables",
       "price": "$8.70",
@@ -5198,7 +5198,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0430",
+      "id": "d5933fe7-7ab7-4b21-a10f-44af44f0a22a",
       "name": "Cherry on the Vine Tomatoes, 1.5 lbs",
       "category": "Fresh Vegetables",
       "price": "$9.32",
@@ -5222,7 +5222,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0432",
+      "id": "8a54a66e-87e9-4be1-a86a-0b7b59e605e6",
       "name": "Organic Spring Mix, 1 lb",
       "category": "Fresh Vegetables",
       "price": "$4.96",
@@ -5234,7 +5234,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0433",
+      "id": "689f9692-9fc3-4391-bd57-70e90f27fb18",
       "name": "Artisan Romaine Hearts, 5-count",
       "category": "Fresh Vegetables",
       "price": "$6.21",
@@ -5246,7 +5246,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0434",
+      "id": "a8678062-3a08-4ad1-bf7e-d82b3784029f",
       "name": "Organic Power Greens, 1.5 lbs",
       "category": "Fresh Vegetables",
       "price": "$8.07",
@@ -5270,7 +5270,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0436",
+      "id": "6456648c-2f78-43fe-952d-415e6b6eb9a4",
       "name": "Seedless Mini Peppers, 1.5 lbs",
       "category": "Fresh Vegetables",
       "price": "$6.95",
@@ -5282,7 +5282,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0437",
+      "id": "78185fda-962f-4354-9f8a-eb5def33a0fc",
       "name": "Organic Carrots, 6 lbs",
       "category": "Fresh Vegetables",
       "price": "$8.07",
@@ -5294,7 +5294,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0438",
+      "id": "e4c2dcf5-2daa-42e1-afa2-254d9f5c3b48",
       "name": "Organic Peeled Carrots, 2 lbs, 2-count",
       "category": "Fresh Vegetables",
       "price": "$7.33",
@@ -5330,7 +5330,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0441",
+      "id": "ca577207-3baa-47d4-a6c5-bfbe6177bc1b",
       "name": "Baking Potatoes, 10 lbs",
       "category": "Fresh Vegetables",
       "price": "$4.09",
@@ -5342,7 +5342,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0442",
+      "id": "b7ea5838-7a45-4bc1-be6c-b51e2e2a8faf",
       "name": "Gold Potatoes, 10 lbs",
       "category": "Fresh Vegetables",
       "price": "$5.59",
@@ -5354,7 +5354,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0443",
+      "id": "6e754dc5-f72e-4891-9f1c-288bc65fd9fe",
       "name": "Sweet Potatoes, 5 lbs",
       "category": "Fresh Vegetables",
       "price": "$4.96",
@@ -5366,7 +5366,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0444",
+      "id": "a706091b-8a43-4f55-a7a4-259050034119",
       "name": "Gourmet Medley Potato",
       "category": "Fresh Vegetables",
       "price": "$6.08",
@@ -5378,7 +5378,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0445",
+      "id": "79df102c-8e78-4e3d-83fa-1769e8b202bd",
       "name": "Small Red Potatoes, 10 lbs",
       "category": "Fresh Vegetables",
       "price": "$5.59",
@@ -5390,7 +5390,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0446",
+      "id": "a2dbb9a5-f569-4cd8-9b3d-e2ddcec6f00c",
       "name": "Yellow Onions, 5 lbs",
       "category": "Fresh Vegetables",
       "price": "$3.10",
@@ -5402,7 +5402,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0447",
+      "id": "ea94d04b-771e-4df0-8e11-d39d5cee067e",
       "name": "Organic Red Onion, 5 lbs",
       "category": "Fresh Vegetables",
       "price": "$4.96",
@@ -5414,7 +5414,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0448",
+      "id": "e7c331c0-7b65-4c55-ae18-383102eb000e",
       "name": "Colossal Garlic, 2 lbs",
       "category": "Fresh Vegetables",
       "price": "$7.45",
@@ -5426,7 +5426,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0449",
+      "id": "354c082f-0cc7-4222-9d12-eae9513caa2c",
       "name": "Northwest Sweet Onios, 5 lbs",
       "category": "Fresh Vegetables",
       "price": "$4.96",
@@ -5438,7 +5438,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0450",
+      "id": "0c391714-945e-4020-bc26-1ea325a2b792",
       "name": "Christopher Ranch Monviso Peeled Garlic, 3 lbs",
       "category": "Fresh Vegetables",
       "price": "$15.54",
@@ -5450,7 +5450,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0451",
+      "id": "623f0ebb-0f54-42f5-a970-4e76606071cd",
       "name": "Broccoli Florets, 3 lbs",
       "category": "Fresh Vegetables",
       "price": "$9.32",
@@ -5462,7 +5462,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0452",
+      "id": "be15dd95-bdbb-4493-b1b3-078a01148d41",
       "name": "Cauliflower Florets, 2 lbs",
       "category": "Fresh Vegetables",
       "price": "$7.45",
@@ -5474,7 +5474,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0453",
+      "id": "9cd56cf0-a89a-4583-852b-e3c3f898856e",
       "name": "Organic Squash, 3.5 lbs",
       "category": "Fresh Vegetables",
       "price": "$9.94",
@@ -5486,7 +5486,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0454",
+      "id": "66bb944d-0bbc-42d0-aeaf-734297eb036c",
       "name": "Organic Butternut Squash, 2 lbs",
       "category": "Fresh Vegetables",
       "price": "$8.70",
@@ -5498,7 +5498,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0455",
+      "id": "0c381b6c-1c24-4bf7-9bf1-7efd015fc23b",
       "name": "Spaghetti Squash, 2 Count",
       "category": "Fresh Vegetables",
       "price": "$8.70",
@@ -5510,7 +5510,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0456",
+      "id": "56cecdbd-92b0-40ec-88d7-02f4132d9a9e",
       "name": "Organic Crimini Mushrooms, 24 oz",
       "category": "Fresh Vegetables",
       "price": "$7.33",
@@ -5522,7 +5522,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0457",
+      "id": "df0122cf-a0cd-4a3a-a42a-19cc9a8e6c00",
       "name": "Organic White Mushrooms, 24 oz",
       "category": "Fresh Vegetables",
       "price": "$7.45",
@@ -5534,7 +5534,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0458",
+      "id": "caab018e-28f3-415f-80c1-2f1f908e5177",
       "name": "Super Sweet Corn, 8-count",
       "category": "Fresh Vegetables",
       "price": "$8.70",
@@ -5546,7 +5546,7 @@
       "createdAt": "2025-12-20T21:39:47.599Z"
     },
     {
-      "id": "prod_0459",
+      "id": "67d646fb-fc1a-47f2-8de5-e067baddece8",
       "name": "Watts Brothers Farms Organic Sweet White Corn, 5 lbs",
       "category": "Fresh Vegetables",
       "price": "$9.94",

@@ -1,8 +1,16 @@
-import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Box,
+  CircularProgress,
+} from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useState, useRef, useEffect } from "react";
 import pgCoinImg from "../assets/pg-coin.webp";
+import { getTopVoters } from "../services/firestore";
 
 // Aggressive image preloading with multiple strategies
 const preloadImage = (src: string): Promise<void> => {
@@ -139,6 +147,7 @@ interface SnackCardProps {
   price?: number;
   votes?: number;
   onVote?: (id: string, direction: "up" | "down") => void;
+  userVotes?: Record<string, number>;
 }
 
 interface FloatingCoin {
@@ -154,10 +163,13 @@ export function SnackCard({
   price,
   votes,
   onVote,
+  userVotes = {},
 }: SnackCardProps) {
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const topVoters = getTopVoters(userVotes);
 
   // Start preloading the coin image on mount
   useEffect(() => {
@@ -241,9 +253,9 @@ export function SnackCard({
         {price !== undefined && (
           <Typography
             variant="body1"
-            sx={{ fontWeight: 700, color: "#1a3a52", marginBottom: "0.5rem" }}
+            sx={{ fontWeight: 300, color: "#1a3a52", marginBottom: "0.5rem" }}
           >
-            {price}
+            ${typeof price === "number" ? price.toFixed(2) : price}
           </Typography>
         )}
         {votes !== undefined && (
@@ -256,22 +268,54 @@ export function SnackCard({
         )}
       </CardContent>
       <Box sx={{ padding: "0 1rem 1rem", display: "flex", gap: "0.5rem" }}>
-        <button
-          className="upvote-btn"
-          onClick={(e) => handleVoteWithCoin(e, "up")}
-          style={{ cursor: "pointer" }}
-        >
-          <ThumbUpIcon sx={{ fontSize: "1rem" }} />
-          Up
-        </button>
-        <button
-          className="downvote-btn"
-          onClick={(e) => handleVoteWithCoin(e, "down")}
-          style={{ cursor: "pointer" }}
-        >
-          <ThumbDownIcon sx={{ fontSize: "1rem" }} />
-          Down
-        </button>
+        <Box sx={{ flex: 1 }}>
+          <button
+            className="upvote-btn"
+            onClick={(e) => handleVoteWithCoin(e, "up")}
+            style={{ cursor: "pointer", width: "100%" }}
+          >
+            <ThumbUpIcon sx={{ fontSize: "1rem" }} />
+            Up
+          </button>
+          {topVoters.topVoterId && (
+            <Typography
+              variant="caption"
+              sx={{
+                display: "block",
+                color: "#4caf50",
+                fontSize: "0.65rem",
+                marginTop: "0.25rem",
+                textAlign: "center",
+              }}
+            >
+              Top: +{topVoters.topVoterId.votes}
+            </Typography>
+          )}
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <button
+            className="downvote-btn"
+            onClick={(e) => handleVoteWithCoin(e, "down")}
+            style={{ cursor: "pointer", width: "100%" }}
+          >
+            <ThumbDownIcon sx={{ fontSize: "1rem" }} />
+            Down
+          </button>
+          {topVoters.topDownvoterId && (
+            <Typography
+              variant="caption"
+              sx={{
+                display: "block",
+                color: "#f44336",
+                fontSize: "0.65rem",
+                marginTop: "0.25rem",
+                textAlign: "center",
+              }}
+            >
+              Top: {topVoters.topDownvoterId.votes}
+            </Typography>
+          )}
+        </Box>
       </Box>
 
       {/* Floating coins */}
