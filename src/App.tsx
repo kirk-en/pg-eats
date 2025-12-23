@@ -8,6 +8,7 @@ import {
   voteForProductBatch,
 } from "./services/firestore";
 import { useAuth } from "./contexts/AuthContext";
+import { tipSnackCzar } from "./utils/supabaseApi";
 import { Timestamp } from "firebase/firestore";
 
 const theme = createTheme({
@@ -204,6 +205,12 @@ function App() {
           newVoteChange,
           newCost
         );
+
+        // After successful vote, tip the snack czar if tipping is enabled
+        const officeData = await getOffice(office);
+        if (officeData?.czar && officeData?.tippingEnabled && newCost > 0) {
+          await tipSnackCzar(user.id!, officeData.czar, newCost);
+        }
       } catch (error: any) {
         console.error("Error casting batch vote:", error);
 

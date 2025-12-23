@@ -5,6 +5,7 @@ export interface Office {
   name: string;
   timezone: string;
   czar: string | null;
+  tippingEnabled: boolean;
   currentVotingPeriod: {
     startDate: Timestamp;
     endDate: Timestamp;

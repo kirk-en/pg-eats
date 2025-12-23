@@ -38,6 +38,13 @@ export const getUserByEmail = async (email: string): Promise<User | null> => {
   return null;
 };
 
+export const getAllUsers = async (): Promise<User[]> => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  return querySnapshot.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as User)
+  );
+};
+
 export const createUser = async (user: User): Promise<void> => {
   await setDoc(doc(db, "users", user.id), user);
 };
@@ -54,6 +61,14 @@ export const updateUserBalance = async (
   await updateDoc(userRef, { balance: newBalance });
 };
 
+export const updateUser = async (
+  uid: string,
+  data: Partial<User>
+): Promise<void> => {
+  const userRef = doc(db, "users", uid);
+  await updateDoc(userRef, data);
+};
+
 // Product Services
 export const getProducts = async (): Promise<Product[]> => {
   const q = query(collection(db, "products"), where("isActive", "==", true));
@@ -61,6 +76,23 @@ export const getProducts = async (): Promise<Product[]> => {
   return querySnapshot.docs.map(
     (doc) => ({ id: doc.id, ...doc.data() } as Product)
   );
+};
+
+export const getAllProducts = async (): Promise<Product[]> => {
+  const querySnapshot = await getDocs(collection(db, "products"));
+  return querySnapshot.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as Product)
+  );
+};
+
+export const deleteProduct = async (productId: string): Promise<void> => {
+  const productRef = doc(db, "products", productId);
+  await updateDoc(productRef, { isActive: false });
+};
+
+export const undeleteProduct = async (productId: string): Promise<void> => {
+  const productRef = doc(db, "products", productId);
+  await updateDoc(productRef, { isActive: true });
 };
 
 // Office Services
@@ -80,6 +112,14 @@ export const getOffice = async (officeId: string): Promise<Office | null> => {
   } else {
     return null;
   }
+};
+
+export const updateOffice = async (
+  officeId: string,
+  data: Partial<Office>
+): Promise<void> => {
+  const docRef = doc(db, "offices", officeId);
+  await updateDoc(docRef, data);
 };
 
 // Voting Services
@@ -146,5 +186,31 @@ export const voteForProductBatch = async (
       [`userVotes.${userId}`]: increment(voteChange),
       lastVotedAt: Timestamp.now(),
     });
+  });
+};
+
+export const resetOfficeVotes = async (
+  office: string,
+  nextDropDate: string
+): Promise<void> => {
+  // Get all products
+  const allProducts = await getAllProducts();
+
+  // Batch update all products to reset votes for this office
+  await Promise.all(
+    allProducts.map((product) => {
+      const productRef = doc(db, "products", product.id);
+      return updateDoc(productRef, {
+        [`votes_${office}`]: 0,
+        userVotes: {},
+        lastVotedAt: Timestamp.now(),
+      });
+    })
+  );
+
+  // Update office with next drop date
+  await updateOffice(office, {
+    nextDropDate: nextDropDate,
+    lastResetAt: Timestamp.now(),
   });
 };

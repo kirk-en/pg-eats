@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { jwtDecode } from "jwt-decode";
+import { updateDoc, doc } from "firebase/firestore";
+import { db } from "../lib/firebase";
 import {
   getUser,
   createUser,
@@ -96,44 +98,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         throw new Error(`Only ${ALLOWED_DOMAIN} emails are allowed`);
       }
 
-      // Check if user exists in Firestore using Google ID (sub)
-      let firestoreUser = await getUser(decoded.sub);
+      // Check if user exists by email (from seeded JSON data)
+      let firestoreUser = await getUserByEmail(decoded.email);
 
       if (!firestoreUser) {
-        // Check if user exists by email (migration from legacy JSON data)
-        const existingUserByEmail = await getUserByEmail(decoded.email);
-
-        if (existingUserByEmail) {
-          // Migrate user to new UID (Google sub)
-          const migratedUser = {
-            ...existingUserByEmail,
-            id: decoded.sub,
-            displayName: decoded.name, // Update name from Google
-            photoURL: decoded.picture, // Update photo from Google
-          };
-
-          // Create new doc with Google ID
-          await createUser(migratedUser);
-
-          // Delete old doc (optional, but good for cleanup)
-          if (existingUserByEmail.id !== decoded.sub) {
-            await deleteUser(existingUserByEmail.id);
-          }
-
-          firestoreUser = migratedUser;
-        } else {
-          // Create new user
-          const newUser = {
-            id: decoded.sub,
-            email: decoded.email,
-            displayName: decoded.name,
-            photoURL: decoded.picture,
-            balance: 0, // Default balance
-            isAdmin: false,
-          };
-          await createUser(newUser);
-          firestoreUser = newUser;
-        }
+        // Create new user with Google ID if they don't exist
+        const newUser = {
+          id: decoded.sub,
+          email: decoded.email,
+          displayName: decoded.name,
+          photoURL: decoded.picture,
+          balance: 0, // Default balance
+          isAdmin: false,
+        };
+        await createUser(newUser);
+        firestoreUser = newUser;
+      } else {
+        // User exists in seeded data, update their profile from Google
+        // but keep their original UUID as the document ID
+        await updateDoc(doc(db, "users", firestoreUser.id), {
+          displayName: decoded.name,
+          photoURL: decoded.picture,
+        });
       }
 
       const userData: User = {

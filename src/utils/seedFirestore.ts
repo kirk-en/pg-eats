@@ -59,7 +59,7 @@ export const resetUsers = async () => {
       displayName: user.username,
       photoURL: "", // No photo in JSON
       balance: user.balance,
-      isAdmin: false,
+      isAdmin: user.isAdmin ?? false,
     });
     operationCount++;
   });
@@ -87,6 +87,7 @@ export const seedFirestore = async () => {
     name: "New York",
     timezone: "America/New_York",
     czar: null,
+    tippingEnabled: true,
     currentVotingPeriod: {
       startDate: Timestamp.now(),
       endDate: Timestamp.fromDate(nextFriday),
@@ -101,6 +102,7 @@ export const seedFirestore = async () => {
     name: "Denver",
     timezone: "America/Denver",
     czar: null,
+    tippingEnabled: true,
     currentVotingPeriod: {
       startDate: Timestamp.now(),
       endDate: Timestamp.fromDate(nextFriday),
@@ -117,7 +119,7 @@ export const seedFirestore = async () => {
       displayName: user.username,
       photoURL: "", // No photo in JSON
       balance: user.balance,
-      isAdmin: false,
+      isAdmin: user.isAdmin ?? false,
     });
     operationCount++;
   });

@@ -28,6 +28,7 @@ import logo from "../assets/pgeats-logo-2.png";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { CzarPanel } from "./CzarPanel";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
@@ -243,6 +244,7 @@ export function Header({
   const { user, logout, isLoadingBalance } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [czarPanelOpen, setCzarPanelOpen] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -525,8 +527,25 @@ export function Header({
           </Box>
         </MenuItem>
         <Divider />
+        {user?.isAdmin && (
+          <MenuItem
+            onClick={() => {
+              setCzarPanelOpen(true);
+              handleMenuClose();
+            }}
+          >
+            Czar Panel
+          </MenuItem>
+        )}
+        {user?.isAdmin && <Divider />}
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
+
+      <CzarPanel
+        open={czarPanelOpen}
+        onClose={() => setCzarPanelOpen(false)}
+        office={office}
+      />
     </AppBar>
   );
 }
