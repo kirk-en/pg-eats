@@ -205,6 +205,9 @@ export function SnackCard({
     e: React.MouseEvent<HTMLButtonElement>,
     direction: "up" | "down"
   ) => {
+    // Prevent focus which triggers scroll-into-view
+    e.currentTarget.blur();
+
     // Don't show animation if downvoting at 0 votes
     const shouldShowAnimation = !(direction === "down" && (votes ?? 0) === 0);
 
@@ -244,6 +247,12 @@ export function SnackCard({
         position: "relative",
         overflow: "visible",
         cursor: "default",
+        "&:focus": {
+          outline: "none",
+        },
+        "&:focus-visible": {
+          outline: "none",
+        },
       }}
     >
       <CardMedia
@@ -321,54 +330,56 @@ export function SnackCard({
         </Box>
       </Box>
 
-      {/* Top voters section */}
-      {(topUpvoterUser || topDownvoterUser) && (
-        <Box sx={{ padding: "0 1rem 1rem", minHeight: "2.5rem" }}>
-          <Typography
-            variant="caption"
-            sx={{
-              display: "block",
-              color: "#000000",
-              fontSize: "0.7rem",
-              marginBottom: "0.5rem",
-              textAlign: "center",
-              fontWeight: 600,
-            }}
-          >
-            Top backers:
-          </Typography>
-          {topUpvoterUser && (
+      {/* Top voters section - always present for consistent card height */}
+      <Box sx={{ padding: "0 1rem 1rem", minHeight: "2.5rem" }}>
+        {(topUpvoterUser || topDownvoterUser) && (
+          <>
             <Typography
               variant="caption"
               sx={{
                 display: "block",
-                color: "#4caf50",
-                fontSize: "0.75rem",
+                color: "#000000",
+                fontSize: "0.7rem",
                 marginBottom: "0.5rem",
                 textAlign: "center",
-                fontWeight: 500,
+                fontWeight: 600,
               }}
             >
-              🟢 {topUpvoterUser.displayName} (+{topVoters.topVoterId?.votes})
+              Top backers:
             </Typography>
-          )}
-          {topDownvoterUser && (
-            <Typography
-              variant="caption"
-              sx={{
-                display: "block",
-                color: "#f44336",
-                fontSize: "0.75rem",
-                textAlign: "center",
-                fontWeight: 500,
-              }}
-            >
-              🔻 {topDownvoterUser.displayName} (
-              {topVoters.topDownvoterId?.votes})
-            </Typography>
-          )}
-        </Box>
-      )}
+            {topUpvoterUser && (
+              <Typography
+                variant="caption"
+                sx={{
+                  display: "block",
+                  color: "#4caf50",
+                  fontSize: "0.75rem",
+                  marginBottom: "0.5rem",
+                  textAlign: "center",
+                  fontWeight: 500,
+                }}
+              >
+                🟢 {topUpvoterUser.displayName} (+{topVoters.topVoterId?.votes})
+              </Typography>
+            )}
+            {topDownvoterUser && (
+              <Typography
+                variant="caption"
+                sx={{
+                  display: "block",
+                  color: "#f44336",
+                  fontSize: "0.75rem",
+                  textAlign: "center",
+                  fontWeight: 500,
+                }}
+              >
+                🔻 {topDownvoterUser.displayName} (
+                {topVoters.topDownvoterId?.votes})
+              </Typography>
+            )}
+          </>
+        )}
+      </Box>
 
       {/* Floating coins */}
       {floatingCoins.map((coin) => (

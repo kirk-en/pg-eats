@@ -43,7 +43,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [appliedSearch, setAppliedSearch] = useState<string>("");
-  const [randomizedSnacks, setRandomizedSnacks] = useState<Snack[]>([]);
+  const [mostPopularSnacks, setMostPopularSnacks] = useState<Snack[]>([]);
   const [office, setOffice] = useState<"nyc" | "denver">("nyc");
   const [language, setLanguage] = useState<"en" | "es">("en");
   const [votingDeadline, setVotingDeadline] = useState<string>("");
@@ -61,6 +61,11 @@ function App() {
         // 1. Subscribe to Products with real-time listener
         unsubscribe = subscribeToProducts(
           (products) => {
+            // Disable scroll anchoring during Firestore updates to prevent auto-scroll
+            const html = document.documentElement;
+            const originalOverflowAnchor = html.style.overflowAnchor;
+            html.style.overflowAnchor = "none";
+
             // Transform products to match our Snack interface
             const transformedProducts: Snack[] = products.map((product) => ({
               id: product.id,
@@ -93,13 +98,32 @@ function App() {
             ];
 
             setSnacks(transformedProducts);
-            setRandomizedSnacks(
-              [...transformedProducts]
-                .sort(() => Math.random() - 0.5)
-                .slice(0, 30)
-            );
+            // Update most popular snacks: either initialize or update votes only
+            setMostPopularSnacks((prev) => {
+              if (prev.length === 0) {
+                // Initial load: sort and pick top 24
+                return [...transformedProducts]
+                  .sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0))
+                  .slice(0, 24);
+              } else {
+                // Update: merge new vote data into existing array without reordering
+                return prev.map((existingSnack) => {
+                  const updated = transformedProducts.find(
+                    (p) => p.id === existingSnack.id
+                  );
+                  return updated
+                    ? { ...existingSnack, votes: updated.votes }
+                    : existingSnack;
+                });
+              }
+            });
             setCategories(categoryList);
             setIsLoading(false);
+
+            // Restore scroll anchoring after a short delay to allow layout to settle
+            setTimeout(() => {
+              html.style.overflowAnchor = originalOverflowAnchor;
+            }, 100);
           },
           (error) => {
             console.error("Error with real-time listener:", error);
@@ -184,8 +208,8 @@ function App() {
       )
     );
 
-    // Update randomized snacks too
-    setRandomizedSnacks((prev) =>
+    // Update most popular snacks too
+    setMostPopularSnacks((prev) =>
       prev.map((snack) =>
         snack.id === snackId
           ? {
@@ -244,7 +268,7 @@ function App() {
               : s
           )
         );
-        setRandomizedSnacks((prevSnacks) =>
+        setMostPopularSnacks((prevSnacks) =>
           prevSnacks.map((s) =>
             s.id === snackId
               ? { ...s, votes: (s.votes ?? 0) - newVoteChange }
@@ -290,13 +314,13 @@ function App() {
     setAppliedSearch(searchQuery);
   }, [searchQuery]);
 
-  // Scroll page to top when search or category changes
-  useEffect(() => {
-    // Use setTimeout to ensure DOM has updated before scrolling
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 0);
-  }, [appliedSearch, selectedCategory]);
+  // TODO: Re-enable scroll to top after fixing animation conflicts
+  // useEffect(() => {
+  //   // Use setTimeout to ensure DOM has updated before scrolling
+  //   setTimeout(() => {
+  //     window.scrollTo({ top: 0, behavior: "smooth" });
+  //   }, 0);
+  // }, [appliedSearch, selectedCategory]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -307,13 +331,17 @@ function App() {
     };
   }, []);
 
-  const randomizedSnacksForFilter = useMemo(() => {
-    return randomizedSnacks;
-  }, [randomizedSnacks]);
+  const mostPopularSnacksForFilter = useMemo(() => {
+    // Re-sort most popular snacks by votes whenever the snacks array changes
+    return [...mostPopularSnacks].sort(
+      (a, b) => (b.votes ?? 0) - (a.votes ?? 0)
+    );
+  }, [mostPopularSnacks]);
 
   const filteredSnacks = useMemo(() => {
+    let result;
     if (appliedSearch) {
-      return snacks.filter((snack) => {
+      result = snacks.filter((snack) => {
         const searchLower = appliedSearch.toLowerCase();
         return (
           snack.name.toLowerCase().includes(searchLower) ||
@@ -322,11 +350,24 @@ function App() {
         );
       });
     } else if (selectedCategory === "most-popular") {
-      return randomizedSnacksForFilter;
+      result = mostPopularSnacksForFilter;
     } else {
-      return snacks.filter((snack) => snack.categoryId === selectedCategory);
+      result = snacks.filter((snack) => snack.categoryId === selectedCategory);
     }
-  }, [appliedSearch, selectedCategory, randomizedSnacksForFilter, snacks]);
+
+    // Sort by votes (descending) then by most recent vote (descending)
+    return [...result].sort((a, b) => {
+      const voteDiff = (b.votes ?? 0) - (a.votes ?? 0);
+      if (voteDiff !== 0) {
+        return voteDiff;
+      }
+      // If votes are equal, sort by most recent vote
+      if (!a.lastVotedAt && !b.lastVotedAt) return 0;
+      if (!a.lastVotedAt) return 1;
+      if (!b.lastVotedAt) return -1;
+      return b.lastVotedAt.toMillis() - a.lastVotedAt.toMillis();
+    });
+  }, [appliedSearch, selectedCategory, mostPopularSnacksForFilter, snacks]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -338,6 +379,7 @@ function App() {
           flexDirection: "column",
           minHeight: "100vh",
           backgroundColor: "#fef5e4",
+          scrollbarGutter: "stable",
         }}
       >
         <Header
@@ -403,7 +445,7 @@ function App() {
               flexDirection: "column",
             }}
           >
-            <Box sx={{ flex: 1, overflow: "auto" }}>
+            <Box sx={{ flex: 1 }}>
               <SnacksGrid
                 snacks={filteredSnacks}
                 onVote={handleVote}

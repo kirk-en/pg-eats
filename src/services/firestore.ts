@@ -124,6 +124,7 @@ export const getProducts = async (): Promise<Product[]> => {
     tags: doc.data().tags || [],
     isActive: doc.data().isActive,
     userVotes: doc.data().userVotes || {},
+    lastVotedAt: doc.data().lastVotedAt || null,
   })) as Product[];
 
   // Update cache
@@ -159,6 +160,7 @@ export const subscribeToProducts = (
         tags: doc.data().tags || [],
         isActive: doc.data().isActive,
         userVotes: doc.data().userVotes || {},
+        lastVotedAt: doc.data().lastVotedAt || null,
       })) as Product[];
 
       callback(products);

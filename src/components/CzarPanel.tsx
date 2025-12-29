@@ -1057,7 +1057,7 @@ export function CzarPanel({
                   Resetting votes...
                 </Box>
               ) : (
-                "🚀 RESET ALL VOTES & START NEW PERIOD"
+                `🚀 RESET ALL ${currentOffice} OFFICE VOTES & START NEW PERIOD`
               )}
             </Button>
 
