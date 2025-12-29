@@ -10,7 +10,8 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useState, useRef, useEffect } from "react";
 import pgCoinImg from "../assets/pg-coin.webp";
-import { getTopVoters } from "../services/firestore";
+import { getTopVoters, getUser } from "../services/firestore";
+import type { User } from "../types/firestore";
 
 // Aggressive image preloading with multiple strategies
 const preloadImage = (src: string): Promise<void> => {
@@ -166,10 +167,34 @@ export function SnackCard({
   userVotes = {},
 }: SnackCardProps) {
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
+  const [topUpvoterUser, setTopUpvoterUser] = useState<User | null>(null);
+  const [topDownvoterUser, setTopDownvoterUser] = useState<User | null>(null);
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const topVoters = getTopVoters(userVotes);
+
+  // Fetch top voter user data
+  useEffect(() => {
+    if (topVoters.topVoterId?.id) {
+      getUser(topVoters.topVoterId.id).then((user) => {
+        setTopUpvoterUser(user);
+      });
+    } else {
+      setTopUpvoterUser(null);
+    }
+  }, [topVoters.topVoterId?.id]);
+
+  // Fetch top downvoter user data
+  useEffect(() => {
+    if (topVoters.topDownvoterId?.id) {
+      getUser(topVoters.topDownvoterId.id).then((user) => {
+        setTopDownvoterUser(user);
+      });
+    } else {
+      setTopDownvoterUser(null);
+    }
+  }, [topVoters.topDownvoterId?.id]);
 
   // Start preloading the coin image on mount
   useEffect(() => {
@@ -234,7 +259,14 @@ export function SnackCard({
           backgroundColor: "white",
         }}
       />
-      <CardContent sx={{ flex: 1, padding: "0 1rem 1rem" }}>
+      <CardContent
+        sx={{
+          padding: "0 1rem 1rem",
+          minHeight: "6.5rem",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Typography
           variant="subtitle2"
           sx={{
@@ -246,6 +278,8 @@ export function SnackCard({
             WebkitBoxOrient: "vertical",
             overflow: "hidden",
             marginBottom: "0.5rem",
+            flex: 1,
+            minHeight: "2.6rem",
           }}
         >
           {name}
@@ -259,15 +293,12 @@ export function SnackCard({
           </Typography>
         )}
         {votes !== undefined && (
-          <Typography
-            variant="caption"
-            sx={{ color: "#666666", marginBottom: "0.75rem" }}
-          >
+          <Typography variant="caption" sx={{ color: "#666666" }}>
             {votes} votes
           </Typography>
         )}
       </CardContent>
-      <Box sx={{ padding: "0 1rem 1rem", display: "flex", gap: "0.5rem" }}>
+      <Box sx={{ padding: "0 1rem 2rem", display: "flex", gap: "0.5rem" }}>
         <Box sx={{ flex: 1 }}>
           <button
             className="upvote-btn"
@@ -277,20 +308,6 @@ export function SnackCard({
             <ThumbUpIcon sx={{ fontSize: "1rem" }} />
             Up
           </button>
-          {topVoters.topVoterId && (
-            <Typography
-              variant="caption"
-              sx={{
-                display: "block",
-                color: "#4caf50",
-                fontSize: "0.65rem",
-                marginTop: "0.25rem",
-                textAlign: "center",
-              }}
-            >
-              Top: +{topVoters.topVoterId.votes}
-            </Typography>
-          )}
         </Box>
         <Box sx={{ flex: 1 }}>
           <button
@@ -301,22 +318,57 @@ export function SnackCard({
             <ThumbDownIcon sx={{ fontSize: "1rem" }} />
             Down
           </button>
-          {topVoters.topDownvoterId && (
+        </Box>
+      </Box>
+
+      {/* Top voters section */}
+      {(topUpvoterUser || topDownvoterUser) && (
+        <Box sx={{ padding: "0 1rem 1rem", minHeight: "2.5rem" }}>
+          <Typography
+            variant="caption"
+            sx={{
+              display: "block",
+              color: "#000000",
+              fontSize: "0.7rem",
+              marginBottom: "0.5rem",
+              textAlign: "center",
+              fontWeight: 600,
+            }}
+          >
+            Top backers:
+          </Typography>
+          {topUpvoterUser && (
+            <Typography
+              variant="caption"
+              sx={{
+                display: "block",
+                color: "#4caf50",
+                fontSize: "0.75rem",
+                marginBottom: "0.5rem",
+                textAlign: "center",
+                fontWeight: 500,
+              }}
+            >
+              🟢 {topUpvoterUser.displayName} (+{topVoters.topVoterId?.votes})
+            </Typography>
+          )}
+          {topDownvoterUser && (
             <Typography
               variant="caption"
               sx={{
                 display: "block",
                 color: "#f44336",
-                fontSize: "0.65rem",
-                marginTop: "0.25rem",
+                fontSize: "0.75rem",
                 textAlign: "center",
+                fontWeight: 500,
               }}
             >
-              Top: {topVoters.topDownvoterId.votes}
+              🔻 {topDownvoterUser.displayName} (
+              {topVoters.topDownvoterId?.votes})
             </Typography>
           )}
         </Box>
-      </Box>
+      )}
 
       {/* Floating coins */}
       {floatingCoins.map((coin) => (
