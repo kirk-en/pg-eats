@@ -16,14 +16,21 @@ interface SnacksGridProps {
   snacks: Snack[];
   onVote?: (id: string, direction: "up" | "down") => void;
   isLoading?: boolean;
+  selectedCategory?: string;
 }
 
-export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
+export function SnacksGrid({
+  snacks,
+  onVote,
+  isLoading,
+  selectedCategory,
+}: SnacksGridProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const positionsRef = useRef<Record<string, DOMRect>>({});
   const animatingRef = useRef<Set<string>>(new Set());
   const [debouncedSnacks, setDebouncedSnacks] = useState<Snack[]>(snacks);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevCategoryRef = useRef<string | undefined>(selectedCategory);
 
   // Debounce snack updates by 2.25 seconds, but only for reordering (same snacks, different order)
   // Category/filter changes should be immediate
@@ -33,13 +40,16 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
       clearTimeout(debounceTimerRef.current);
     }
 
-    // Check if snacks changed due to reordering or category filter
-    // Only treat as category change if snacks list is completely different (length change)
-    const isCategoryChange = debouncedSnacks.length !== snacks.length;
+    // Check if category has changed
+    const categoryChanged = prevCategoryRef.current !== selectedCategory;
+    prevCategoryRef.current = selectedCategory;
 
-    if (isCategoryChange) {
-      // Immediate update for category changes
+    if (categoryChanged) {
+      // Immediate update for category changes, skip animations
+
       setDebouncedSnacks(snacks);
+      // Reset positions on category change (no previous positions to animate from)
+      positionsRef.current = {};
     } else {
       // Debounce vote-based reordering (same snacks, different order)
       debounceTimerRef.current = setTimeout(() => {
@@ -53,7 +63,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
         clearTimeout(debounceTimerRef.current);
       }
     };
-  }, [snacks]);
+  }, [snacks, selectedCategory]);
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -90,10 +100,10 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
 
     // Disable scroll anchoring during animation to prevent jitter
     const html = document.documentElement;
-    // @ts-ignore
-    const originalOverflowAnchor = html.style.overflowAnchor;
-    // @ts-ignore
-    html.style.overflowAnchor = "none";
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const originalOverflowAnchor = (html.style as any).overflowAnchor;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (html.style as any).overflowAnchor = "none";
 
     // Apply inverted transforms and setup animations
     elements.forEach((el) => {
@@ -123,8 +133,8 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
     // Restore scroll anchoring after debounce period + animation completes
     // Wait 1800ms to ensure layout is fully settled before re-enabling
     setTimeout(() => {
-      // @ts-ignore
-      html.style.overflowAnchor = originalOverflowAnchor;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (html.style as any).overflowAnchor = originalOverflowAnchor;
       // Clear will-change hints
       elements.forEach((el) => {
         const snackId = (el as HTMLElement).getAttribute("data-snack-id");
@@ -134,7 +144,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
       });
     }, 1800);
 
-    // Store positions for next animation
+    // Store positions for next animation (but only if not a category change)
     positionsRef.current = currentPositions;
 
     // Cleanup animation state after transition completes
@@ -155,10 +165,10 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
         el.removeEventListener("transitionend", handleTransitionEnd);
       });
       // Ensure overflow-anchor is restored on cleanup
-      // @ts-ignore
-      html.style.overflowAnchor = originalOverflowAnchor;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (html.style as any).overflowAnchor = originalOverflowAnchor;
     };
-  }, [debouncedSnacks]); // Run whenever debounced snacks array changes
+  }, [debouncedSnacks, selectedCategory]); // Run whenever debounced snacks array changes
 
   if (isLoading) {
     return (
@@ -193,17 +203,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
       component="section"
       className="snacks-grid"
       sx={{
-        display: "grid",
-        gridTemplateColumns: {
-          xs: "repeat(2, 1fr)",
-          sm: "repeat(3, 1fr)",
-          md: "repeat(4, 1fr)",
-          lg: "repeat(4, 1fr)",
-        },
-        gap: 2,
         width: "100%",
-        contain: "layout style",
-        isolation: "isolate",
       }}
     >
       {debouncedSnacks.map((snack) => {

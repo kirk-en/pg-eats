@@ -34,8 +34,8 @@ export interface Product {
   votes_denver?: number;
   userVotes_nyc?: Record<string, number>;
   userVotes_denver?: Record<string, number>;
-  userVotes?: Record<string, number>; // Deprecated, keeping for backward compatibility during migration
-  lastVotedAt?: Timestamp | null;
+  lastVotedAt_nyc?: Timestamp | null;
+  lastVotedAt_denver?: Timestamp | null;
   tags?: string[];
   isActive?: boolean;
 }

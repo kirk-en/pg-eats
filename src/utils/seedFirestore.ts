@@ -139,8 +139,8 @@ export const seedFirestore = async () => {
       votes_denver: 0,
       userVotes_nyc: {},
       userVotes_denver: {},
-      userVotes: {},
-      lastVotedAt: null,
+      lastVotedAt_nyc: null,
+      lastVotedAt_denver: null,
     });
     operationCount++;
   });

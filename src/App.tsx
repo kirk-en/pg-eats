@@ -6,6 +6,7 @@ import {
   subscribeToProducts,
   getOffice,
   voteForProductBatch,
+  getMostRecentlyVotedProducts,
 } from "./services/firestore";
 import { useAuth } from "./contexts/AuthContext";
 import { tipSnackCzar } from "./utils/supabaseApi";
@@ -46,14 +47,14 @@ function App() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [appliedSearch, setAppliedSearch] = useState<string>("");
   const [mostPopularSnacks, setMostPopularSnacks] = useState<Snack[]>([]);
+  const [mostRecentlyVotedSnacks, setMostRecentlyVotedSnacks] = useState<
+    Snack[]
+  >([]);
   const [office, setOfficeState] = useState<"nyc" | "denver">(() => {
     const saved = localStorage.getItem("selectedOffice");
     return (saved as "nyc" | "denver") || "nyc";
   });
-  const [language, setLanguageState] = useState<"en" | "es">(() => {
-    const saved = localStorage.getItem("selectedLanguage");
-    return (saved as "en" | "es") || "en";
-  });
+  const [language, setLanguage] = useState<"en" | "es">("en");
   const [votingDeadline, setVotingDeadline] = useState<string>("");
   const [isVotingActive, setIsVotingActive] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -69,12 +70,6 @@ function App() {
   const setOffice = (newOffice: "nyc" | "denver") => {
     setOfficeState(newOffice);
     localStorage.setItem("selectedOffice", newOffice);
-  };
-
-  // Wrapper function to update language and persist to local storage
-  const setLanguage = (newLanguage: "en" | "es") => {
-    setLanguageState(newLanguage);
-    localStorage.setItem("selectedLanguage", newLanguage);
   };
 
   useEffect(() => {
@@ -108,7 +103,10 @@ function App() {
                 office === "nyc"
                   ? product.userVotes_nyc
                   : product.userVotes_denver,
-              lastVotedAt: product.lastVotedAt,
+              lastVotedAt:
+                (office === "nyc"
+                  ? product.lastVotedAt_nyc
+                  : product.lastVotedAt_denver) || null,
             }));
 
             // Extract unique categories
@@ -118,7 +116,8 @@ function App() {
 
             // Create categories list
             const categoryList: Category[] = [
-              { id: "most-popular", name: "Most Popular" },
+              { id: "most-popular", name: "🥇 Most Popular" },
+              { id: "most-recently-voted", name: "⚡ Latest Votes" },
               ...uniqueCategories.map((cat) => ({
                 id: cat.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
                 name: cat,
@@ -163,6 +162,44 @@ function App() {
             setIsLoading(false);
           }
         );
+
+        // Fetch most recently voted products separately
+        const fetchRecentlyVoted = async () => {
+          try {
+            const recentlyVotedProducts = await getMostRecentlyVotedProducts(
+              office
+            );
+            const transformedRecentlyVoted: Snack[] = recentlyVotedProducts.map(
+              (product) => ({
+                id: product.id,
+                name: product.name,
+                image: product.imageUrl,
+                imageUrl: product.imageUrl,
+                price: product.price,
+                votes:
+                  office === "nyc" ? product.votes_nyc : product.votes_denver,
+                category: product.category,
+                tags: product.tags || [],
+                categoryId: product.category
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-"),
+                userVotes:
+                  office === "nyc"
+                    ? product.userVotes_nyc
+                    : product.userVotes_denver,
+                lastVotedAt:
+                  (office === "nyc"
+                    ? product.lastVotedAt_nyc
+                    : product.lastVotedAt_denver) || null,
+              })
+            );
+            setMostRecentlyVotedSnacks(transformedRecentlyVoted);
+          } catch (error) {
+            console.error("Error fetching recently voted products:", error);
+          }
+        };
+
+        fetchRecentlyVoted();
 
         // 2. Fetch Office Data
         const officeData = await getOffice(office);
@@ -253,6 +290,18 @@ function App() {
       )
     );
 
+    // Update most recently voted snacks too
+    setMostRecentlyVotedSnacks((prev) =>
+      prev.map((snack) =>
+        snack.id === snackId
+          ? {
+              ...snack,
+              votes: (snack.votes ?? 0) + (direction === "up" ? 1 : -1),
+            }
+          : snack
+      )
+    );
+
     // Debounce Logic
     const currentPending = pendingVotesRef.current[snackId] || {
       voteChange: 0,
@@ -287,6 +336,43 @@ function App() {
         if (officeData?.czar && officeData?.tippingEnabled && newCost > 0) {
           await tipSnackCzar(user.id!, officeData.czar, newCost);
         }
+
+        // Refetch most recently voted products to show updated order
+        try {
+          // Add a small delay to ensure Firestore has processed the write
+          await new Promise((resolve) => setTimeout(resolve, 500));
+
+          const recentlyVotedProducts = await getMostRecentlyVotedProducts(
+            office
+          );
+          const transformedRecentlyVoted: Snack[] = recentlyVotedProducts.map(
+            (product) => ({
+              id: product.id,
+              name: product.name,
+              image: product.imageUrl,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              votes:
+                office === "nyc" ? product.votes_nyc : product.votes_denver,
+              category: product.category,
+              tags: product.tags || [],
+              categoryId: product.category
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-"),
+              userVotes:
+                office === "nyc"
+                  ? product.userVotes_nyc
+                  : product.userVotes_denver,
+              lastVotedAt:
+                (office === "nyc"
+                  ? product.lastVotedAt_nyc
+                  : product.lastVotedAt_denver) || null,
+            })
+          );
+          setMostRecentlyVotedSnacks(transformedRecentlyVoted);
+        } catch (error) {
+          console.error("Error refetching recently voted products:", error);
+        }
       } catch (error: any) {
         console.error("Error casting batch vote:", error);
 
@@ -302,6 +388,13 @@ function App() {
           )
         );
         setMostPopularSnacks((prevSnacks) =>
+          prevSnacks.map((s) =>
+            s.id === snackId
+              ? { ...s, votes: (s.votes ?? 0) - newVoteChange }
+              : s
+          )
+        );
+        setMostRecentlyVotedSnacks((prevSnacks) =>
           prevSnacks.map((s) =>
             s.id === snackId
               ? { ...s, votes: (s.votes ?? 0) - newVoteChange }
@@ -371,6 +464,15 @@ function App() {
     );
   }, [mostPopularSnacks]);
 
+  const mostRecentlyVotedSnacksForFilter = useMemo(() => {
+    // Sort by most recent vote timestamp (descending)
+    return [...mostRecentlyVotedSnacks].sort((a, b) => {
+      const aTime = a.lastVotedAt?.toMillis() ?? 0;
+      const bTime = b.lastVotedAt?.toMillis() ?? 0;
+      return bTime - aTime;
+    });
+  }, [mostRecentlyVotedSnacks]);
+
   const filteredSnacks = useMemo(() => {
     let result;
     if (appliedSearch) {
@@ -384,8 +486,15 @@ function App() {
       });
     } else if (selectedCategory === "most-popular") {
       result = mostPopularSnacksForFilter;
+    } else if (selectedCategory === "most-recently-voted") {
+      result = mostRecentlyVotedSnacksForFilter;
     } else {
       result = snacks.filter((snack) => snack.categoryId === selectedCategory);
+    }
+
+    // For most-recently-voted, keep the recency order without re-sorting
+    if (selectedCategory === "most-recently-voted") {
+      return result;
     }
 
     // Sort by votes (descending) then by most recent vote (descending)
@@ -400,7 +509,13 @@ function App() {
       if (!b.lastVotedAt) return -1;
       return b.lastVotedAt.toMillis() - a.lastVotedAt.toMillis();
     });
-  }, [appliedSearch, selectedCategory, mostPopularSnacksForFilter, snacks]);
+  }, [
+    appliedSearch,
+    selectedCategory,
+    mostPopularSnacksForFilter,
+    mostRecentlyVotedSnacksForFilter,
+    snacks,
+  ]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -483,6 +598,7 @@ function App() {
                 snacks={filteredSnacks}
                 onVote={handleVote}
                 isLoading={isLoading}
+                selectedCategory={selectedCategory}
               />
             </Box>
             <Footer />

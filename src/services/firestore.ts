@@ -12,6 +12,8 @@ import {
   deleteDoc,
   increment,
   runTransaction,
+  orderBy,
+  limit,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import type { User, Product, Office } from "../types/firestore";
@@ -123,8 +125,8 @@ export const getProducts = async (): Promise<Product[]> => {
     isActive: doc.data().isActive,
     userVotes_nyc: doc.data().userVotes_nyc || {},
     userVotes_denver: doc.data().userVotes_denver || {},
-    userVotes: doc.data().userVotes || {},
-    lastVotedAt: doc.data().lastVotedAt || null,
+    lastVotedAt_nyc: doc.data().lastVotedAt_nyc || null,
+    lastVotedAt_denver: doc.data().lastVotedAt_denver || null,
   })) as Product[];
 
   // Update cache
@@ -161,8 +163,8 @@ export const subscribeToProducts = (
         isActive: doc.data().isActive,
         userVotes_nyc: doc.data().userVotes_nyc || {},
         userVotes_denver: doc.data().userVotes_denver || {},
-        userVotes: doc.data().userVotes || {},
-        lastVotedAt: doc.data().lastVotedAt || null,
+        lastVotedAt_nyc: doc.data().lastVotedAt_nyc || null,
+        lastVotedAt_denver: doc.data().lastVotedAt_denver || null,
       })) as Product[];
 
       callback(products);
@@ -181,6 +183,38 @@ export const getAllProducts = async (): Promise<Product[]> => {
   return querySnapshot.docs.map(
     (doc) => ({ id: doc.id, ...doc.data() } as Product)
   );
+};
+
+export const getMostRecentlyVotedProducts = async (
+  office: "nyc" | "denver"
+): Promise<Product[]> => {
+  const lastVotedAtField =
+    office === "nyc" ? "lastVotedAt_nyc" : "lastVotedAt_denver";
+
+  const q = query(
+    collection(db, "products"),
+    where("isActive", "==", true),
+    where(lastVotedAtField, "!=", null),
+    orderBy(lastVotedAtField, "desc"),
+    limit(24)
+  );
+
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    name: doc.data().name,
+    category: doc.data().category,
+    price: doc.data().price,
+    imageUrl: doc.data().imageUrl,
+    votes_nyc: doc.data().votes_nyc || 0,
+    votes_denver: doc.data().votes_denver || 0,
+    tags: doc.data().tags || [],
+    isActive: doc.data().isActive,
+    userVotes_nyc: doc.data().userVotes_nyc || {},
+    userVotes_denver: doc.data().userVotes_denver || {},
+    lastVotedAt_nyc: doc.data().lastVotedAt_nyc || null,
+    lastVotedAt_denver: doc.data().lastVotedAt_denver || null,
+  })) as Product[];
 };
 
 export const deleteProduct = async (productId: string): Promise<void> => {
@@ -250,7 +284,7 @@ export const voteForProduct = async (
     transaction.update(productRef, {
       [field]: increment(value),
       [`userVotes_${office}.${userId}`]: increment(value),
-      lastVotedAt: Timestamp.now(),
+      [`lastVotedAt_${office}`]: Timestamp.now(),
     });
   });
 
@@ -287,7 +321,7 @@ export const voteForProductBatch = async (
     transaction.update(productRef, {
       [field]: increment(voteChange),
       [`userVotes_${office}.${userId}`]: increment(voteChange),
-      lastVotedAt: Timestamp.now(),
+      [`lastVotedAt_${office}`]: Timestamp.now(),
     });
   });
 
@@ -309,7 +343,7 @@ export const resetOfficeVotes = async (
       return updateDoc(productRef, {
         [`votes_${office}`]: 0,
         [`userVotes_${office}`]: {},
-        lastVotedAt: Timestamp.now(),
+        [`lastVotedAt_${office}`]: Timestamp.now(),
       });
     })
   );
