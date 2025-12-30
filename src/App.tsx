@@ -6,7 +6,6 @@ import {
   subscribeToProducts,
   getOffice,
   voteForProductBatch,
-  getMostRecentlyVotedProducts,
 } from "./services/firestore";
 import { useAuth } from "./contexts/AuthContext";
 import { tipSnackCzar } from "./utils/supabaseApi";
@@ -149,6 +148,16 @@ function App() {
                 });
               }
             });
+            // Derive most recently voted snacks from transformed products
+            const recentlyVotedSnacks = [...transformedProducts]
+              .filter((p) => p.lastVotedAt)
+              .sort((a, b) => {
+                const aTime = a.lastVotedAt?.toMillis() ?? 0;
+                const bTime = b.lastVotedAt?.toMillis() ?? 0;
+                return bTime - aTime;
+              })
+              .slice(0, 24);
+            setMostRecentlyVotedSnacks(recentlyVotedSnacks);
             setCategories(categoryList);
             setIsLoading(false);
 
@@ -162,44 +171,6 @@ function App() {
             setIsLoading(false);
           }
         );
-
-        // Fetch most recently voted products separately
-        const fetchRecentlyVoted = async () => {
-          try {
-            const recentlyVotedProducts = await getMostRecentlyVotedProducts(
-              office
-            );
-            const transformedRecentlyVoted: Snack[] = recentlyVotedProducts.map(
-              (product) => ({
-                id: product.id,
-                name: product.name,
-                image: product.imageUrl,
-                imageUrl: product.imageUrl,
-                price: product.price,
-                votes:
-                  office === "nyc" ? product.votes_nyc : product.votes_denver,
-                category: product.category,
-                tags: product.tags || [],
-                categoryId: product.category
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-"),
-                userVotes:
-                  office === "nyc"
-                    ? product.userVotes_nyc
-                    : product.userVotes_denver,
-                lastVotedAt:
-                  (office === "nyc"
-                    ? product.lastVotedAt_nyc
-                    : product.lastVotedAt_denver) || null,
-              })
-            );
-            setMostRecentlyVotedSnacks(transformedRecentlyVoted);
-          } catch (error) {
-            console.error("Error fetching recently voted products:", error);
-          }
-        };
-
-        fetchRecentlyVoted();
 
         // 2. Fetch Office Data
         const officeData = await getOffice(office);
@@ -335,43 +306,6 @@ function App() {
         const officeData = await getOffice(office);
         if (officeData?.czar && officeData?.tippingEnabled && newCost > 0) {
           await tipSnackCzar(user.id!, officeData.czar, newCost);
-        }
-
-        // Refetch most recently voted products to show updated order
-        try {
-          // Add a small delay to ensure Firestore has processed the write
-          await new Promise((resolve) => setTimeout(resolve, 500));
-
-          const recentlyVotedProducts = await getMostRecentlyVotedProducts(
-            office
-          );
-          const transformedRecentlyVoted: Snack[] = recentlyVotedProducts.map(
-            (product) => ({
-              id: product.id,
-              name: product.name,
-              image: product.imageUrl,
-              imageUrl: product.imageUrl,
-              price: product.price,
-              votes:
-                office === "nyc" ? product.votes_nyc : product.votes_denver,
-              category: product.category,
-              tags: product.tags || [],
-              categoryId: product.category
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-"),
-              userVotes:
-                office === "nyc"
-                  ? product.userVotes_nyc
-                  : product.userVotes_denver,
-              lastVotedAt:
-                (office === "nyc"
-                  ? product.lastVotedAt_nyc
-                  : product.lastVotedAt_denver) || null,
-            })
-          );
-          setMostRecentlyVotedSnacks(transformedRecentlyVoted);
-        } catch (error) {
-          console.error("Error refetching recently voted products:", error);
         }
       } catch (error: any) {
         console.error("Error casting batch vote:", error);
