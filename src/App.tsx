@@ -46,8 +46,14 @@ function App() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [appliedSearch, setAppliedSearch] = useState<string>("");
   const [mostPopularSnacks, setMostPopularSnacks] = useState<Snack[]>([]);
-  const [office, setOffice] = useState<"nyc" | "denver">("nyc");
-  const [language, setLanguage] = useState<"en" | "es">("en");
+  const [office, setOfficeState] = useState<"nyc" | "denver">(() => {
+    const saved = localStorage.getItem("selectedOffice");
+    return (saved as "nyc" | "denver") || "nyc";
+  });
+  const [language, setLanguageState] = useState<"en" | "es">(() => {
+    const saved = localStorage.getItem("selectedLanguage");
+    return (saved as "en" | "es") || "en";
+  });
   const [votingDeadline, setVotingDeadline] = useState<string>("");
   const [isVotingActive, setIsVotingActive] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -58,6 +64,18 @@ function App() {
       timer: ReturnType<typeof setTimeout>;
     };
   }>({});
+
+  // Wrapper function to update office and persist to local storage
+  const setOffice = (newOffice: "nyc" | "denver") => {
+    setOfficeState(newOffice);
+    localStorage.setItem("selectedOffice", newOffice);
+  };
+
+  // Wrapper function to update language and persist to local storage
+  const setLanguage = (newLanguage: "en" | "es") => {
+    setLanguageState(newLanguage);
+    localStorage.setItem("selectedLanguage", newLanguage);
+  };
 
   useEffect(() => {
     let unsubscribe: (() => void) | null = null;
@@ -185,7 +203,7 @@ function App() {
         unsubscribe();
       }
     };
-  }, [office]); // Re-run only when office changes
+  }, [office]);
 
   const handleVote = async (snackId: string, direction: "up" | "down") => {
     if (!user) {
