@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Box,
-  CircularProgress,
-} from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { useState, useRef, useEffect } from "react";
@@ -40,7 +33,7 @@ const fetchImageWithRetries = (
             `Coin image fetch failed, retrying... (${retriesLeft} left)`,
             error
           );
-          return new Promise((res) => {
+          return new Promise<Blob | null>((res) => {
             setTimeout(() => {
               attempt(retriesLeft - 1).then(res);
             }, 300);

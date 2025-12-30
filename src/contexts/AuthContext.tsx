@@ -3,12 +3,7 @@ import type { ReactNode } from "react";
 import { jwtDecode } from "jwt-decode";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import {
-  getUser,
-  createUser,
-  getUserByEmail,
-  deleteUser,
-} from "../services/firestore";
+import { getUser, createUser, getUserByEmail } from "../services/firestore";
 
 interface GoogleJWT {
   email: string;

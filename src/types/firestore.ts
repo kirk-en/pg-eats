@@ -11,6 +11,8 @@ export interface Office {
     endDate: Timestamp;
     status: "active" | "completed" | "pending";
   };
+  nextDropDate?: string;
+  lastResetAt?: Timestamp;
 }
 
 export interface User {
@@ -30,7 +32,9 @@ export interface Product {
   imageUrl: string;
   votes_nyc?: number;
   votes_denver?: number;
-  userVotes?: Record<string, number>;
+  userVotes_nyc?: Record<string, number>;
+  userVotes_denver?: Record<string, number>;
+  userVotes?: Record<string, number>; // Deprecated, keeping for backward compatibility during migration
   lastVotedAt?: Timestamp | null;
   tags?: string[];
   isActive?: boolean;

@@ -30,7 +30,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import InfoIcon from "@mui/icons-material/Info";
 import { useState, useEffect } from "react";
 import {
-  getProducts,
   getAllProducts,
   getAllUsers,
   getOffice,
@@ -238,7 +237,12 @@ export function CzarPanel({
     setError(null);
     try {
       const products = await getAllProducts();
-      setSnacks(products);
+      setSnacks(
+        products.map((p) => ({
+          ...p,
+          image: p.imageUrl,
+        }))
+      );
     } catch (err) {
       setError("Failed to load snacks");
       console.error(err);
@@ -497,7 +501,7 @@ export function CzarPanel({
       <DialogContent sx={{ pt: 1 }}>
         <Tabs
           value={tabValue}
-          onChange={(e, newValue) => setTabValue(newValue)}
+          onChange={(_, newValue) => setTabValue(newValue)}
           aria-label="czar panel tabs"
           sx={{ borderBottom: 1, borderColor: "divider", mb: 2 }}
         >
@@ -574,11 +578,7 @@ export function CzarPanel({
                 <Typography variant="subtitle1" fontWeight={600} color="white">
                   {currentCzar.displayName}
                 </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  color="white"
-                >
+                <Typography variant="body2" color="white">
                   {currentCzar.email}
                 </Typography>
               </Paper>
@@ -592,7 +592,7 @@ export function CzarPanel({
                 `${option.displayName} (${option.email})`
               }
               value={selectedCzar}
-              onChange={(event, newValue) => {
+              onChange={(_, newValue) => {
                 setSelectedCzar(newValue);
               }}
               renderInput={(params) => (

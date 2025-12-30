@@ -21,12 +21,14 @@ interface Snack {
   id: string;
   name: string;
   image: string;
-  price?: string | number;
+  price?: number;
   votes?: number;
   categoryId?: string;
   imageUrl?: string;
   category?: string;
   tags?: string[];
+  userVotes?: Record<string, number>;
+  lastVotedAt?: Timestamp | null;
 }
 
 interface Category {
@@ -48,9 +50,13 @@ function App() {
   const [language, setLanguage] = useState<"en" | "es">("en");
   const [votingDeadline, setVotingDeadline] = useState<string>("");
   const [isVotingActive, setIsVotingActive] = useState(false);
-  const debounceTimerRef = useRef<NodeJS.Timeout>();
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingVotesRef = useRef<{
-    [key: string]: { voteChange: number; cost: number; timer: NodeJS.Timeout };
+    [key: string]: {
+      voteChange: number;
+      cost: number;
+      timer: ReturnType<typeof setTimeout>;
+    };
   }>({});
 
   useEffect(() => {
@@ -80,7 +86,11 @@ function App() {
               categoryId: product.category
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "-"),
-              userVotes: product.userVotes,
+              userVotes:
+                office === "nyc"
+                  ? product.userVotes_nyc
+                  : product.userVotes_denver,
+              lastVotedAt: product.lastVotedAt,
             }));
 
             // Extract unique categories
@@ -112,7 +122,12 @@ function App() {
                     (p) => p.id === existingSnack.id
                   );
                   return updated
-                    ? { ...existingSnack, votes: updated.votes }
+                    ? {
+                        ...existingSnack,
+                        votes: updated.votes,
+                        userVotes: updated.userVotes,
+                        lastVotedAt: updated.lastVotedAt,
+                      }
                     : existingSnack;
                 });
               }

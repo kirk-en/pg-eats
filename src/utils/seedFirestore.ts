@@ -2,10 +2,8 @@ import {
   collection,
   doc,
   writeBatch,
-  setDoc,
   getDocs,
   deleteDoc,
-  query,
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
@@ -139,6 +137,8 @@ export const seedFirestore = async () => {
       isActive: true,
       votes_nyc: 0,
       votes_denver: 0,
+      userVotes_nyc: {},
+      userVotes_denver: {},
       userVotes: {},
       lastVotedAt: null,
     });

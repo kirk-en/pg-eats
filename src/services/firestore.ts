@@ -9,11 +9,9 @@ import {
   getDocs,
   onSnapshot,
   Timestamp,
-  addDoc,
   deleteDoc,
   increment,
   runTransaction,
-  QueryConstraint,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import type { User, Product, Office } from "../types/firestore";
@@ -123,6 +121,8 @@ export const getProducts = async (): Promise<Product[]> => {
     votes_denver: doc.data().votes_denver || 0,
     tags: doc.data().tags || [],
     isActive: doc.data().isActive,
+    userVotes_nyc: doc.data().userVotes_nyc || {},
+    userVotes_denver: doc.data().userVotes_denver || {},
     userVotes: doc.data().userVotes || {},
     lastVotedAt: doc.data().lastVotedAt || null,
   })) as Product[];
@@ -159,6 +159,8 @@ export const subscribeToProducts = (
         votes_denver: doc.data().votes_denver || 0,
         tags: doc.data().tags || [],
         isActive: doc.data().isActive,
+        userVotes_nyc: doc.data().userVotes_nyc || {},
+        userVotes_denver: doc.data().userVotes_denver || {},
         userVotes: doc.data().userVotes || {},
         lastVotedAt: doc.data().lastVotedAt || null,
       })) as Product[];
@@ -247,7 +249,7 @@ export const voteForProduct = async (
     transaction.update(userRef, { balance: userData.balance - 1 });
     transaction.update(productRef, {
       [field]: increment(value),
-      [`userVotes.${userId}`]: increment(value),
+      [`userVotes_${office}.${userId}`]: increment(value),
       lastVotedAt: Timestamp.now(),
     });
   });
@@ -284,7 +286,7 @@ export const voteForProductBatch = async (
     transaction.update(userRef, { balance: userData.balance - cost });
     transaction.update(productRef, {
       [field]: increment(voteChange),
-      [`userVotes.${userId}`]: increment(voteChange),
+      [`userVotes_${office}.${userId}`]: increment(voteChange),
       lastVotedAt: Timestamp.now(),
     });
   });
@@ -306,7 +308,7 @@ export const resetOfficeVotes = async (
       const productRef = doc(db, "products", product.id);
       return updateDoc(productRef, {
         [`votes_${office}`]: 0,
-        userVotes: {},
+        [`userVotes_${office}`]: {},
         lastVotedAt: Timestamp.now(),
       });
     })

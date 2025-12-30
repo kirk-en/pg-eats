@@ -7,14 +7,14 @@ interface Snack {
   name: string;
   image: string;
   imageUrl?: string;
-  price?: string | number;
+  price?: number;
   votes?: number;
   userVotes?: Record<string, number>;
 }
 
 interface SnacksGridProps {
   snacks: Snack[];
-  onVote?: (id: string) => void;
+  onVote?: (id: string, direction: "up" | "down") => void;
   isLoading?: boolean;
 }
 
@@ -23,7 +23,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
   const positionsRef = useRef<Record<string, DOMRect>>({});
   const animatingRef = useRef<Set<string>>(new Set());
   const [debouncedSnacks, setDebouncedSnacks] = useState<Snack[]>(snacks);
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Debounce snack updates by 2.25 seconds, but only for reordering (same snacks, different order)
   // Category/filter changes should be immediate
@@ -90,7 +90,9 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
 
     // Disable scroll anchoring during animation to prevent jitter
     const html = document.documentElement;
+    // @ts-ignore
     const originalOverflowAnchor = html.style.overflowAnchor;
+    // @ts-ignore
     html.style.overflowAnchor = "none";
 
     // Apply inverted transforms and setup animations
@@ -121,6 +123,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
     // Restore scroll anchoring after debounce period + animation completes
     // Wait 1800ms to ensure layout is fully settled before re-enabling
     setTimeout(() => {
+      // @ts-ignore
       html.style.overflowAnchor = originalOverflowAnchor;
       // Clear will-change hints
       elements.forEach((el) => {
@@ -135,7 +138,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
     positionsRef.current = currentPositions;
 
     // Cleanup animation state after transition completes
-    const handleTransitionEnd = (e: TransitionEvent) => {
+    const handleTransitionEnd = (e: Event) => {
       const el = e.target as HTMLElement;
       const snackId = el.getAttribute("data-snack-id");
       if (snackId) {
@@ -152,6 +155,7 @@ export function SnacksGrid({ snacks, onVote, isLoading }: SnacksGridProps) {
         el.removeEventListener("transitionend", handleTransitionEnd);
       });
       // Ensure overflow-anchor is restored on cleanup
+      // @ts-ignore
       html.style.overflowAnchor = originalOverflowAnchor;
     };
   }, [debouncedSnacks]); // Run whenever debounced snacks array changes

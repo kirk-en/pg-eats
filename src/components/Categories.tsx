@@ -1,6 +1,5 @@
 import {
   List,
-  ListItem,
   ListItemButton,
   ListItemText,
   Paper,
