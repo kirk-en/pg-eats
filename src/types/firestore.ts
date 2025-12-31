@@ -37,5 +37,6 @@ export interface Product {
   lastVotedAt_nyc?: Timestamp | null;
   lastVotedAt_denver?: Timestamp | null;
   tags?: string[];
+  searchText?: string;
   isActive?: boolean;
 }

@@ -134,6 +134,7 @@ export const seedFirestore = async () => {
       price: isNaN(priceNumber) ? 0 : priceNumber,
       imageUrl: product.imageUrl,
       tags: product.tags || [],
+      searchText: product.searchText || "",
       isActive: true,
       votes_nyc: 0,
       votes_denver: 0,

@@ -27,6 +27,7 @@ interface Snack {
   imageUrl?: string;
   category?: string;
   tags?: string[];
+  searchText?: string;
   userVotes?: Record<string, number>;
   lastVotedAt?: Timestamp | null;
 }
@@ -56,7 +57,9 @@ function App() {
   const [language, setLanguage] = useState<"en" | "es">("en");
   const [votingDeadline, setVotingDeadline] = useState<string>("");
   const [isVotingActive, setIsVotingActive] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingVotesRef = useRef<{
     [key: string]: {
       voteChange: number;
@@ -95,6 +98,7 @@ function App() {
                 office === "nyc" ? product.votes_nyc : product.votes_denver,
               category: product.category,
               tags: product.tags || [],
+              searchText: product.searchText,
               categoryId: product.category
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "-"),
@@ -364,14 +368,43 @@ function App() {
     setSelectedCategory("most-popular");
     setAppliedSearch("");
     setSearchQuery("");
+    setIsSearching(false);
   };
 
   const handleSearchInput = useCallback((query: string) => {
     setSearchQuery(query);
+
+    if (!query.trim()) {
+      if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+      setAppliedSearch("");
+      setSelectedCategory("most-popular");
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
+
+    searchDebounceRef.current = setTimeout(() => {
+      setAppliedSearch(query);
+      setSelectedCategory("");
+      setIsSearching(false);
+    }, 500);
   }, []);
 
   const handleSearch = useCallback(() => {
+    if (searchDebounceRef.current) {
+      clearTimeout(searchDebounceRef.current);
+    }
     setAppliedSearch(searchQuery);
+    if (searchQuery.trim()) {
+      setSelectedCategory("");
+    } else {
+      setSelectedCategory("most-popular");
+    }
+    setIsSearching(false);
   }, [searchQuery]);
 
   // TODO: Re-enable scroll to top after fixing animation conflicts
@@ -410,13 +443,55 @@ function App() {
   const filteredSnacks = useMemo(() => {
     let result;
     if (appliedSearch) {
+      const searchTerms = appliedSearch
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(Boolean);
+
       result = snacks.filter((snack) => {
+        const searchText = (snack.searchText || "").toLowerCase();
+        // If searchText is missing, construct it on the fly
+        const effectiveSearchText =
+          searchText ||
+          [snack.name, snack.category, ...(snack.tags || [])]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+        return searchTerms.every((term) => effectiveSearchText.includes(term));
+      });
+
+      // Sort by relevance then votes
+      return result.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
         const searchLower = appliedSearch.toLowerCase();
-        return (
-          snack.name.toLowerCase().includes(searchLower) ||
-          snack.category?.toLowerCase().includes(searchLower) ||
-          snack.tags?.some((tag) => tag.toLowerCase().includes(searchLower))
-        );
+
+        // 1. Exact name match
+        if (nameA === searchLower) return -1;
+        if (nameB === searchLower) return 1;
+
+        // 2. Starts with name match
+        if (nameA.startsWith(searchLower) && !nameB.startsWith(searchLower))
+          return -1;
+        if (nameB.startsWith(searchLower) && !nameA.startsWith(searchLower))
+          return 1;
+
+        // 3. Contains in name vs not in name
+        const aInName = nameA.includes(searchLower);
+        const bInName = nameB.includes(searchLower);
+        if (aInName && !bInName) return -1;
+        if (bInName && !aInName) return 1;
+
+        // 4. Fallback to votes
+        const voteDiff = (b.votes ?? 0) - (a.votes ?? 0);
+        if (voteDiff !== 0) return voteDiff;
+
+        // 5. Fallback to most recent vote
+        if (!a.lastVotedAt && !b.lastVotedAt) return 0;
+        if (!a.lastVotedAt) return 1;
+        if (!b.lastVotedAt) return -1;
+        return b.lastVotedAt.toMillis() - a.lastVotedAt.toMillis();
       });
     } else if (selectedCategory === "most-popular") {
       result = mostPopularSnacksForFilter;
@@ -469,6 +544,7 @@ function App() {
           searchQuery={searchQuery}
           onSearchChange={handleSearchInput}
           onSearch={handleSearch}
+          isSearching={isSearching}
           onLogoClick={handleLogoClick}
           office={office}
           onOfficeChange={setOffice}

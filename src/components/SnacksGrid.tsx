@@ -31,6 +31,7 @@ export function SnacksGrid({
   const [debouncedSnacks, setDebouncedSnacks] = useState<Snack[]>(snacks);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const prevCategoryRef = useRef<string | undefined>(selectedCategory);
+  const prevSnacksRef = useRef<Snack[]>(snacks);
 
   // Debounce snack updates by 2.25 seconds, but only for reordering (same snacks, different order)
   // Category/filter changes should be immediate
@@ -44,9 +45,17 @@ export function SnacksGrid({
     const categoryChanged = prevCategoryRef.current !== selectedCategory;
     prevCategoryRef.current = selectedCategory;
 
-    if (categoryChanged) {
-      // Immediate update for category changes, skip animations
+    // Check if the set of items has changed (ids added or removed) - e.g. search results
+    const prevSnacks = prevSnacksRef.current;
+    const prevIds = new Set(prevSnacks.map((s) => s.id));
+    const newIds = new Set(snacks.map((s) => s.id));
+    const itemsChanged =
+      prevIds.size !== newIds.size || snacks.some((s) => !prevIds.has(s.id));
 
+    prevSnacksRef.current = snacks;
+
+    if (categoryChanged || itemsChanged) {
+      // Immediate update for category changes or search results, skip animations
       setDebouncedSnacks(snacks);
       // Reset positions on category change (no previous positions to animate from)
       positionsRef.current = {};

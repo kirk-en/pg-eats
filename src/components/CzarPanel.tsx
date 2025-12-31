@@ -50,6 +50,8 @@ interface Snack {
   votes?: number;
   category?: string;
   isActive?: boolean;
+  searchText?: string;
+  tags?: string[];
 }
 
 interface User {
@@ -375,9 +377,19 @@ export function CzarPanel({
       return;
     }
 
-    const results = snacks.filter((snack) =>
-      snack.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const searchTerms = searchTerm.toLowerCase().split(/\s+/).filter(Boolean);
+
+    const results = snacks.filter((snack) => {
+      const searchText = (snack.searchText || "").toLowerCase();
+      const effectiveSearchText =
+        searchText ||
+        [snack.name, snack.category, ...(snack.tags || [])]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+      return searchTerms.every((term) => effectiveSearchText.includes(term));
+    });
     setSearchResults(results);
   };
 
