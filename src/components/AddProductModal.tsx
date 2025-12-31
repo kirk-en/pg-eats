@@ -236,10 +236,21 @@ export function AddProductModal({
     }
   };
 
-  // Filter out special categories
-  const selectableCategories = categories.filter(
-    (cat) => !["most-popular", "most-recently-voted"].includes(cat.id)
-  );
+  // Filter out special categories and sort alphabetically
+  const selectableCategories = categories
+    .filter((cat) => !["most-popular", "most-recently-voted"].includes(cat.id))
+    .sort((a, b) => {
+      // Remove emoji prefix for sorting
+      const nameA =
+        a.name.startsWith("🥇") || a.name.startsWith("⚡")
+          ? a.name.substring(3).trim()
+          : a.name.trim();
+      const nameB =
+        b.name.startsWith("🥇") || b.name.startsWith("⚡")
+          ? b.name.substring(3).trim()
+          : b.name.trim();
+      return nameA.localeCompare(nameB);
+    });
 
   if (confirmDuplicates) {
     return (
@@ -363,7 +374,10 @@ export function AddProductModal({
                 value={formData.price}
                 onChange={(e) => {
                   setFormData((prev) => ({ ...prev, price: e.target.value }));
-                  setValidationErrors((prev) => ({ ...prev, price: undefined }));
+                  setValidationErrors((prev) => ({
+                    ...prev,
+                    price: undefined,
+                  }));
                 }}
                 error={!!validationErrors.price}
                 helperText={validationErrors.price}
@@ -532,7 +546,14 @@ export function AddProductModal({
                     })()}
                   </Typography>
                 </CardContent>
-                <Box sx={{ padding: "0 1rem 2rem", display: "flex", gap: "0.5rem", opacity: 0.65 }}>
+                <Box
+                  sx={{
+                    padding: "0 1rem 2rem",
+                    display: "flex",
+                    gap: "0.5rem",
+                    opacity: 0.65,
+                  }}
+                >
                   <Box sx={{ flex: 1 }}>
                     <button
                       className="upvote-btn"
