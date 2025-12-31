@@ -3,6 +3,7 @@ import {
   doc,
   writeBatch,
   getDocs,
+  getDoc,
   deleteDoc,
   Timestamp,
 } from "firebase/firestore";
@@ -81,11 +82,14 @@ export const seedFirestore = async () => {
   // Seed Offices
   // NYC Office
   const nycRef = doc(db, "offices", "nyc");
+  const nycSnap = await getDoc(nycRef);
+  const nycData = nycSnap.exists() ? nycSnap.data() : null;
+
   batch.set(nycRef, {
     name: "New York",
     timezone: "America/New_York",
     czar: null,
-    tippingEnabled: true,
+    tippingEnabled: nycData?.tippingEnabled ?? true,
     currentVotingPeriod: {
       startDate: Timestamp.now(),
       endDate: Timestamp.fromDate(nextFriday),
@@ -96,11 +100,14 @@ export const seedFirestore = async () => {
 
   // Denver Office
   const denverRef = doc(db, "offices", "denver");
+  const denverSnap = await getDoc(denverRef);
+  const denverData = denverSnap.exists() ? denverSnap.data() : null;
+
   batch.set(denverRef, {
     name: "Denver",
     timezone: "America/Denver",
     czar: null,
-    tippingEnabled: true,
+    tippingEnabled: denverData?.tippingEnabled ?? true,
     currentVotingPeriod: {
       startDate: Timestamp.now(),
       endDate: Timestamp.fromDate(nextFriday),

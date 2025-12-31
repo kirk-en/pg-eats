@@ -1,6 +1,24 @@
-import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Box,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  CircularProgress,
+} from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import CloseIcon from "@mui/icons-material/Close";
 import { useState, useRef, useEffect } from "react";
 import pgCoinImg from "../assets/pg-coin.webp";
 import { getTopVoters, getUser } from "../services/firestore";
@@ -165,6 +183,46 @@ export function SnackCard({
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [votersModalOpen, setVotersModalOpen] = useState(false);
+  const [votersDetails, setVotersDetails] = useState<
+    { user: User; votes: number }[]
+  >([]);
+  const [loadingVoters, setLoadingVoters] = useState(false);
+
+  useEffect(() => {
+    if (votersModalOpen && userVotes) {
+      setLoadingVoters(true);
+      const fetchVoters = async () => {
+        const details: { user: User; votes: number }[] = [];
+        const voterIds = Object.keys(userVotes);
+
+        try {
+          const userPromises = voterIds.map((id) => getUser(id));
+          const users = await Promise.all(userPromises);
+
+          users.forEach((user, index) => {
+            if (user) {
+              details.push({
+                user,
+                votes: userVotes[voterIds[index]],
+              });
+            }
+          });
+
+          // Sort by vote count descending
+          details.sort((a, b) => b.votes - a.votes);
+          setVotersDetails(details);
+        } catch (error) {
+          console.error("Error fetching voters:", error);
+        } finally {
+          setLoadingVoters(false);
+        }
+      };
+
+      fetchVoters();
+    }
+  }, [votersModalOpen, userVotes]);
+
   const topVoters = getTopVoters(userVotes);
 
   // Fetch top voter user data
@@ -248,6 +306,22 @@ export function SnackCard({
         },
       }}
     >
+      <Box sx={{ position: "absolute", top: 8, right: 8, zIndex: 10 }}>
+        <IconButton
+          size="small"
+          onClick={(e) => {
+            e.stopPropagation();
+            setVotersModalOpen(true);
+          }}
+          sx={{
+            backgroundColor: "rgba(255,255,255,0.8)",
+            "&:hover": { backgroundColor: "rgba(255,255,255,0.9)" },
+            boxShadow: 1,
+          }}
+        >
+          <InfoOutlinedIcon fontSize="small" />
+        </IconButton>
+      </Box>
       <CardMedia
         component="img"
         image={image}
@@ -407,6 +481,68 @@ export function SnackCard({
           />
         </Box>
       ))}
+
+      <Dialog
+        open={votersModalOpen}
+        onClose={(e) => {
+          e.stopPropagation();
+          setVotersModalOpen(false);
+        }}
+        onClick={(e) => e.stopPropagation()}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingRight: 1,
+          }}
+        >
+          Voters for {name}
+          <IconButton onClick={() => setVotersModalOpen(false)} size="small">
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          {loadingVoters ? (
+            <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
+              <CircularProgress size={24} />
+            </Box>
+          ) : votersDetails.length === 0 ? (
+            <Typography variant="body2" color="text.secondary" align="center">
+              No votes yet.
+            </Typography>
+          ) : (
+            <List dense>
+              {votersDetails.map(({ user, votes }) => (
+                <ListItem key={user.id}>
+                  <ListItemAvatar>
+                    <Avatar src={user.photoURL} alt={user.displayName}>
+                      {user.displayName.charAt(0)}
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={user.displayName}
+                    secondary={user.email}
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontWeight: "bold",
+                      color: votes > 0 ? "success.main" : "error.main",
+                    }}
+                  >
+                    {votes > 0 ? "+" : ""}
+                    {votes}
+                  </Typography>
+                </ListItem>
+              ))}
+            </List>
+          )}
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }
