@@ -550,6 +550,8 @@ function App() {
           onOfficeChange={setOffice}
           language={language}
           onLanguageChange={setLanguage}
+          categories={categories}
+          snacks={snacks}
         />
         <Box
           component="main"

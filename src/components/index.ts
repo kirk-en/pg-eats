@@ -6,3 +6,4 @@ export { Footer } from "./Footer";
 export { Categories } from "./Categories";
 export { Login } from "./Login";
 export { CzarPanel } from "./CzarPanel";
+export { AddProductModal } from "./AddProductModal";

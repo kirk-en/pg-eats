@@ -229,6 +229,52 @@ export const undeleteProduct = async (productId: string): Promise<void> => {
   clearProductsCache();
 };
 
+export const addProduct = async (productData: {
+  name: string;
+  category: string;
+  price: number;
+  imageUrl: string;
+  tags: string[];
+  addedBy: string;
+}): Promise<string> => {
+  // Generate searchText from name, category, and tags
+  const searchText = [
+    productData.name,
+    productData.category,
+    ...productData.tags,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  // Create product with unique ID (timestamp-based)
+  const productId = `product_${Date.now()}_${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
+  const productRef = doc(db, "products", productId);
+
+  await setDoc(productRef, {
+    name: productData.name,
+    category: productData.category,
+    price: productData.price,
+    imageUrl: productData.imageUrl,
+    tags: productData.tags,
+    searchText: searchText,
+    addedBy: productData.addedBy,
+    isActive: true,
+    votes_nyc: 0,
+    votes_denver: 0,
+    userVotes_nyc: {},
+    userVotes_denver: {},
+    lastVotedAt_nyc: null,
+    lastVotedAt_denver: null,
+    createdAt: Timestamp.now(),
+  });
+
+  clearProductsCache();
+  return productId;
+};
+
 // Office Services
 export const getOffices = async (): Promise<Office[]> => {
   const querySnapshot = await getDocs(collection(db, "offices"));

@@ -29,6 +29,12 @@ import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { CzarPanel } from "./CzarPanel";
+import { AddProductModal } from "./AddProductModal";
+
+export interface Category {
+  id: string;
+  name: string;
+}
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
@@ -227,6 +233,8 @@ interface HeaderProps {
   language?: "en" | "es";
   onLanguageChange?: (language: "en" | "es") => void;
   isSearching?: boolean;
+  categories?: Category[];
+  snacks?: Array<{ name: string; category?: string; tags?: string[] }>;
 }
 
 export function Header({
@@ -240,11 +248,14 @@ export function Header({
   language,
   onLanguageChange,
   isSearching,
+  categories = [],
+  snacks = [],
 }: HeaderProps) {
   const { user, logout, isLoadingBalance } = useAuth();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [czarPanelOpen, setCzarPanelOpen] = useState(false);
+  const [addProductModalOpen, setAddProductModalOpen] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -540,6 +551,14 @@ export function Header({
           </Box>
         </MenuItem>
         <Divider />
+        <MenuItem
+          onClick={() => {
+            setAddProductModalOpen(true);
+            handleMenuClose();
+          }}
+        >
+          ➕ Add New Snack
+        </MenuItem>
         {user?.isAdmin && (
           <MenuItem
             onClick={() => {
@@ -547,12 +566,24 @@ export function Header({
               handleMenuClose();
             }}
           >
-            Czar Panel
+            👑 Czar Panel
           </MenuItem>
         )}
         {user?.isAdmin && <Divider />}
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
+
+      <AddProductModal
+        open={addProductModalOpen}
+        onClose={() => setAddProductModalOpen(false)}
+        categories={categories}
+        userId={user?.id || ""}
+        existingProducts={snacks.map((s) => ({
+          name: s.name,
+          category: s.category || "",
+          tags: s.tags || [],
+        }))}
+      />
 
       <CzarPanel
         open={czarPanelOpen}

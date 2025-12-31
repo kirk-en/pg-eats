@@ -39,4 +39,5 @@ export interface Product {
   tags?: string[];
   searchText?: string;
   isActive?: boolean;
+  addedBy?: string; // UID of user who added the product
 }
