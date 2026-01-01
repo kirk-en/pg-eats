@@ -156,6 +156,17 @@
   }
 }
 
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -150px) scale(0.8);
+  }
+}
+
 @keyframes bgFlash {
   0%,
   49% {
@@ -381,6 +392,13 @@
   height: 100px;
 }
 
+/* Fixed-size ad container for consistent display */
+.banner-ad-fixed-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .banner-ad-container {
   position: relative;
   width: 100%;
@@ -443,6 +461,26 @@
 .banner-ad-vote-button-container {
   flex-shrink: 0;
   width: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.banner-ad-product-name {
+  background: white;
+  color: #000000;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  text-align: center;
+  word-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.2;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .banner-ad-icon {

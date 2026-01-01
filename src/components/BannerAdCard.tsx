@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ThumbUpAlt, ThumbDownAlt, Rocket, Star } from "@mui/icons-material";
 import type { BannerAd } from "../types/firestore";
-import { voteForProduct } from "../services/firestore";
 import { useAuth } from "../contexts/AuthContext";
+import pgCoinImg from "../assets/pg-coin.webp";
 import "../styles/banner-ads.css";
 import "../styles/buttons.css";
+
+interface FloatingCoin {
+  id: number;
+  x: number;
+  y: number;
+}
 
 const styleIconMap: Record<string, React.ReactNode> = {
   astro: <Rocket sx={{ fontSize: "2rem", opacity: 0.8 }} />,
@@ -55,29 +61,66 @@ const gifMapping: Record<
 interface BannerAdCardProps {
   ad: BannerAd;
   office: "nyc" | "denver";
+  onVote?: (productId: string, direction: "up" | "down") => void;
   onVoteSuccess?: () => void;
 }
 
 export const BannerAdCard = ({
   ad,
   office,
+  onVote,
   onVoteSuccess,
 }: BannerAdCardProps) => {
-  const { user } = useAuth();
-  const [isVoting, setIsVoting] = useState(false);
+  const { user, addToBalance } = useAuth();
+  const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
+  const coinIdRef = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleVote = async () => {
-    if (!user || isVoting || !user.id) return;
+  // Preload coin image on mount
+  useEffect(() => {
+    const img = new Image();
+    img.src = pgCoinImg;
+  }, []);
 
-    try {
-      setIsVoting(true);
-      const direction = ad.voteDirection === "upvote" ? "up" : "down";
-      await voteForProduct(user.id, ad.productId, office, direction);
-      onVoteSuccess?.();
-    } catch (error) {
-      console.error("Failed to vote:", error);
-    } finally {
-      setIsVoting(false);
+  const handleVoteWithCoin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!user || !user.id) return;
+
+    const button = e.currentTarget;
+    button.blur();
+
+    // Optimistic balance update - happens immediately
+    addToBalance(-1);
+
+    const direction = ad.voteDirection === "upvote" ? "up" : "down";
+
+    // Call the onVote callback if provided (for debounced voting)
+    if (onVote) {
+      onVote(ad.productId, direction);
+    }
+
+    // Capture button rect for coin animation
+    const containerRect = containerRef.current?.getBoundingClientRect();
+    const buttonRect = button.getBoundingClientRect();
+
+    if (containerRect && buttonRect) {
+      const variance = (Math.random() - 0.5) * buttonRect.width * 0.6;
+      const coinId = coinIdRef.current++;
+      const newCoin: FloatingCoin = {
+        id: coinId,
+        x:
+          buttonRect.left -
+          containerRect.left +
+          buttonRect.width / 2 +
+          variance,
+        y: buttonRect.top - containerRect.top + buttonRect.height / 2,
+      };
+
+      setFloatingCoins((prev) => [...prev, newCoin]);
+
+      // Remove coin after animation completes
+      setTimeout(() => {
+        setFloatingCoins((prev) => prev.filter((coin) => coin.id !== coinId));
+      }, 1000);
     }
   };
 
@@ -93,7 +136,11 @@ export const BannerAdCard = ({
     : null;
 
   return (
-    <div className={`banner-ad-wrapper ${wrapperClass}`}>
+    <div
+      ref={containerRef}
+      className={`banner-ad-wrapper ${wrapperClass}`}
+      style={{ position: "relative" }}
+    >
       <div className={`banner-ad-container ${variantClass}`}>
         <div className="banner-ad-overlay" />
 
@@ -120,12 +167,15 @@ export const BannerAdCard = ({
             )}{" "}
             <div className="banner-ad-text">{ad.customText}</div>
             <div className="banner-ad-vote-button-container">
+              <div className="banner-ad-product-name">
+                {ad.productName.slice(0, 32)}
+              </div>
               {ad.voteDirection === "upvote" ? (
                 <button
                   className="upvote-btn"
-                  onClick={handleVote}
-                  disabled={isVoting || !user}
+                  onClick={handleVoteWithCoin}
                   title="Vote up"
+                  style={{ cursor: "pointer", width: "100%" }}
                 >
                   <ThumbUpAlt sx={{ fontSize: "1rem" }} />
                   Up
@@ -133,9 +183,9 @@ export const BannerAdCard = ({
               ) : (
                 <button
                   className="downvote-btn"
-                  onClick={handleVote}
-                  disabled={isVoting || !user}
+                  onClick={handleVoteWithCoin}
                   title="Vote down"
+                  style={{ cursor: "pointer", width: "100%" }}
                 >
                   <ThumbDownAlt sx={{ fontSize: "1rem" }} />
                   Down
@@ -157,6 +207,31 @@ export const BannerAdCard = ({
         </div>
       </div>
       <div className="banner-ad-attribution">Paid for by {ad.displayName}</div>
+
+      {/* Floating coins */}
+      {floatingCoins.map((coin) => (
+        <div
+          key={coin.id}
+          style={{
+            position: "absolute",
+            left: `${coin.x}px`,
+            top: `${coin.y}px`,
+            pointerEvents: "none",
+            animation: "float-up 1s ease-out forwards",
+            zIndex: 999,
+          }}
+        >
+          <img
+            src={pgCoinImg}
+            alt="coin"
+            style={{
+              width: "24px",
+              height: "24px",
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+        </div>
+      ))}
     </div>
   );
 };

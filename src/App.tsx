@@ -630,20 +630,11 @@ function App() {
           >
             {/* Banner Ad */}
             {activeBannerAd && (
-              <Box sx={{ mb: 2 }}>
+              <Box className="banner-ad-fixed-wrapper" sx={{ mb: 2 }}>
                 <BannerAdCard
                   ad={activeBannerAd}
                   office={office}
-                  onVoteSuccess={() => {
-                    // Optionally refetch ads after voting on ad
-                    getActiveBannerAds().then((ads) => {
-                      if (ads.length > 0) {
-                        const randomAd =
-                          ads[Math.floor(Math.random() * ads.length)];
-                        setActiveBannerAd(randomAd);
-                      }
-                    });
-                  }}
+                  onVote={handleVote}
                 />
               </Box>
             )}
