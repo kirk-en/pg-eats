@@ -41,3 +41,18 @@ export interface Product {
   isActive?: boolean;
   addedBy?: string; // UID of user who added the product
 }
+
+export interface BannerAd {
+  id: string;
+  createdBy: string; // UID of user who created the ad
+  productId: string;
+  productName: string;
+  productImageUrl: string;
+  displayName: string;
+  styleVariant: string; // CSS style variant name
+  customText: string; // User-entered text, max 80 chars
+  voteDirection: "upvote" | "downvote";
+  createdAt: Timestamp;
+  expiresAt: Timestamp;
+  isActive: boolean;
+}
