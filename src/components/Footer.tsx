@@ -1,6 +1,9 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
+
   return (
     <Box
       component="footer"
@@ -12,9 +15,7 @@ export function Footer() {
         color: "rgba(255, 255, 255, 0.8)",
       }}
     >
-      <Typography variant="body2">
-        &copy; 2025 Playground Eats. Let's vote!
-      </Typography>
+      <Typography variant="body2">{t("footer.credits")}</Typography>
     </Box>
   );
 }

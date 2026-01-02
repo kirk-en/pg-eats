@@ -1,6 +1,9 @@
 import { Typography, Paper } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export function Hero() {
+  const { t } = useTranslation();
+
   return (
     <Paper
       component="section"
@@ -15,14 +18,13 @@ export function Hero() {
       }}
     >
       <Typography variant="h4" sx={{ fontWeight: 700, color: "#1a3a52" }}>
-        What should we snack on?
+        {t("hero.title")}
       </Typography>
       <Typography
         variant="body1"
         sx={{ marginTop: "1rem", color: "#666666", lineHeight: 1.6 }}
       >
-        Help us choose the best snacks for the office. Vote for your favorites
-        and see what wins!
+        {t("hero.subtitle")}
       </Typography>
     </Paper>
   );

@@ -20,6 +20,7 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import pgCoinImg from "../assets/pg-coin.webp";
 import { getTopVoters, getUser } from "../services/firestore";
 import type { User } from "../types/firestore";
@@ -177,6 +178,7 @@ export function SnackCard({
   onVote,
   userVotes = {},
 }: SnackCardProps) {
+  const { t } = useTranslation();
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
   const [topUpvoterUser, setTopUpvoterUser] = useState<User | null>(null);
   const [topDownvoterUser, setTopDownvoterUser] = useState<User | null>(null);
@@ -370,7 +372,7 @@ export function SnackCard({
         )}
         {votes !== undefined && (
           <Typography variant="caption" sx={{ color: "#666666" }}>
-            {votes} votes
+            {votes} {t("snackCard.votes_plural")}
           </Typography>
         )}
       </CardContent>
@@ -382,7 +384,7 @@ export function SnackCard({
             style={{ cursor: "pointer", width: "100%" }}
           >
             <ThumbUpIcon sx={{ fontSize: "1rem" }} />
-            Up
+            {t("snackCard.upvote")}
           </button>
         </Box>
         <Box sx={{ flex: 1 }}>
@@ -392,7 +394,7 @@ export function SnackCard({
             style={{ cursor: "pointer", width: "100%" }}
           >
             <ThumbDownIcon sx={{ fontSize: "1rem" }} />
-            Down
+            {t("snackCard.downvote")}
           </button>
         </Box>
       </Box>
@@ -412,7 +414,7 @@ export function SnackCard({
                 fontWeight: 600,
               }}
             >
-              Top backers:
+              {t("snackCard.topBackers")}
             </Typography>
             {topUpvoterUser && (
               <Typography
@@ -485,7 +487,9 @@ export function SnackCard({
       <Dialog
         open={votersModalOpen}
         onClose={(e) => {
-          e.stopPropagation();
+          if (e && typeof e === "object" && "stopPropagation" in e) {
+            (e as React.SyntheticEvent).stopPropagation?.();
+          }
           setVotersModalOpen(false);
         }}
         onClick={(e) => e.stopPropagation()}
@@ -500,7 +504,7 @@ export function SnackCard({
             paddingRight: 1,
           }}
         >
-          Voters for {name}
+          {t("snackCard.votersFor")} {name}
           <IconButton onClick={() => setVotersModalOpen(false)} size="small">
             <CloseIcon />
           </IconButton>
@@ -512,7 +516,7 @@ export function SnackCard({
             </Box>
           ) : votersDetails.length === 0 ? (
             <Typography variant="body2" color="text.secondary" align="center">
-              No votes yet.
+              {t("snackCard.noVoters")}
             </Typography>
           ) : (
             <List dense>

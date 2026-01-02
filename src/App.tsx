@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import "./App.css";
 import { Header, SnacksGrid, Footer, Categories } from "./components";
 import {
@@ -8,6 +9,7 @@ import {
   voteForProductBatch,
 } from "./services/firestore";
 import { useAuth } from "./contexts/AuthContext";
+import { useI18n } from "./contexts/I18nContext";
 import { tipSnackCzar } from "./utils/supabaseApi";
 import { Timestamp } from "firebase/firestore";
 
@@ -39,6 +41,8 @@ interface Category {
 
 function App() {
   const { user, addToBalance } = useAuth();
+  const { language } = useI18n();
+  const { t } = useTranslation();
   const [snacks, setSnacks] = useState<Snack[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] =
@@ -54,7 +58,6 @@ function App() {
     const saved = localStorage.getItem("selectedOffice");
     return (saved as "nyc" | "denver") || "nyc";
   });
-  const [language, setLanguage] = useState<"en" | "es">("en");
   const [votingDeadline, setVotingDeadline] = useState<string>("");
   const [isVotingActive, setIsVotingActive] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
@@ -119,8 +122,11 @@ function App() {
 
             // Create categories list
             const categoryList: Category[] = [
-              { id: "most-popular", name: "🥇 Most Popular" },
-              { id: "most-recently-voted", name: "⚡ Latest Votes" },
+              { id: "most-popular", name: t("categories.mostPopular") },
+              {
+                id: "most-recently-voted",
+                name: t("categories.mostRecentlyVoted"),
+              },
               ...uniqueCategories.map((cat) => ({
                 id: cat.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
                 name: cat,
@@ -209,13 +215,13 @@ function App() {
 
     setupListener();
 
-    // Cleanup listener on unmount or when office changes
+    // Cleanup listener on unmount or when office/language changes
     return () => {
       if (unsubscribe) {
         unsubscribe();
       }
     };
-  }, [office]);
+  }, [office, language]);
 
   const handleVote = async (snackId: string, direction: "up" | "down") => {
     if (!user) {
@@ -549,7 +555,6 @@ function App() {
           office={office}
           onOfficeChange={setOffice}
           language={language}
-          onLanguageChange={setLanguage}
           categories={categories}
           snacks={snacks}
         />

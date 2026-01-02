@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AccordionSummary,
@@ -26,7 +27,7 @@ interface CategoriesProps {
 
 // Map of broad categories to specific categories
 const categoryGroups: Record<string, string[]> = {
-  "Breakfast & Bakery": [
+  "categories.breakfastBakery": [
     "bagels-english-muffins",
     "bread",
     "breakfast",
@@ -35,7 +36,7 @@ const categoryGroups: Record<string, string[]> = {
     "cookies-brownies",
     "cookies-sweet-treats",
   ],
-  Beverages: [
+  "categories.beverages": [
     "beer-cider",
     "coffee",
     "drink-mixes",
@@ -48,13 +49,13 @@ const categoryGroups: Record<string, string[]> = {
     "tea",
     "water-sparkling-water",
   ],
-  "Fresh Produce": [
+  "categories.freshProduce": [
     "dried-fruit-fruit-snacks",
     "fresh-fruits",
     "fresh-vegetables",
     "fruit-cups-applesauce",
   ],
-  "Pantry Essentials": [
+  "categories.pantryEssentials": [
     "canned-goods-soups",
     "dips-spreads",
     "eggs",
@@ -62,7 +63,7 @@ const categoryGroups: Record<string, string[]> = {
     "nut-butters-spreads",
     "sauces-condiments",
   ],
-  "Snacks & Treats": [
+  "categories.snacksTreats": [
     "chips",
     "chocolate-candy",
     "gum-mints",
@@ -72,7 +73,7 @@ const categoryGroups: Record<string, string[]> = {
     "popcorn",
     "snack-bars",
   ],
-  "Specialty Items": [
+  "categories.specialtyItems": [
     "holiday",
     "produce",
     "pudding-gelatin",
@@ -85,17 +86,18 @@ export function Categories({
   selectedCategory,
   onSelectCategory,
 }: CategoriesProps) {
+  const { t } = useTranslation();
   const [expandedGroup, setExpandedGroup] = useState<string | false>(false);
 
   // Find which group a category belongs to
-  const getCategoryGroup = (categoryId: string): string | null => {
-    for (const [group, ids] of Object.entries(categoryGroups)) {
-      if (ids.includes(categoryId)) {
-        return group;
-      }
-    }
-    return null;
-  };
+  // const getCategoryGroup = (categoryId: string): string | null => {
+  //   for (const [group, ids] of Object.entries(categoryGroups)) {
+  //     if (ids.includes(categoryId)) {
+  //       return group;
+  //     }
+  //   }
+  //   return null;
+  // };
 
   // Organize categories into groups
   const groupedCategories = useMemo(() => {
@@ -138,7 +140,7 @@ export function Categories({
         }}
       >
         <RestaurantMenuIcon sx={{ fontSize: "1.25rem" }} />
-        Categories
+        {t("categories.header")}
       </Typography>
 
       <Box
@@ -222,7 +224,7 @@ export function Categories({
                 },
               }}
             >
-              {group}
+              {t(group)}
             </AccordionSummary>
             <AccordionDetails
               sx={{
@@ -244,8 +246,6 @@ export function Categories({
                         selectedCategory === category.id ? "1.65rem" : "2rem",
                       fontSize: "0.85rem",
                       padding: "0.5rem 1rem",
-                      paddingLeft:
-                        selectedCategory === category.id ? "1.65rem" : "2rem",
                       backgroundColor: "#fafbfc",
                       "&.Mui-selected": {
                         backgroundColor: "#f0f2f5",
@@ -258,7 +258,12 @@ export function Categories({
                       },
                     }}
                   >
-                    <ListItemText primary={category.name} />
+                    <ListItemText
+                      primary={t(
+                        `categoryNames.${category.name}`,
+                        category.name
+                      )}
+                    />
                   </ListItemButton>
                 ))}
               </List>
