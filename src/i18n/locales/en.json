@@ -17,7 +17,7 @@
   "auth": {
     "signInWith": "Sign in with Google",
     "login": "Login",
-    "loginDescription": "Sign in to vote and earn coins"
+    "loginDescription": "Sign in with your @tryplayground.com email to start voting!"
   },
   "hero": {
     "title": "What should we snack on?",
@@ -212,6 +212,32 @@
     "save": "Save",
     "delete": "Delete",
     "edit": "Edit",
-    "close": "Close"
+    "close": "Close",
+    "back": "Back",
+    "finish": "Finish",
+    "next": "Next"
+  },
+  "tutorial": {
+    "title": "Welcome to Playground Eats",
+    "step1": {
+      "title": "Welcome!",
+      "description": "Welcome to Playground Eats, the place to vote on which snacks will be ordered for the office."
+    },
+    "step2": {
+      "title": "Vote",
+      "description": "Use your PG coins to shape office food selection destiny and prevent crimes against snacking. Upvote bangers, downvote everything else."
+    },
+    "step3": {
+      "title": "Add Snacks",
+      "description": "Don't see your favorite snack? Add it to the list! (in the menu once logged in)"
+    },
+    "step5": {
+      "title": "Enjoy",
+      "description": "The snacks with the most votes will be ordered for the office."
+    },
+    "step4": {
+      "title": "Promote",
+      "description": "Tired of losing snack votes? Purchase a banner ad to spread propaganda for your favorite snacks. Nothing says \"trust me\" like aggressive advertising."
+    }
   }
 }

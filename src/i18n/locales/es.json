@@ -17,7 +17,7 @@
   "auth": {
     "signInWith": "Iniciar sesión con Google",
     "login": "Iniciar sesión",
-    "loginDescription": "Inicia sesión para votar y ganar monedas"
+    "loginDescription": "¡Inicia sesión con tu correo @tryplayground.com para comenzar a votar!"
   },
   "hero": {
     "title": "¿Qué snacks deberíamos comer?",
@@ -212,6 +212,32 @@
     "save": "Guardar",
     "delete": "Eliminar",
     "edit": "Editar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "back": "Atrás",
+    "finish": "Finalizar",
+    "next": "Siguiente"
+  },
+  "tutorial": {
+    "title": "Bienvenido a PG Eats",
+    "step1": {
+      "title": "¡Bienvenido!",
+      "description": "Bienvenido a PG Eats, el mejor lugar para votar por tus snacks favoritos de la oficina."
+    },
+    "step2": {
+      "title": "Vota",
+      "description": "Vota por los snacks que quieres ver en la oficina. Puedes votar a favor o en contra."
+    },
+    "step3": {
+      "title": "Agrega Snacks",
+      "description": "¿No ves tu snack favorito? ¡Agrégalo a la lista!"
+    },
+    "step4": {
+      "title": "Disfruta",
+      "description": "Los snacks con más votos serán ordenados para la oficina."
+    },
+    "step5": {
+      "title": "Promociona",
+      "description": "¿Cansado de perder votos de snacks? Compra un anuncio publicitario para promocionar tus snacks favoritos. Nada dice \"confía en mí\" como la publicidad agresiva."
+    }
   }
 }
