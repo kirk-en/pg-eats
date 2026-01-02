@@ -4,15 +4,21 @@ import {
   doc,
   writeBatch,
   Timestamp,
+  deleteField,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 
 const TEST_USER_IDS = [
-  "01798f4f-ed45-4516-9d9c-23591f38a8e0",
-  "1ea57c0b-38c1-4649-a786-ba03bceb6e24",
-  "6287a104-a362-4224-a87e-312da4ea30c3",
-  "660a1ac4-41ff-4e43-9bcf-f3aeec1697f0",
-  "a48bc44a-2c67-4d5a-833a-5f1807d6c8a0",
+  "d4a07479-6064-46c5-bfa9-b25b62039283", // Andrew Konrad
+  "0ab6eea9-8441-43a1-8ff9-3b9c3f4db05c", // Robert Waters
+  "c1e564c4-d180-41ab-a9db-a843e89b7c0d", // Paulina Lancaster
+  "30f75d89-ac04-4050-a058-6d04877a7572", // Oscar Rolf
+  "fe499f71-24bf-4e48-a899-803b4c3c4191", // Sajni Patel
+  "293460ab-62dc-4bad-a878-d2cea08f62bf", // Aileen Gray
+  "2a1336ae-d36b-478c-82bd-a8fb5ab1a447", // Emma Chaves
+  "ec0b10e4-0f1d-47d5-a460-2616ad5d9f56", // Aaron Wagner
+  "a908d761-6175-4d3d-9619-58e52c684636", // Camren Bruno
+  "08dc1697-37e6-4b7d-bd51-1cbbd5031cf4", // Joseph Grosso
 ];
 
 export const addTestVotesNYC = async () => {
@@ -87,6 +93,36 @@ export const addTestVotesNYC = async () => {
         voteIncrement += voteCount;
       }
 
+      // Generate random downvotes (1-3, but never exceeding upvotes)
+      // Downvotes are stored as negative values in the same userVotes map
+      const maxDownvotes = Math.min(3, voteIncrement);
+      const numDownvotes = Math.floor(Math.random() * maxDownvotes) + 1;
+      let downvoteIncrement = 0;
+      const usedUserIds = new Set(voteAssignments.map(([id]) => id));
+      let attempts = 0;
+      const maxAttempts = 50;
+      let downvotesRemaining = numDownvotes;
+
+      while (downvotesRemaining > 0 && attempts < maxAttempts) {
+        attempts++;
+        const randomUserIndex = Math.floor(
+          Math.random() * TEST_USER_IDS.length
+        );
+        const userId = TEST_USER_IDS[randomUserIndex];
+
+        // Make sure this user didn't vote upvotes
+        if (usedUserIds.has(userId)) {
+          continue;
+        }
+
+        usedUserIds.add(userId);
+        const downvotesForUser = Math.min(downvotesRemaining, 3);
+        downvotesRemaining -= downvotesForUser;
+        downvoteIncrement -= downvotesForUser; // Negative for downvotes
+        updatedUserVotes_nyc[userId] =
+          (updatedUserVotes_nyc[userId] || 0) - downvotesForUser;
+      }
+
       // Generate a timestamp for today with random time not exceeding current time
       const now = new Date();
       const today = new Date();
@@ -99,7 +135,7 @@ export const addTestVotesNYC = async () => {
       const productRef = doc(db, "products", productId);
       batch.update(productRef, {
         userVotes_nyc: updatedUserVotes_nyc,
-        votes_nyc: currentVotes_nyc + voteIncrement,
+        votes_nyc: currentVotes_nyc + voteIncrement + downvoteIncrement,
         lastVotedAt_nyc: Timestamp.fromDate(randomTime),
       });
 
@@ -202,6 +238,36 @@ export const addTestVotesDenver = async () => {
         voteIncrement += voteCount;
       }
 
+      // Generate random downvotes (1-3, but never exceeding upvotes)
+      // Downvotes are stored as negative values in the same userVotes map
+      const maxDownvotes = Math.min(3, voteIncrement);
+      const numDownvotes = Math.floor(Math.random() * maxDownvotes) + 1;
+      let downvoteIncrement = 0;
+      const usedUserIds = new Set(voteAssignments.map(([id]) => id));
+      let attempts = 0;
+      const maxAttempts = 50;
+      let downvotesRemaining = numDownvotes;
+
+      while (downvotesRemaining > 0 && attempts < maxAttempts) {
+        attempts++;
+        const randomUserIndex = Math.floor(
+          Math.random() * TEST_USER_IDS.length
+        );
+        const userId = TEST_USER_IDS[randomUserIndex];
+
+        // Make sure this user didn't vote upvotes
+        if (usedUserIds.has(userId)) {
+          continue;
+        }
+
+        usedUserIds.add(userId);
+        const downvotesForUser = Math.min(downvotesRemaining, 3);
+        downvotesRemaining -= downvotesForUser;
+        downvoteIncrement -= downvotesForUser; // Negative for downvotes
+        updatedUserVotes_denver[userId] =
+          (updatedUserVotes_denver[userId] || 0) - downvotesForUser;
+      }
+
       // Generate a timestamp for today with random time not exceeding current time
       const now = new Date();
       const today = new Date();
@@ -214,7 +280,7 @@ export const addTestVotesDenver = async () => {
       const productRef = doc(db, "products", productId);
       batch.update(productRef, {
         userVotes_denver: updatedUserVotes_denver,
-        votes_denver: currentVotes_denver + voteIncrement,
+        votes_denver: currentVotes_denver + voteIncrement + downvoteIncrement,
         lastVotedAt_denver: Timestamp.fromDate(randomTime),
       });
 
@@ -241,6 +307,63 @@ export const addTestVotesDenver = async () => {
     console.log(`Products updated: ${products.length}`);
   } catch (error) {
     console.error("Error adding test votes:", error);
+    throw error;
+  }
+};
+
+export const removeDownvoteFields = async () => {
+  console.log("Starting cleanup of userDownvotes fields...");
+
+  try {
+    const productsRef = collection(db, "products");
+    const snapshot = await getDocs(productsRef);
+
+    let totalUpdated = 0;
+    let batch = writeBatch(db);
+    let batchOps = 0;
+
+    for (const productDoc of snapshot.docs) {
+      const data = productDoc.data();
+      const hasNycDownvotes = "userDownvotes_nyc" in data;
+      const hasDenverDownvotes = "userDownvotes_denver" in data;
+
+      if (hasNycDownvotes || hasDenverDownvotes) {
+        const productRef = doc(db, "products", productDoc.id);
+        const updates: Record<string, any> = {};
+
+        if (hasNycDownvotes) {
+          updates.userDownvotes_nyc = deleteField();
+        }
+        if (hasDenverDownvotes) {
+          updates.userDownvotes_denver = deleteField();
+        }
+
+        batch.update(productRef, updates);
+        batchOps++;
+        totalUpdated++;
+
+        console.log(`Cleaning ${productDoc.data().name} (${productDoc.id})`);
+
+        // Commit batch every 50 operations
+        if (batchOps >= 50) {
+          await batch.commit();
+          console.log(`Committed ${batchOps} operations...`);
+          batch = writeBatch(db);
+          batchOps = 0;
+        }
+      }
+    }
+
+    // Commit remaining operations
+    if (batchOps > 0) {
+      await batch.commit();
+      console.log(`Committed final ${batchOps} operations`);
+    }
+
+    console.log(`✅ Cleanup complete!`);
+    console.log(`Total products updated: ${totalUpdated}`);
+  } catch (error) {
+    console.error("Error cleaning up downvote fields:", error);
     throw error;
   }
 };

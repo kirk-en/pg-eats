@@ -11,7 +11,7 @@ import {
   clearFirestore,
   resetUsers,
 } from "./utils/seedFirestore";
-import { addTestVotesNYC, addTestVotesDenver } from "./utils/testVotes";
+import { addTestVotesNYC, addTestVotesDenver, removeDownvoteFields } from "./utils/testVotes";
 
 // Expose seed functions to window for manual execution
 (window as any).seedFirestore = seedFirestore;
@@ -19,6 +19,7 @@ import { addTestVotesNYC, addTestVotesDenver } from "./utils/testVotes";
 (window as any).resetUsers = resetUsers;
 (window as any).addTestVotesNYC = addTestVotesNYC;
 (window as any).addTestVotesDenver = addTestVotesDenver;
+(window as any).removeDownvoteFields = removeDownvoteFields;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

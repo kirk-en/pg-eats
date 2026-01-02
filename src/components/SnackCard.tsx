@@ -96,8 +96,23 @@ const getCachedImageBlob = (): Promise<Blob | null> => {
   return new Promise((resolve) => {
     const request = indexedDB.open("pgEatsCache", 1);
 
+    request.onupgradeneeded = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result;
+      if (!db.objectStoreNames.contains("images")) {
+        db.createObjectStore("images");
+      }
+    };
+
     request.onsuccess = (event) => {
       const db = (event.target as IDBOpenDBRequest).result;
+
+      // Check if object store exists before trying to access it
+      if (!db.objectStoreNames.contains("images")) {
+        db.close();
+        resolve(null);
+        return;
+      }
+
       const transaction = db.transaction(["images"], "readonly");
       const store = transaction.objectStore("images");
       const getRequest = store.get("pg-coin");
