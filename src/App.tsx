@@ -3,15 +3,18 @@ import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "./App.css";
 import { Header, SnacksGrid, Footer, Categories } from "./components";
+import { BannerAdCard } from "./components/BannerAdCard";
 import {
   subscribeToProducts,
   getOffice,
   voteForProductBatch,
+  getActiveBannerAds,
 } from "./services/firestore";
 import { useAuth } from "./contexts/AuthContext";
 import { useI18n } from "./contexts/I18nContext";
 import { tipSnackCzar } from "./utils/supabaseApi";
 import { Timestamp } from "firebase/firestore";
+import type { BannerAd } from "./types/firestore";
 
 const theme = createTheme({
   typography: {
@@ -61,6 +64,7 @@ function App() {
   const [votingDeadline, setVotingDeadline] = useState<string>("");
   const [isVotingActive, setIsVotingActive] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [activeBannerAd, setActiveBannerAd] = useState<BannerAd | null>(null);
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingVotesRef = useRef<{
@@ -206,6 +210,17 @@ function App() {
         } else {
           console.warn("No voting period found for office:", office);
           setIsVotingActive(false);
+        }
+
+        // 3. Fetch Active Banner Ads and select random one
+        try {
+          const ads = await getActiveBannerAds();
+          if (ads.length > 0) {
+            const randomAd = ads[Math.floor(Math.random() * ads.length)];
+            setActiveBannerAd(randomAd);
+          }
+        } catch (error) {
+          console.error("Error fetching banner ads:", error);
         }
       } catch (error) {
         console.error("Error loading data:", error);
@@ -557,6 +572,14 @@ function App() {
           language={language}
           categories={categories}
           snacks={snacks}
+          products={snacks.map((s) => ({
+            id: s.id,
+            name: s.name,
+            category: s.category || "",
+            price: s.price || 0,
+            imageUrl: s.imageUrl || "",
+            tags: s.tags || [],
+          }))}
         />
         <Box
           component="main"
@@ -610,6 +633,16 @@ function App() {
               flexDirection: "column",
             }}
           >
+            {/* Banner Ad */}
+            {activeBannerAd && (
+              <Box className="banner-ad-fixed-wrapper" sx={{ mb: 2 }}>
+                <BannerAdCard
+                  ad={activeBannerAd}
+                  office={office}
+                  onVote={handleVote}
+                />
+              </Box>
+            )}
             <Box sx={{ flex: 1 }}>
               <SnacksGrid
                 snacks={filteredSnacks}

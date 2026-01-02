@@ -16,7 +16,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
-import type { User, Product, Office } from "../types/firestore";
+import type { User, Product, Office, BannerAd } from "../types/firestore";
 
 // Simple in-memory cache for products
 let productsCache: Product[] | null = null;
@@ -399,4 +399,76 @@ export const resetOfficeVotes = async (
     nextDropDate: nextDropDate,
     lastResetAt: Timestamp.now(),
   });
+};
+
+// Banner Ad Services
+export const createBannerAd = async (adData: {
+  createdBy: string;
+  productId: string;
+  productName: string;
+  productImageUrl: string;
+  displayName: string;
+  styleVariant: string;
+  customText: string;
+  voteDirection: "upvote" | "downvote";
+}): Promise<string> => {
+  const adId = `ad_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+  await runTransaction(db, async (transaction) => {
+    const userRef = doc(db, "users", adData.createdBy);
+    const adRef = doc(db, "bannerAds", adId);
+
+    const userDoc = await transaction.get(userRef);
+    if (!userDoc.exists()) {
+      throw new Error("User not found");
+    }
+
+    const userData = userDoc.data() as User;
+    if (userData.balance < 50) {
+      throw new Error("Insufficient funds");
+    }
+
+    // Calculate 3-day expiry
+    const createdAt = Timestamp.now();
+    const expiresAt = new Timestamp(
+      createdAt.seconds + 3 * 24 * 60 * 60,
+      createdAt.nanoseconds
+    );
+
+    transaction.update(userRef, { balance: userData.balance - 50 });
+    transaction.set(adRef, {
+      createdBy: adData.createdBy,
+      productId: adData.productId,
+      productName: adData.productName,
+      productImageUrl: adData.productImageUrl,
+      displayName: adData.displayName,
+      styleVariant: adData.styleVariant,
+      customText: adData.customText,
+      voteDirection: adData.voteDirection,
+      createdAt: createdAt,
+      expiresAt: expiresAt,
+      isActive: true,
+    });
+  });
+
+  return adId;
+};
+
+export const getActiveBannerAds = async (): Promise<BannerAd[]> => {
+  const now = Timestamp.now();
+  const q = query(
+    collection(db, "bannerAds"),
+    where("isActive", "==", true),
+    where("expiresAt", ">", now)
+  );
+
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as BannerAd)
+  );
+};
+
+export const deleteBannerAd = async (adId: string): Promise<void> => {
+  const adRef = doc(db, "bannerAds", adId);
+  await updateDoc(adRef, { isActive: false });
 };

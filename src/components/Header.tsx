@@ -32,6 +32,7 @@ import { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { CzarPanel } from "./CzarPanel";
 import { AddProductModal } from "./AddProductModal";
+import { PurchaseAdModal } from "./PurchaseAdModal";
 
 export interface Category {
   id: string;
@@ -248,6 +249,14 @@ interface HeaderProps {
   isSearching?: boolean;
   categories?: Category[];
   snacks?: Array<{ name: string; category?: string; tags?: string[] }>;
+  products?: Array<{
+    id: string;
+    name: string;
+    category: string;
+    price: number;
+    imageUrl: string;
+    tags?: string[];
+  }>;
 }
 
 export function Header({
@@ -262,6 +271,7 @@ export function Header({
   isSearching,
   categories = [],
   snacks = [],
+  products = [],
 }: HeaderProps) {
   const { user, logout, isLoadingBalance } = useAuth();
   const { setLanguage } = useI18n();
@@ -270,6 +280,7 @@ export function Header({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [czarPanelOpen, setCzarPanelOpen] = useState(false);
   const [addProductModalOpen, setAddProductModalOpen] = useState(false);
+  const [purchaseAdModalOpen, setPurchaseAdModalOpen] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -577,6 +588,14 @@ export function Header({
         >
           ➕ {t("header.addNewSnack")}
         </MenuItem>
+        <MenuItem
+          onClick={() => {
+            setPurchaseAdModalOpen(true);
+            handleMenuClose();
+          }}
+        >
+          📢 Purchase Ad
+        </MenuItem>
         {user?.isAdmin && (
           <MenuItem
             onClick={() => {
@@ -601,6 +620,12 @@ export function Header({
           category: s.category || "",
           tags: s.tags || [],
         }))}
+      />
+
+      <PurchaseAdModal
+        open={purchaseAdModalOpen}
+        onClose={() => setPurchaseAdModalOpen(false)}
+        products={products}
       />
 
       <CzarPanel

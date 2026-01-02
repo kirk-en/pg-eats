@@ -7,3 +7,5 @@ export { Categories } from "./Categories";
 export { Login } from "./Login";
 export { CzarPanel } from "./CzarPanel";
 export { AddProductModal } from "./AddProductModal";
+export { BannerAdCard } from "./BannerAdCard";
+export { PurchaseAdModal } from "./PurchaseAdModal";
