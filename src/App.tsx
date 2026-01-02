@@ -419,25 +419,6 @@ function App() {
 
   const handleSearchInput = useCallback((query: string) => {
     setSearchQuery(query);
-
-    if (!query.trim()) {
-      if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
-      setAppliedSearch("");
-      setSelectedCategory("most-popular");
-      setIsSearching(false);
-      return;
-    }
-
-    setIsSearching(true);
-    if (searchDebounceRef.current) {
-      clearTimeout(searchDebounceRef.current);
-    }
-
-    searchDebounceRef.current = setTimeout(() => {
-      setAppliedSearch(query);
-      setSelectedCategory("");
-      setIsSearching(false);
-    }, 500);
   }, []);
 
   const handleSearch = useCallback(() => {
