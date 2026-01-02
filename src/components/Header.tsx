@@ -594,7 +594,7 @@ export function Header({
             handleMenuClose();
           }}
         >
-          📢 Purchase Ad
+          📢 {t("header.purchaseAd")}
         </MenuItem>
         {user?.isAdmin && (
           <MenuItem

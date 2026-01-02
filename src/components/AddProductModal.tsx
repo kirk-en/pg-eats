@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogTitle,
@@ -59,6 +60,7 @@ export function AddProductModal({
   userId,
   existingProducts,
 }: AddProductModalProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     category: null,
@@ -140,23 +142,23 @@ export function AddProductModal({
     const errors: ValidationErrors = {};
 
     if (!formData.name.trim()) {
-      errors.name = "Product name is required";
+      errors.name = t("addProductModal.validationErrors.nameRequired");
     }
 
     if (!formData.category) {
-      errors.category = "Category is required";
+      errors.category = t("addProductModal.validationErrors.categoryRequired");
     }
 
     if (!formData.price.trim()) {
-      errors.price = "Price is required";
+      errors.price = t("addProductModal.validationErrors.priceRequired");
     } else if (isNaN(parseFloat(formData.price))) {
-      errors.price = "Price must be a valid number";
+      errors.price = t("addProductModal.validationErrors.priceInvalid");
     }
 
     if (!formData.imageUrl.trim()) {
-      errors.imageUrl = "Image URL is required";
+      errors.imageUrl = t("addProductModal.validationErrors.imageUrlRequired");
     } else if (!imageLoaded) {
-      errors.imageUrl = "Please wait for image to load or provide a valid URL";
+      errors.imageUrl = t("addProductModal.validationErrors.imageLoadError");
     }
 
     setValidationErrors(errors);
@@ -209,7 +211,7 @@ export function AddProductModal({
       const errorMessage =
         error instanceof Error
           ? error.message
-          : "Failed to add product. Please try again.";
+          : t("addProductModal.submitError");
       setSubmitError(errorMessage);
     } finally {
       setLoading(false);
@@ -255,11 +257,10 @@ export function AddProductModal({
   if (confirmDuplicates) {
     return (
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-        <DialogTitle>Similar Products Found</DialogTitle>
+        <DialogTitle>{t("addProductModal.similarProductsTitle")}</DialogTitle>
         <DialogContent dividers>
           <Alert severity="warning" sx={{ mb: 2 }}>
-            We found similar products already in the catalog. Are you sure this
-            is a unique item?
+            {t("addProductModal.similarProductsWarning")}
           </Alert>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             {similarProducts.map((product, idx) => (
@@ -276,7 +277,7 @@ export function AddProductModal({
                   {product.name}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  Category: {product.category}
+                  {t("addProductModal.categoryLabel")} {product.category}
                 </Typography>
                 {product.tags.length > 0 && (
                   <Box sx={{ mt: 0.5 }}>
@@ -296,9 +297,13 @@ export function AddProductModal({
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>{t("addProductModal.cancel")}</Button>
           <Button onClick={handleSubmit} variant="contained" disabled={loading}>
-            {loading ? <CircularProgress size={24} /> : "Yes, Add Anyway"}
+            {loading ? (
+              <CircularProgress size={24} />
+            ) : (
+              t("addProductModal.yesAddAnyway")
+            )}
           </Button>
         </DialogActions>
       </Dialog>
@@ -307,7 +312,7 @@ export function AddProductModal({
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-      <DialogTitle>Add New Product</DialogTitle>
+      <DialogTitle>{t("addProductModal.title")}</DialogTitle>
       <DialogContent dividers sx={{ display: "flex", gap: 3 }}>
         {/* Form Section */}
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
@@ -320,9 +325,9 @@ export function AddProductModal({
           <Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
               <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-                Product Name
+                {t("addProductModal.productName")}
               </Typography>
-              <Tooltip title="Be as specific as possible! Include brand name, flavor, size, or variety (e.g., 'Califia Farms Almond Milk - Original 48oz' or 'Lay's Classic Potato Chips')">
+              <Tooltip title={t("addProductModal.productNameTooltip")}>
                 <InfoIcon fontSize="small" sx={{ color: "text.secondary" }} />
               </Tooltip>
             </Box>
@@ -335,7 +340,7 @@ export function AddProductModal({
               }}
               error={!!validationErrors.name}
               helperText={validationErrors.name}
-              placeholder="e.g., Califia Farms Almond Milk - Original 48oz"
+              placeholder={t("addProductModal.productNamePlaceholder")}
             />
           </Box>
 
@@ -358,7 +363,7 @@ export function AddProductModal({
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Category"
+                label={t("addProductModal.category")}
                 error={!!validationErrors.category}
                 helperText={validationErrors.category}
               />
@@ -368,7 +373,7 @@ export function AddProductModal({
           <Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <TextField
-                label="Price"
+                label={t("addProductModal.price")}
                 type="number"
                 inputProps={{ step: "0.01", min: "0" }}
                 value={formData.price}
@@ -395,15 +400,15 @@ export function AddProductModal({
           <Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
               <TextField
-                label="Image URL"
+                label={t("addProductModal.imageUrl")}
                 fullWidth
                 value={formData.imageUrl}
                 onChange={handleImageUrlChange}
                 error={!!validationErrors.imageUrl}
                 helperText={validationErrors.imageUrl}
-                placeholder="https://example.com/image.jpg"
+                placeholder={t("addProductModal.imageUrlPlaceholder")}
               />
-              <Tooltip title="Right-click any image on the web and select 'Copy image link' to get the URL">
+              <Tooltip title={t("addProductModal.imageUrlTooltip")}>
                 <IconButton size="small">
                   <InfoIcon fontSize="small" />
                 </IconButton>
@@ -412,24 +417,26 @@ export function AddProductModal({
             {formData.imageUrl && (
               <Typography variant="caption" color="text.secondary">
                 {imageLoadError
-                  ? "Failed to load image"
+                  ? t("addProductModal.imageFailedMessage")
                   : imageLoaded
-                  ? "✓ Image loaded"
-                  : "Loading image..."}
+                  ? t("addProductModal.imageLoadedMessage")
+                  : t("addProductModal.imageLoadingMessage")}
               </Typography>
             )}
           </Box>
 
           <Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-              <Typography variant="subtitle2">Tags (Optional)</Typography>
-              <Tooltip title="Add descriptive keywords like 'organic', 'gluten-free', 'seasonal', etc. These help with searching and categorizing products.">
+              <Typography variant="subtitle2">
+                {t("addProductModal.tags")}
+              </Typography>
+              <Tooltip title={t("addProductModal.tagsTooltip")}>
                 <InfoIcon fontSize="small" sx={{ color: "text.secondary" }} />
               </Tooltip>
             </Box>
             <Box sx={{ display: "flex", gap: 1 }}>
               <TextField
-                placeholder="Add a tag..."
+                placeholder={t("addProductModal.tagPlaceholder")}
                 size="small"
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
@@ -447,7 +454,7 @@ export function AddProductModal({
                 size="small"
                 disabled={!tagInput.trim()}
               >
-                Add
+                {t("addProductModal.addTag")}
               </Button>
             </Box>
             {formData.tags.length > 0 && (
@@ -476,7 +483,7 @@ export function AddProductModal({
           }}
         >
           <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-            Preview
+            {t("addProductModal.preview")}
           </Typography>
           <Card
             sx={{
@@ -563,7 +570,7 @@ export function AddProductModal({
                       }}
                     >
                       <ThumbUpIcon sx={{ fontSize: "1rem" }} />
-                      Up
+                      {t("snackCard.upvote")}
                     </button>
                   </Box>
                   <Box sx={{ flex: 1 }}>
@@ -575,7 +582,7 @@ export function AddProductModal({
                       }}
                     >
                       <ThumbDownIcon sx={{ fontSize: "1rem" }} />
-                      Down
+                      {t("snackCard.downvote")}
                     </button>
                   </Box>
                 </Box>
@@ -596,22 +603,22 @@ export function AddProductModal({
                   {imageLoadError ? (
                     <>
                       <Typography color="error" variant="body2" sx={{ mb: 1 }}>
-                        ❌ Image failed to load
+                        {t("addProductModal.imageErrorMessage")}
                       </Typography>
                       <Typography variant="caption" color="text.secondary">
-                        Check your URL and try again
+                        {t("addProductModal.imageErrorHint")}
                       </Typography>
                     </>
                   ) : formData.imageUrl ? (
                     <>
                       <CircularProgress size={40} sx={{ mb: 1 }} />
                       <Typography variant="caption" color="text.secondary">
-                        Loading image...
+                        {t("addProductModal.imageLoadingMessage")}
                       </Typography>
                     </>
                   ) : (
                     <Typography variant="caption" color="text.secondary">
-                      Enter an image URL to see preview
+                      {t("addProductModal.imageUrlHint")}
                     </Typography>
                   )}
                 </Box>
@@ -631,7 +638,7 @@ export function AddProductModal({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} disabled={loading}>
-          Cancel
+          {t("addProductModal.cancel")}
         </Button>
         <Button
           onClick={handleSubmit}
@@ -639,7 +646,11 @@ export function AddProductModal({
           disabled={loading}
           sx={{ minWidth: 120 }}
         >
-          {loading ? <CircularProgress size={24} /> : "Add Product"}
+          {loading ? (
+            <CircularProgress size={24} />
+          ) : (
+            t("addProductModal.addProduct")
+          )}
         </Button>
       </DialogActions>
     </Dialog>

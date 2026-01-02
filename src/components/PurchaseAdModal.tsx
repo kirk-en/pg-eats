@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogTitle,
@@ -80,6 +81,7 @@ export function PurchaseAdModal({
   onSuccess,
 }: PurchaseAdModalProps) {
   const { user } = useAuth();
+  const { t } = useTranslation();
   const [customText, setCustomText] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedStyle, setSelectedStyle] = useState(STYLE_VARIANTS[0]);
@@ -227,7 +229,7 @@ export function PurchaseAdModal({
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-      <DialogTitle>Purchase Banner Ad</DialogTitle>
+      <DialogTitle>{t("purchaseAdModal.title")}</DialogTitle>
       <DialogContent
         dividers
         sx={{ display: "flex", flexDirection: "column", gap: 2 }}
@@ -245,10 +247,12 @@ export function PurchaseAdModal({
         >
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-              Your Balance: {balance} PG Coins
+              {t("purchaseAdModal.yourBalance")}: {balance}{" "}
+              {t("purchaseAdModal.pgCoins")}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Cost: 50 PG Coins (3-day ad duration)
+              {t("purchaseAdModal.cost")}: 50 {t("purchaseAdModal.pgCoins")} (
+              {t("purchaseAdModal.costDescription")})
             </Typography>
           </Box>
           {!canAfford && (
@@ -257,7 +261,7 @@ export function PurchaseAdModal({
               color="error.dark"
               sx={{ fontWeight: 600 }}
             >
-              Insufficient Balance
+              {t("purchaseAdModal.insufficientBalance")}
             </Typography>
           )}
         </Box>
@@ -271,7 +275,7 @@ export function PurchaseAdModal({
         {/* Product Selection */}
         <Box>
           <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-            Select Product to Advertise
+            {t("purchaseAdModal.selectProduct")}
           </Typography>
           <Autocomplete
             options={filteredProducts}
@@ -283,12 +287,12 @@ export function PurchaseAdModal({
             renderInput={(params) => (
               <TextField
                 {...params}
-                placeholder="Search products by name, category, or tags..."
+                placeholder={t("purchaseAdModal.searchPlaceholder")}
                 variant="outlined"
               />
             )}
             isOptionEqualToValue={(option, value) => option.id === value.id}
-            noOptionsText="No products found"
+            noOptionsText={t("purchaseAdModal.noProductsFound")}
           />
         </Box>
 
@@ -296,7 +300,7 @@ export function PurchaseAdModal({
         <Box>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-              Ad Text
+              {t("purchaseAdModal.adText")}
             </Typography>
             <Typography
               variant="body2"
@@ -313,12 +317,12 @@ export function PurchaseAdModal({
             onChange={(e) =>
               setCustomText(e.target.value.slice(0, textCharLimit))
             }
-            placeholder="Enter your ad text (max 30 characters)"
+            placeholder={t("purchaseAdModal.adTextPlaceholder")}
             error={textCharCount > textCharLimit}
             helperText={
               textCharCount > textCharLimit
-                ? "Text exceeds character limit"
-                : "Your ad text will appear on the banner"
+                ? t("purchaseAdModal.textExceedsLimit")
+                : t("purchaseAdModal.adTextHelper")
             }
             variant="outlined"
           />
@@ -327,7 +331,7 @@ export function PurchaseAdModal({
         {/* Vote Direction */}
         <Box>
           <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-            Vote Direction
+            {t("purchaseAdModal.voteDirection")}
           </Typography>
           <RadioGroup
             row
@@ -342,7 +346,7 @@ export function PurchaseAdModal({
               label={
                 <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                   <ThumbUpIcon fontSize="small" color="success" />
-                  Upvote this product
+                  {t("purchaseAdModal.upvote")}
                 </Box>
               }
             />
@@ -352,7 +356,7 @@ export function PurchaseAdModal({
               label={
                 <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                   <ThumbDownIcon fontSize="small" color="error" />
-                  Downvote this product
+                  {t("purchaseAdModal.downvote")}
                 </Box>
               }
             />
@@ -363,9 +367,9 @@ export function PurchaseAdModal({
         <Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-              Choose Style
+              {t("purchaseAdModal.chooseStyle")}
             </Typography>
-            <Tooltip title="Select a retro-inspired banner style for your ad">
+            <Tooltip title={t("purchaseAdModal.styleTooltip")}>
               <InfoIcon fontSize="small" />
             </Tooltip>
           </Box>
@@ -422,7 +426,7 @@ export function PurchaseAdModal({
         {previewAd && (
           <Box>
             <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-              Preview
+              {t("purchaseAdModal.preview")}
             </Typography>
             <BannerAdCard ad={previewAd} office="nyc" />
           </Box>
@@ -431,7 +435,7 @@ export function PurchaseAdModal({
 
       <DialogActions sx={{ p: 2, gap: 1 }}>
         <Button onClick={handleClose} disabled={loading}>
-          Cancel
+          {t("purchaseAdModal.cancel")}
         </Button>
         <Button
           onClick={handlePurchase}
@@ -443,9 +447,12 @@ export function PurchaseAdModal({
           }}
         >
           {loading ? (
-            <CircularProgress size={24} sx={{ mr: 1 }} />
+            <>
+              <CircularProgress size={24} sx={{ mr: 1 }} />
+              {t("purchaseAdModal.purchasing")}
+            </>
           ) : (
-            "Purchase Ad (50 coins)"
+            t("purchaseAdModal.purchaseButton")
           )}
         </Button>
       </DialogActions>
