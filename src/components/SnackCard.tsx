@@ -329,11 +329,11 @@ export function SnackCard({
         image={image}
         alt={name}
         sx={{
-          height: 140,
+          height: 150,
+          width: "calc(100% - 2rem)",
           objectFit: "contain",
           borderRadius: "6px",
-          margin: "1rem",
-          marginBottom: "0.75rem",
+          margin: "1rem auto 0.75rem",
           backgroundColor: "white",
         }}
       />
