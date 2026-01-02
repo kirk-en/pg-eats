@@ -24,7 +24,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import logo from "../assets/pgeats-logo-2.png";
+import logoEn from "../assets/pgeats-logo-2.png";
+import logoEs from "../assets/pgeats-logo-2-es.png";
 import { useAuth } from "../contexts/AuthContext";
 import { useI18n } from "../contexts/I18nContext";
 import { useTranslation } from "react-i18next";
@@ -313,6 +314,9 @@ export function Header({
     setMobileOpen(newOpen);
   };
 
+  // Select logo based on language
+  const currentLogo = language === "es" ? logoEs : logoEn;
+
   return (
     <AppBar
       position="sticky"
@@ -334,7 +338,7 @@ export function Header({
           }}
         >
           <img
-            src={logo}
+            src={currentLogo}
             alt="Playground Eats"
             style={{ height: "28px", width: "auto" }}
           />
