@@ -16,9 +16,8 @@ import {
   limit,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import { tipSnackCzar } from "../utils/supabaseApi";
 import type { User, Product, Office, BannerAd } from "../types/firestore";
-
-// Simple in-memory cache for products
 let productsCache: Product[] | null = null;
 let productsCacheTimestamp = 0;
 const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutes
@@ -411,6 +410,7 @@ export const createBannerAd = async (adData: {
   styleVariant: string;
   customText: string;
   voteDirection: "upvote" | "downvote";
+  office: string;
 }): Promise<string> => {
   const adId = `ad_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
@@ -450,6 +450,17 @@ export const createBannerAd = async (adData: {
       isActive: true,
     });
   });
+
+  // Tip the czar if tipping is enabled (same as voting)
+  try {
+    const officeData = await getOffice(adData.office);
+    if (officeData?.czar && officeData?.tippingEnabled) {
+      await tipSnackCzar(adData.createdBy, officeData.czar, 50);
+    }
+  } catch (error) {
+    console.error("Error tipping czar for ad purchase:", error);
+    // Don't throw - we don't want a failed tip to break the ad purchase experience
+  }
 
   return adId;
 };

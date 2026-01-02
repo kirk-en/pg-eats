@@ -193,6 +193,7 @@ export function PurchaseAdModal({
         styleVariant: selectedStyle,
         customText: customText.trim(),
         voteDirection: voteDirection,
+        office: "nyc",
       });
 
       // Reset form
@@ -225,6 +226,7 @@ export function PurchaseAdModal({
   };
 
   const balance = user?.balance ?? 0;
+  const displayBalance = Math.floor(balance);
   const canAfford = balance >= 50;
 
   return (
@@ -247,7 +249,7 @@ export function PurchaseAdModal({
         >
           <Box>
             <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-              {t("purchaseAdModal.yourBalance")}: {balance}{" "}
+              {t("purchaseAdModal.yourBalance")}: {displayBalance}{" "}
               {t("purchaseAdModal.pgCoins")}
             </Typography>
             <Typography variant="body2" color="text.secondary">

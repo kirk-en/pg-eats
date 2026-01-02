@@ -105,7 +105,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           email: decoded.email,
           displayName: decoded.name,
           photoURL: decoded.picture,
-          balance: 0, // Default balance
+          balance: 250, // Default balance
           isAdmin: false,
         };
         await createUser(newUser);
