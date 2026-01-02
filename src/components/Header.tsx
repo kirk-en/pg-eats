@@ -24,6 +24,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import logoEn from "../assets/pgeats-logo-2.png";
 import logoEs from "../assets/pgeats-logo-2-es.png";
 import { useAuth } from "../contexts/AuthContext";
@@ -258,6 +259,7 @@ interface HeaderProps {
     imageUrl: string;
     tags?: string[];
   }>;
+  onOpenTutorial?: () => void;
 }
 
 export function Header({
@@ -273,6 +275,7 @@ export function Header({
   categories = [],
   snacks = [],
   products = [],
+  onOpenTutorial,
 }: HeaderProps) {
   const { user, logout, isLoadingBalance } = useAuth();
   const { setLanguage } = useI18n();
@@ -599,6 +602,14 @@ export function Header({
           }}
         >
           📢 {t("header.purchaseAd")}
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            onOpenTutorial?.();
+            handleMenuClose();
+          }}
+        >
+          ❓ {"Help"}
         </MenuItem>
         {user?.isAdmin && (
           <MenuItem

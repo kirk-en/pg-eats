@@ -2,7 +2,13 @@ import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { CssBaseline, Box, ThemeProvider, createTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "./App.css";
-import { Header, SnacksGrid, Footer, Categories } from "./components";
+import {
+  Header,
+  SnacksGrid,
+  Footer,
+  Categories,
+  TutorialModal,
+} from "./components";
 import { BannerAdCard } from "./components/BannerAdCard";
 import {
   subscribeToProducts,
@@ -65,6 +71,25 @@ function App() {
   const [isVotingActive, setIsVotingActive] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [activeBannerAd, setActiveBannerAd] = useState<BannerAd | null>(null);
+
+  const [isTutorialOpen, setIsTutorialOpen] = useState(false);
+
+  useEffect(() => {
+    const hasSeenTutorial = localStorage.getItem("hasSeenTutorial");
+    if (!hasSeenTutorial) {
+      setIsTutorialOpen(true);
+    }
+  }, []);
+
+  const handleCloseTutorial = () => {
+    setIsTutorialOpen(false);
+    localStorage.setItem("hasSeenTutorial", "true");
+  };
+
+  const handleOpenTutorial = () => {
+    setIsTutorialOpen(true);
+  };
+
   const debounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingVotesRef = useRef<{
@@ -580,6 +605,7 @@ function App() {
             imageUrl: s.imageUrl || "",
             tags: s.tags || [],
           }))}
+          onOpenTutorial={handleOpenTutorial}
         />
         <Box
           component="main"
@@ -654,6 +680,7 @@ function App() {
             <Footer />
           </Box>
         </Box>
+        <TutorialModal open={isTutorialOpen} onClose={handleCloseTutorial} />
       </Box>
     </ThemeProvider>
   );

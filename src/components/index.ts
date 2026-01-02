@@ -9,3 +9,4 @@ export { CzarPanel } from "./CzarPanel";
 export { AddProductModal } from "./AddProductModal";
 export { BannerAdCard } from "./BannerAdCard";
 export { PurchaseAdModal } from "./PurchaseAdModal";
+export { default as TutorialModal } from "./TutorialModal";
