@@ -126,9 +126,7 @@ export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
     : "";
 
   const gifConfig = gifMapping[ad.styleVariant];
-  const gifUrl = gifConfig
-    ? new URL(`../assets/ads/${gifConfig.file}`, import.meta.url).href
-    : null;
+  const gifUrl = gifConfig ? `/ads/${gifConfig.file}` : null;
 
   return (
     <div

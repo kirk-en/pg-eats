@@ -130,7 +130,7 @@ export function PurchaseAdModal({
     // Preload images
     gifFiles.forEach((file) => {
       const img = new Image();
-      img.src = new URL(`../assets/ads/${file}`, import.meta.url).href;
+      img.src = `/ads/${file}`;
     });
   }, [open]);
 
