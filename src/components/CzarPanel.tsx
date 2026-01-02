@@ -336,6 +336,8 @@ export function CzarPanel({
         `Czar updated to: ${selectedCzar.displayName || selectedCzar.email}`
       );
       setSelectedCzar(null);
+      // Reload current czar to update the display
+      await loadCurrentCzar();
     } catch (err) {
       setError("Failed to update czar");
       console.error(err);
