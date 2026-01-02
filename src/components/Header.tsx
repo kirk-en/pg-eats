@@ -24,7 +24,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import logoEn from "../assets/pgeats-logo-2.png";
 import logoEs from "../assets/pgeats-logo-2-es.png";
 import { useAuth } from "../contexts/AuthContext";
