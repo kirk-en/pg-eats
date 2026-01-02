@@ -6,8 +6,6 @@ A fun and interactive web app for Playground employees to vote on their favorite
 
 This app requires Google OAuth authentication. **Only users with @tryplayground.com email addresses can log in.**
 
-See [OAUTH_SETUP.md](OAUTH_SETUP.md) for detailed setup instructions.
-
 ## Features
 
 - **Browse Snacks**: Browse a curated catalog of 269+ snacks from Costco via Instacart
@@ -60,7 +58,7 @@ products-catalog.json      # 269 snacks with images, prices, and metadata
 
 The app loads snack data from `products-catalog.json` which includes:
 
-- 269 snack products from Costco
+- 450+ snack products from Costco
 - 25 snack categories
 - Product images, prices, and tags
 - Search-optimized metadata
@@ -80,7 +78,3 @@ The app loads snack data from `products-catalog.json` which includes:
 - **Primary**: Navy Blue (#1a3a52)
 - **Accent**: Green (#2ecc71)
 - **Background**: Light Gray (#f8fafb)
-
-## License
-
-MIT

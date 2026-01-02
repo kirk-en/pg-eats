@@ -1,0 +1,23 @@
+{
+  "localesPaths": ["src/i18n/locales"],
+  "namespace": true,
+  "defaultNamespace": "translation",
+  "pathMatcher": "{src,packages}/**/*.{js,jsx,ts,tsx}",
+  "enabledFrameworks": ["react"],
+  "displayLanguage": "en",
+  "ignoreFiles": ["node_modules", "dist", ".git"],
+  "sourceLanguage": "en",
+  "targetLanguages": ["es"],
+  "keySeparator": ".",
+  "nsSeparator": false,
+  "includeExtensions": [".ts", ".tsx", ".js", ".jsx"],
+  "excludeExtensions": [".test.ts", ".spec.ts"],
+  "review": {
+    "enabled": false
+  },
+  "editor": {
+    "preferredLanguage": "en",
+    "showInlineAnnotation": true,
+    "autoDetect": true
+  }
+}
