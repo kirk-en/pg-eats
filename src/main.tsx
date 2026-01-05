@@ -10,13 +10,19 @@ import {
   seedFirestore,
   clearFirestore,
   resetUsers,
+  updateUserBalances,
 } from "./utils/seedFirestore";
-import { addTestVotesNYC, addTestVotesDenver, removeDownvoteFields } from "./utils/testVotes";
+import {
+  addTestVotesNYC,
+  addTestVotesDenver,
+  removeDownvoteFields,
+} from "./utils/testVotes";
 
 // Expose seed functions to window for manual execution
 (window as any).seedFirestore = seedFirestore;
 (window as any).clearFirestore = clearFirestore;
 (window as any).resetUsers = resetUsers;
+(window as any).updateUserBalances = updateUserBalances;
 (window as any).addTestVotesNYC = addTestVotesNYC;
 (window as any).addTestVotesDenver = addTestVotesDenver;
 (window as any).removeDownvoteFields = removeDownvoteFields;

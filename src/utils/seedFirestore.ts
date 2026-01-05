@@ -157,3 +157,20 @@ export const seedFirestore = async () => {
   await batch.commit();
   console.log("Seeding complete!");
 };
+
+export const updateUserBalances = async () => {
+  const batch = writeBatch(db);
+  let operationCount = 0;
+
+  usersData.forEach((user: any) => {
+    const userRef = doc(db, "users", user.id);
+    batch.update(userRef, {
+      balance: user.balance,
+    });
+    operationCount++;
+  });
+
+  console.log(`Updating user balances... (${operationCount} operations)`);
+  await batch.commit();
+  console.log("User balances updated!");
+};
