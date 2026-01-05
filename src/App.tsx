@@ -171,20 +171,40 @@ function App() {
                   .sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0))
                   .slice(0, 24);
               } else {
-                // Update: merge new vote data into existing array without reordering
-                return prev.map((existingSnack) => {
-                  const updated = transformedProducts.find(
+                // Update: merge new vote data and add newly qualifying items
+                const prevIds = new Set(prev.map((s) => s.id));
+                
+                // First, update existing items with new vote data
+                const updated = prev.map((existingSnack) => {
+                  const updatedData = transformedProducts.find(
                     (p) => p.id === existingSnack.id
                   );
-                  return updated
+                  return updatedData
                     ? {
                         ...existingSnack,
-                        votes: updated.votes,
-                        userVotes: updated.userVotes,
-                        lastVotedAt: updated.lastVotedAt,
+                        votes: updatedData.votes,
+                        userVotes: updatedData.userVotes,
+                        lastVotedAt: updatedData.lastVotedAt,
                       }
                     : existingSnack;
                 });
+                
+                // Then, add new items that now qualify for top 24
+                // (items not already in prev but in top 24 when sorted)
+                const topItems = [...transformedProducts]
+                  .sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0))
+                  .slice(0, 24);
+                
+                const newlyQualifying = topItems.filter(
+                  (item) => !prevIds.has(item.id)
+                );
+                
+                // Combine updated existing items with newly qualifying items, then re-sort and slice to 24
+                const combined = [...updated, ...newlyQualifying]
+                  .sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0))
+                  .slice(0, 24);
+                
+                return combined;
               }
             });
             // Derive most recently voted snacks from transformed products
