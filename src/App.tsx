@@ -306,7 +306,7 @@ function App() {
     }
 
     // Optimistic Update: deduct coin and update votes in one batch
-    const { bonusCoinsSpent, regularCoinsSpent } = spendCoins(1);
+    spendCoins(1);
 
     setSnacks((prevSnacks) =>
       prevSnacks.map((snack) =>
