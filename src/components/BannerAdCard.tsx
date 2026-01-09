@@ -66,7 +66,7 @@ interface BannerAdCardProps {
 }
 
 export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
-  const { user, addToBalance } = useAuth();
+  const { user } = useAuth();
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);

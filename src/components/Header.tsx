@@ -446,7 +446,7 @@ export function Header({
                               marginTop: "4px",
                             }}
                           >
-                            +{Math.floor(user.bonusCoins).toLocaleString()}{" "}
+                            +{Math.floor(user.bonusCoins || 0).toLocaleString()}{" "}
                             bonus
                           </Typography>
                         </Tooltip>
