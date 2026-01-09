@@ -670,7 +670,7 @@ function App() {
           >
             {/* Banner Ad */}
             {activeBannerAd && (
-              <Box className="banner-ad-fixed-wrapper" sx={{ mb: 2 }}>
+              <Box className="featured-fixed-wrapper" sx={{ mb: 2 }}>
                 <BannerAdCard
                   ad={activeBannerAd}
                   office={office}

@@ -119,7 +119,7 @@ export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
     }
   };
 
-  const variantClass = `banner-ad-variant-${ad.styleVariant}`;
+  const variantClass = `featured-variant-${ad.styleVariant}`;
   const candyStripeVariants = ["cute", "flowers", "balloon"];
   const wrapperClass = candyStripeVariants.includes(ad.styleVariant)
     ? `${ad.styleVariant}-style`
@@ -131,36 +131,36 @@ export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
   return (
     <div
       ref={containerRef}
-      className={`banner-ad-wrapper ${wrapperClass}`}
+      className={`featured-wrapper ${wrapperClass}`}
       style={{ position: "relative" }}
     >
-      <div className={`banner-ad-container ${variantClass}`}>
-        <div className="banner-ad-overlay" />
+      <div className={`featured-container ${variantClass}`}>
+        <div className="featured-overlay" />
 
         {/* Background GIF */}
         {gifUrl && gifConfig.type === "background" && (
           <div
-            className="banner-ad-gif-bg"
+            className="featured-gif-bg"
             style={{ backgroundImage: `url(${gifUrl})` }}
           />
         )}
 
-        <div className="banner-ad-content">
+        <div className="featured-content">
           <img
             src={ad.productImageUrl}
             alt={ad.productName}
-            className="banner-ad-product-image"
+            className="featured-product-image"
           />
-          <div className="banner-ad-text-section">
+          <div className="featured-text-section">
             {" "}
             {styleIconMap[ad.styleVariant] && (
-              <div className="banner-ad-icon">
+              <div className="featured-icon">
                 {styleIconMap[ad.styleVariant]}
               </div>
             )}{" "}
-            <div className="banner-ad-text">{ad.customText}</div>
-            <div className="banner-ad-vote-button-container">
-              <div className="banner-ad-product-name">
+            <div className="featured-text">{ad.customText}</div>
+            <div className="featured-vote-button-container">
+              <div className="featured-product-name">
                 {ad.productName.slice(0, 32)}
               </div>
               {ad.voteDirection === "upvote" ? (
@@ -192,14 +192,14 @@ export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
             <img
               src={gifUrl}
               alt=""
-              className={`banner-ad-gif-sticker banner-ad-gif-sticker-${
+              className={`featured-gif-sticker featured-gif-sticker-${
                 gifConfig.position || "top-right"
               }`}
             />
           )}
         </div>
       </div>
-      <div className="banner-ad-attribution">Paid for by {ad.displayName}</div>
+      <div className="featured-attribution">Paid for by {ad.displayName}</div>
 
       {/* Floating coins */}
       {floatingCoins.map((coin) => (

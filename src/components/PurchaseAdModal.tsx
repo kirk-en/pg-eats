@@ -151,12 +151,13 @@ export function PurchaseAdModal({
   const textCharLimit = 30;
   const isTextValid =
     customText.trim().length > 0 && textCharCount <= textCharLimit;
+
+  const balance = user?.balance ?? 0;
+  const bonusCoins = user?.bonusCoins ?? 0;
+  const totalCoins = balance + bonusCoins;
+
   const canSubmit =
-    isTextValid &&
-    selectedProduct &&
-    user &&
-    !loading &&
-    (user.balance ?? 0) >= 50;
+    isTextValid && selectedProduct && user && !loading && totalCoins >= 50;
 
   // Create a preview ad object for the style selector
   const previewAd: BannerAd | null =
@@ -232,9 +233,8 @@ export function PurchaseAdModal({
     }
   };
 
-  const balance = user?.balance ?? 0;
   const displayBalance = Math.floor(balance);
-  const canAfford = balance >= 50;
+  const canAfford = totalCoins >= 50;
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
@@ -304,6 +304,16 @@ export function PurchaseAdModal({
             noOptionsText={t("purchaseAdModal.noProductsFound")}
           />
         </Box>
+
+        {/* Preview */}
+        {previewAd && (
+          <Box>
+            <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+              {t("purchaseAdModal.preview")}
+            </Typography>
+            <BannerAdCard ad={previewAd} office="nyc" />
+          </Box>
+        )}
 
         {/* Custom Text Input */}
         <Box>
@@ -430,16 +440,6 @@ export function PurchaseAdModal({
             ))}
           </Box>
         </Box>
-
-        {/* Preview */}
-        {previewAd && (
-          <Box>
-            <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-              {t("purchaseAdModal.preview")}
-            </Typography>
-            <BannerAdCard ad={previewAd} office="nyc" />
-          </Box>
-        )}
       </DialogContent>
 
       <DialogActions sx={{ p: 2, gap: 1 }}>
