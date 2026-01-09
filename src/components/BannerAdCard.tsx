@@ -83,8 +83,8 @@ export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
     const button = e.currentTarget;
     button.blur();
 
-    // Optimistic balance update - happens immediately
-    addToBalance(-1);
+    // No need to manually update balance here as onVote prop (handleVote in App.tsx)
+    // now handles the optimistic update correctly with bonus coin priority
 
     const direction = ad.voteDirection === "upvote" ? "up" : "down";
 

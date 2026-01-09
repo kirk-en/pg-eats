@@ -6,6 +6,7 @@ import {
   getDoc,
   deleteDoc,
   Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import usersData from "../data/users.json";
@@ -160,17 +161,69 @@ export const seedFirestore = async () => {
 
 export const updateUserBalances = async () => {
   const batch = writeBatch(db);
-  let operationCount = 0;
+  let updateCount = 0;
+  let addCount = 0;
+
+  // Get existing users from Firestore
+  const usersRef = collection(db, "users");
+  const snapshot = await getDocs(usersRef);
+  const existingUserIds = new Set(snapshot.docs.map((doc) => doc.id));
 
   usersData.forEach((user: any) => {
     const userRef = doc(db, "users", user.id);
-    batch.update(userRef, {
-      balance: user.balance,
-    });
-    operationCount++;
+
+    if (existingUserIds.has(user.id)) {
+      // User exists, update balance
+      batch.update(userRef, {
+        balance: user.balance,
+      });
+      updateCount++;
+    } else {
+      // User doesn't exist, create them
+      const newUserData: any = {
+        displayName: user.username,
+        balance: user.balance,
+        isAdmin: user.isAdmin ?? false,
+      };
+      if (user.email) {
+        newUserData.email = user.email;
+      }
+      batch.set(userRef, newUserData);
+      addCount++;
+    }
   });
 
-  console.log(`Updating user balances... (${operationCount} operations)`);
+  console.log(
+    `Updating ${updateCount} users and adding ${addCount} new users... (${
+      updateCount + addCount
+    } operations)`
+  );
   await batch.commit();
-  console.log("User balances updated!");
+  console.log("User balances updated and new users added!");
+};
+
+export const addBonusCoinsToAllUsers = async (bonusAmount: number = 150) => {
+  try {
+    const usersRef = collection(db, "users");
+    const snapshot = await getDocs(usersRef);
+
+    console.log(
+      `Adding ${bonusAmount} bonus coins to ${snapshot.size} users...`
+    );
+
+    let updateCount = 0;
+    for (const userDoc of snapshot.docs) {
+      await updateDoc(userDoc.ref, {
+        bonusCoins: bonusAmount,
+      });
+      updateCount++;
+    }
+
+    console.log(
+      `Successfully added ${bonusAmount} bonus coins to ${updateCount} users!`
+    );
+  } catch (error) {
+    console.error("Error adding bonus coins to users:", error);
+    throw error;
+  }
 };
