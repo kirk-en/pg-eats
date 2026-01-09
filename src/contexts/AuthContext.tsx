@@ -18,6 +18,7 @@ interface User {
   name: string;
   picture: string;
   balance?: number;
+  bonusCoins?: number; // Exclusive to PG Eats, spent before regular coins
   username?: string;
   id?: string;
   isAdmin?: boolean;
@@ -31,6 +32,10 @@ interface AuthContextType {
   logout: () => void;
   updateBalance: (newBalance: number) => void;
   addToBalance: (amount: number) => void;
+  spendCoins: (amount: number) => {
+    bonusCoinsSpent: number;
+    regularCoinsSpent: number;
+  };
   isLoadingBalance: boolean;
 }
 
@@ -67,6 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const updatedUser = {
             ...prev,
             balance: firestoreUser.balance,
+            bonusCoins: firestoreUser.bonusCoins ?? 0,
             isAdmin: firestoreUser.isAdmin,
             picture: firestoreUser.photoURL,
             name: firestoreUser.displayName,
@@ -106,6 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           displayName: decoded.name,
           photoURL: decoded.picture,
           balance: 250, // Default balance
+          bonusCoins: 0,
           isAdmin: false,
         };
         await createUser(newUser);
@@ -125,6 +132,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         picture: firestoreUser.photoURL,
         id: firestoreUser.id,
         balance: firestoreUser.balance,
+        bonusCoins: firestoreUser.bonusCoins ?? 0,
         isAdmin: firestoreUser.isAdmin,
       };
 
@@ -163,6 +171,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
   };
 
+  const spendCoins = (
+    amount: number
+  ): { bonusCoinsSpent: number; regularCoinsSpent: number } => {
+    let bonusCoinsSpent = 0;
+    let regularCoinsSpent = 0;
+
+    setUser((prevUser) => {
+      if (!prevUser) return null;
+
+      const currentBonus = prevUser.bonusCoins || 0;
+      const currentBalance = prevUser.balance || 0;
+
+      // Spend bonus coins first
+      if (currentBonus >= amount) {
+        bonusCoinsSpent = amount;
+        regularCoinsSpent = 0;
+      } else {
+        bonusCoinsSpent = currentBonus;
+        regularCoinsSpent = amount - currentBonus;
+      }
+
+      const updatedUser = {
+        ...prevUser,
+        bonusCoins: currentBonus - bonusCoinsSpent,
+        balance: currentBalance - regularCoinsSpent,
+      };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      return updatedUser;
+    });
+
+    return { bonusCoinsSpent, regularCoinsSpent };
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -173,6 +214,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         logout,
         updateBalance,
         addToBalance,
+        spendCoins,
         isLoadingBalance,
       }}
     >

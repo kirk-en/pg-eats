@@ -411,23 +411,47 @@ export function Header({
                   {isLoadingBalance ? (
                     <CircularProgress size={16} />
                   ) : (
-                    <Tooltip
-                      title="Your PG coin balance. Use coins to vote on which snacks get ordered for the office. Same coins as playgroundbets.com!"
-                      arrow={true}
-                    >
-                      <Typography
-                        variant="h6"
-                        color="primary"
-                        fontWeight={700}
-                        lineHeight={1}
-                        sx={{ whiteSpace: "nowrap", cursor: "help" }}
+                    <>
+                      <Tooltip
+                        title="Your PG coin balance. Use coins to vote on which snacks get ordered for the office. Same coins as playgroundbets.com!"
+                        arrow={true}
                       >
-                        {user.balance !== undefined
-                          ? Math.floor(user.balance).toLocaleString()
-                          : "—"}{" "}
-                        pg
-                      </Typography>
-                    </Tooltip>
+                        <Typography
+                          variant="h6"
+                          color="primary"
+                          fontWeight={700}
+                          lineHeight={1}
+                          sx={{ whiteSpace: "nowrap", cursor: "help" }}
+                        >
+                          {user.balance !== undefined
+                            ? Math.floor(user.balance).toLocaleString()
+                            : "—"}{" "}
+                          pg
+                        </Typography>
+                      </Tooltip>
+                      {(user.bonusCoins ?? 0) > 0 && (
+                        <Tooltip
+                          title="Bonus coins exclusive to PG Eats. Spent before regular coins."
+                          arrow={true}
+                        >
+                          <Typography
+                            variant="caption"
+                            color="secondary"
+                            fontWeight={600}
+                            lineHeight={1}
+                            sx={{
+                              whiteSpace: "nowrap",
+                              cursor: "help",
+                              display: "block",
+                              marginTop: "4px",
+                            }}
+                          >
+                            +{Math.floor(user.bonusCoins).toLocaleString()}{" "}
+                            bonus
+                          </Typography>
+                        </Tooltip>
+                      )}
+                    </>
                   )}
                 </Box>
                 <IconButton onClick={handleMenuOpen} sx={{ p: 0 }}>

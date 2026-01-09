@@ -21,6 +21,7 @@ export interface User {
   displayName: string;
   photoURL: string;
   balance: number;
+  bonusCoins?: number; // Exclusive to PG Eats, spent before regular coins
   isAdmin: boolean;
 }
 

@@ -307,7 +307,10 @@ export const voteForProduct = async (
   productId: string,
   office: string,
   direction: "up" | "down"
-): Promise<void> => {
+): Promise<{ regularCoinsSpent: number }> => {
+  const cost = 1;
+  let regularCoinsSpent = 0;
+
   await runTransaction(db, async (transaction) => {
     const userRef = doc(db, "users", userId);
     const productRef = doc(db, "products", productId);
@@ -318,14 +321,24 @@ export const voteForProduct = async (
     }
 
     const userData = userDoc.data() as User;
-    if (userData.balance < 1) {
+    const bonusCoins = userData.bonusCoins ?? 0;
+    const totalAvailable = (userData.balance ?? 0) + bonusCoins;
+
+    if (totalAvailable < cost) {
       throw new Error("Insufficient funds");
     }
+
+    // Calculate how much comes from bonus vs regular coins
+    let bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    regularCoinsSpent = cost - bonusCoinsToDeduct;
 
     const field = `votes_${office}`;
     const value = direction === "up" ? 1 : -1;
 
-    transaction.update(userRef, { balance: userData.balance - 1 });
+    transaction.update(userRef, {
+      bonusCoins: bonusCoins - bonusCoinsToDeduct,
+      balance: (userData.balance ?? 0) - regularCoinsSpent,
+    });
     transaction.update(productRef, {
       [field]: increment(value),
       [`userVotes_${office}.${userId}`]: increment(value),
@@ -335,6 +348,8 @@ export const voteForProduct = async (
 
   // Invalidate cache after vote
   clearProductsCache();
+
+  return { regularCoinsSpent };
 };
 
 export const voteForProductBatch = async (
@@ -343,8 +358,10 @@ export const voteForProductBatch = async (
   office: string,
   voteChange: number,
   cost: number
-): Promise<void> => {
-  if (cost === 0 && voteChange === 0) return;
+): Promise<{ regularCoinsSpent: number }> => {
+  if (cost === 0 && voteChange === 0) return { regularCoinsSpent: 0 };
+
+  let regularCoinsSpent = 0;
 
   await runTransaction(db, async (transaction) => {
     const userRef = doc(db, "users", userId);
@@ -356,13 +373,23 @@ export const voteForProductBatch = async (
     }
 
     const userData = userDoc.data() as User;
-    if (userData.balance < cost) {
+    const bonusCoins = userData.bonusCoins ?? 0;
+    const totalAvailable = (userData.balance ?? 0) + bonusCoins;
+
+    if (totalAvailable < cost) {
       throw new Error("Insufficient funds");
     }
 
+    // Calculate how much comes from bonus vs regular coins
+    let bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    regularCoinsSpent = cost - bonusCoinsToDeduct;
+
     const field = `votes_${office}`;
 
-    transaction.update(userRef, { balance: userData.balance - cost });
+    transaction.update(userRef, {
+      bonusCoins: bonusCoins - bonusCoinsToDeduct,
+      balance: (userData.balance ?? 0) - regularCoinsSpent,
+    });
     transaction.update(productRef, {
       [field]: increment(voteChange),
       [`userVotes_${office}.${userId}`]: increment(voteChange),
@@ -372,6 +399,8 @@ export const voteForProductBatch = async (
 
   // Invalidate cache after vote
   clearProductsCache();
+
+  return { regularCoinsSpent };
 };
 
 export const resetOfficeVotes = async (
@@ -411,8 +440,10 @@ export const createBannerAd = async (adData: {
   customText: string;
   voteDirection: "upvote" | "downvote";
   office: string;
-}): Promise<string> => {
+}): Promise<{ adId: string; regularCoinsSpent: number }> => {
   const adId = `ad_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const cost = 50;
+  let regularCoinsSpent = 0;
 
   await runTransaction(db, async (transaction) => {
     const userRef = doc(db, "users", adData.createdBy);
@@ -424,9 +455,16 @@ export const createBannerAd = async (adData: {
     }
 
     const userData = userDoc.data() as User;
-    if (userData.balance < 50) {
+    const bonusCoins = userData.bonusCoins ?? 0;
+    const totalAvailable = (userData.balance ?? 0) + bonusCoins;
+
+    if (totalAvailable < cost) {
       throw new Error("Insufficient funds");
     }
+
+    // Calculate how much comes from bonus vs regular coins
+    let bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    regularCoinsSpent = cost - bonusCoinsToDeduct;
 
     // Calculate 3-day expiry
     const createdAt = Timestamp.now();
@@ -435,7 +473,10 @@ export const createBannerAd = async (adData: {
       createdAt.nanoseconds
     );
 
-    transaction.update(userRef, { balance: userData.balance - 50 });
+    transaction.update(userRef, {
+      bonusCoins: bonusCoins - bonusCoinsToDeduct,
+      balance: (userData.balance ?? 0) - regularCoinsSpent,
+    });
     transaction.set(adRef, {
       createdBy: adData.createdBy,
       productId: adData.productId,
@@ -451,18 +492,22 @@ export const createBannerAd = async (adData: {
     });
   });
 
-  // Tip the czar if tipping is enabled (same as voting)
+  // Tip the czar only for regular coins spent (not for bonus coins)
   try {
     const officeData = await getOffice(adData.office);
-    if (officeData?.czar && officeData?.tippingEnabled) {
-      await tipSnackCzar(adData.createdBy, officeData.czar, 50);
+    if (
+      officeData?.czar &&
+      officeData?.tippingEnabled &&
+      regularCoinsSpent > 0
+    ) {
+      await tipSnackCzar(adData.createdBy, officeData.czar, regularCoinsSpent);
     }
   } catch (error) {
     console.error("Error tipping czar for ad purchase:", error);
     // Don't throw - we don't want a failed tip to break the ad purchase experience
   }
 
-  return adId;
+  return { adId, regularCoinsSpent };
 };
 
 export const getActiveBannerAds = async (): Promise<BannerAd[]> => {

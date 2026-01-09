@@ -11,6 +11,7 @@ import {
   clearFirestore,
   resetUsers,
   updateUserBalances,
+  addBonusCoinsToAllUsers,
 } from "./utils/seedFirestore";
 import {
   addTestVotesNYC,
@@ -23,6 +24,7 @@ import {
 (window as any).clearFirestore = clearFirestore;
 (window as any).resetUsers = resetUsers;
 (window as any).updateUserBalances = updateUserBalances;
+(window as any).addBonusCoinsToAllUsers = addBonusCoinsToAllUsers;
 (window as any).addTestVotesNYC = addTestVotesNYC;
 (window as any).addTestVotesDenver = addTestVotesDenver;
 (window as any).removeDownvoteFields = removeDownvoteFields;

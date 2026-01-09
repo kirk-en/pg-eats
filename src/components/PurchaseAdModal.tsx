@@ -80,7 +80,7 @@ export function PurchaseAdModal({
   products,
   onSuccess,
 }: PurchaseAdModalProps) {
-  const { user } = useAuth();
+  const { user, spendCoins } = useAuth();
   const { t } = useTranslation();
   const [customText, setCustomText] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -183,6 +183,9 @@ export function PurchaseAdModal({
     setLoading(true);
     setError("");
 
+    // Optimistic update
+    spendCoins(50);
+
     try {
       await createBannerAd({
         createdBy: user.id,
@@ -208,7 +211,8 @@ export function PurchaseAdModal({
       const errorMessage =
         err instanceof Error ? err.message : "Failed to purchase ad";
       setError(errorMessage);
-    } finally {
+      // On error, we don't revert the optimistic update here since
+      // the error is thrown after the transaction completes
       setLoading(false);
     }
   };

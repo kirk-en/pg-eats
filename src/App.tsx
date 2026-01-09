@@ -49,7 +49,7 @@ interface Category {
 }
 
 function App() {
-  const { user, addToBalance } = useAuth();
+  const { user, addToBalance, spendCoins } = useAuth();
   const { language } = useI18n();
   const { t } = useTranslation();
   const [snacks, setSnacks] = useState<Snack[]>([]);
@@ -173,7 +173,7 @@ function App() {
               } else {
                 // Update: merge new vote data and add newly qualifying items
                 const prevIds = new Set(prev.map((s) => s.id));
-                
+
                 // First, update existing items with new vote data
                 const updated = prev.map((existingSnack) => {
                   const updatedData = transformedProducts.find(
@@ -188,22 +188,22 @@ function App() {
                       }
                     : existingSnack;
                 });
-                
+
                 // Then, add new items that now qualify for top 24
                 // (items not already in prev but in top 24 when sorted)
                 const topItems = [...transformedProducts]
                   .sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0))
                   .slice(0, 24);
-                
+
                 const newlyQualifying = topItems.filter(
                   (item) => !prevIds.has(item.id)
                 );
-                
+
                 // Combine updated existing items with newly qualifying items, then re-sort and slice to 24
                 const combined = [...updated, ...newlyQualifying]
                   .sort((a, b) => (b.votes ?? 0) - (a.votes ?? 0))
                   .slice(0, 24);
-                
+
                 return combined;
               }
             });
@@ -305,8 +305,8 @@ function App() {
       return;
     }
 
-    // Optimistic Update
-    addToBalance(-1);
+    // Optimistic Update: deduct coin and update votes in one batch
+    const { bonusCoinsSpent, regularCoinsSpent } = spendCoins(1);
 
     setSnacks((prevSnacks) =>
       prevSnacks.map((snack) =>
@@ -364,7 +364,7 @@ function App() {
         // Remove from pending immediately to avoid race conditions
         delete pendingVotesRef.current[snackId];
 
-        await voteForProductBatch(
+        const { regularCoinsSpent } = await voteForProductBatch(
           user.id!,
           snackId,
           office,
@@ -372,10 +372,15 @@ function App() {
           newCost
         );
 
-        // After successful vote, tip the snack czar if tipping is enabled
+        // After successful vote, tip the snack czar only for regular coins spent
+        // (bonus coins don't trigger tips)
         const officeData = await getOffice(office);
-        if (officeData?.czar && officeData?.tippingEnabled && newCost > 0) {
-          await tipSnackCzar(user.id!, officeData.czar, newCost);
+        if (
+          officeData?.czar &&
+          officeData?.tippingEnabled &&
+          regularCoinsSpent > 0
+        ) {
+          await tipSnackCzar(user.id!, officeData.czar, regularCoinsSpent);
         }
       } catch (error: any) {
         console.error("Error casting batch vote:", error);
