@@ -119,7 +119,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           displayName: decoded.name,
           photoURL: decoded.picture,
           balance: 250, // Default balance
-          bonusCoins: 0,
+          bonusCoins: 150, // Initial bonus coins for new users
           isAdmin: false,
         };
         await createUser(newUser);
