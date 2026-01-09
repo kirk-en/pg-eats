@@ -80,7 +80,7 @@ export function PurchaseAdModal({
   products,
   onSuccess,
 }: PurchaseAdModalProps) {
-  const { user, spendCoins } = useAuth();
+  const { user, spendCoins, refreshUser } = useAuth();
   const { t } = useTranslation();
   const [customText, setCustomText] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -211,8 +211,11 @@ export function PurchaseAdModal({
       const errorMessage =
         err instanceof Error ? err.message : "Failed to purchase ad";
       setError(errorMessage);
-      // On error, we don't revert the optimistic update here since
-      // the error is thrown after the transaction completes
+
+      // Refresh user data to revert optimistic update correctly
+      // (Restores correct bonus/regular coin balance)
+      await refreshUser();
+
       setLoading(false);
     }
   };

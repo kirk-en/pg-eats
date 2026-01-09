@@ -36,6 +36,7 @@ interface AuthContextType {
     bonusCoinsSpent: number;
     regularCoinsSpent: number;
   };
+  refreshUser: () => Promise<void>;
   isLoadingBalance: boolean;
 }
 
@@ -85,6 +86,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.error("Error refreshing user data:", error);
     } finally {
       setIsLoadingBalance(false);
+    }
+  };
+
+  const refreshUser = async () => {
+    if (user?.id) {
+      await refreshUserData(user.id);
     }
   };
 
@@ -215,6 +222,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         updateBalance,
         addToBalance,
         spendCoins,
+        refreshUser,
         isLoadingBalance,
       }}
     >

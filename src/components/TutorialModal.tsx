@@ -180,6 +180,9 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ open, onClose }) => {
                   </Link>
                   )
                 </Typography>
+                <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic", color: "text.secondary" }}>
+                  Note: Regular coins spent on snack voting are automatically tipped to the current snack czar!
+                </Typography>
               </>
             )}
           </Box>

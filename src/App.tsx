@@ -49,7 +49,7 @@ interface Category {
 }
 
 function App() {
-  const { user, addToBalance, spendCoins } = useAuth();
+  const { user, addToBalance, spendCoins, refreshUser } = useAuth();
   const { language } = useI18n();
   const { t } = useTranslation();
   const [snacks, setSnacks] = useState<Snack[]>([]);
@@ -385,7 +385,10 @@ function App() {
       } catch (error: any) {
         console.error("Error casting batch vote:", error);
 
-        // Revert optimistic update if batch fails
+        // Revert optimistic update if batch fails by refreshing from server
+        // This ensures the correct balance (bonus vs regular) is restored
+        await refreshUser();
+
         // Note: This is a simplified revert. Ideally we'd track the exact state before the batch started.
         // But since user might have continued clicking, we just revert the *amount* of this batch.
 
