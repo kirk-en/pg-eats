@@ -28,7 +28,7 @@ export const ReportAdModal = ({ open, onClose, adId }: ReportAdModalProps) => {
   const cost = 75;
 
   const handleReport = async () => {
-    if (!user) return;
+    if (!user || !user.id) return;
 
     setLoading(true);
     setError("");

@@ -557,8 +557,8 @@ export const disableBannerAd = async (
   userId: string
 ): Promise<void> => {
   const cost = 75;
-  let adData: BannerAd;
-  let reporterData: User;
+  let adData!: BannerAd;
+  let reporterData!: User;
 
   await runTransaction(db, async (transaction) => {
     const userRef = doc(db, "users", userId);
