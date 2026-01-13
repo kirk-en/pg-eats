@@ -8,19 +8,19 @@
   {
     "id": "0ab6eea9-8441-43a1-8ff9-3b9c3f4db05c",
     "username": "Robert Waters",
-    "balance": 11000,
+    "balance": 12000,
     "email": "rob@tryplayground.com"
   },
   {
     "id": "c1e564c4-d180-41ab-a9db-a843e89b7c0d",
     "username": "Paulina Lancaster",
-    "balance": 1000.8722747752099,
+    "balance": 2000.87227477521,
     "email": "paulina@tryplayground.com"
   },
   {
     "id": "a48bc44a-2c67-4d5a-833a-5f1807d6c8a0",
     "username": "Daniel Andrews",
-    "balance": 8185.938296884685,
+    "balance": 0.938296884685,
     "email": "daniel@tryplayground.com",
     "isAdmin": true
   },
@@ -39,7 +39,7 @@
   {
     "id": "9b0878b1-ac48-4c07-a6a0-ceceb7362fa6",
     "username": "Jade Granger",
-    "balance": 11103.63667185837,
+    "balance": 12075.63667185837,
     "email": "jade@tryplayground.com"
   },
   {
@@ -51,13 +51,13 @@
   {
     "id": "b73c61fc-073c-435d-8b63-c78498e68e08",
     "username": "Talia Kirshenbaum",
-    "balance": 10002.103534542486,
+    "balance": 11002.103534542486,
     "email": "talia@tryplayground.com"
   },
   {
     "id": "c5f685fb-b513-4332-8bb2-27f595b1ab0c",
     "username": "CRM Tester",
-    "balance": 10000,
+    "balance": 11000,
     "email": "testcrm@tryplayground.com"
   },
   {
@@ -69,13 +69,13 @@
   {
     "id": "08dc1697-37e6-4b7d-bd51-1cbbd5031cf4",
     "username": "Joseph Grosso",
-    "balance": 11000.182638328912,
+    "balance": 12000.182638328912,
     "email": "joseph@tryplayground.com"
   },
   {
     "id": "6e77b153-1ca5-4174-86bb-1db50ff184d8",
     "username": "Michael Murray",
-    "balance": 1132.791959535122,
+    "balance": 1082.791959535122,
     "email": "michael@tryplayground.com"
   },
   {
@@ -100,7 +100,7 @@
   {
     "id": "f1b197ba-f637-4b93-8a20-1ff5cf4766b5",
     "username": "Nolan Borden",
-    "balance": 0.0104553790459,
+    "balance": 1000.0104553790459,
     "email": "nolan@tryplayground.com"
   },
   {
@@ -143,13 +143,13 @@
   {
     "id": "32469e4a-1b91-4667-950f-54bcf091f7c5",
     "username": "Tom Antosik",
-    "balance": 6601.712474912629,
+    "balance": 7601.712474912629,
     "email": "tom@tryplayground.com"
   },
   {
     "id": "01798f4f-ed45-4516-9d9c-23591f38a8e0",
     "username": "Josh Andrews",
-    "balance": 889.8302484569032,
+    "balance": 1419.830248456903,
     "email": "josh@tryplayground.com",
     "isAdmin": true
   },
@@ -204,7 +204,7 @@
   {
     "id": "9d075981-85bd-4ede-b7aa-9e4c2ff5df06",
     "username": "Cam Wilson",
-    "balance": 1443.880320068848,
+    "balance": 96.880320068849,
     "email": "cam@tryplayground.com"
   },
   {
@@ -222,7 +222,7 @@
   {
     "id": "293460ab-62dc-4bad-a878-d2cea08f62bf",
     "username": "Aileen Gray",
-    "balance": 10596.436398963288,
+    "balance": 12241.436398963288,
     "email": "aileen@tryplayground.com"
   },
   {
@@ -244,6 +244,11 @@
   {
     "id": "9a9a844e-2cb6-4cdb-a8c4-cc0a7f186f64",
     "username": "Brittney Dickerson",
+    "balance": 10000
+  },
+  {
+    "id": "670edf28-fce2-48f7-a198-db1bb318f022",
+    "username": "Amy Enamorado",
     "balance": 10000
   }
 ]
