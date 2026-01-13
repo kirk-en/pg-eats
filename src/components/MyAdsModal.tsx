@@ -17,6 +17,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import ReportIcon from "@mui/icons-material/Report";
 import { useAuth } from "../contexts/AuthContext";
 import { getUserBannerAds } from "../services/firestore";
 import type { BannerAd } from "../types/firestore";
@@ -75,94 +76,152 @@ export const MyAdsModal = ({ open, onClose }: MyAdsModalProps) => {
           </Box>
         ) : (
           <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-            {ads.map((ad) => (
-              <Paper
-                key={ad.id}
-                elevation={0}
-                variant="outlined"
-                sx={{
-                  borderRadius: 3,
-                  borderColor: "divider",
-                  overflow: "hidden",
-                }}
-              >
-                <Box
+            {ads.map((ad) => {
+              const isDisabled =
+                ad.disabledUntil && ad.disabledUntil.toMillis() > Date.now();
+
+              return (
+                <Paper
+                  key={ad.id}
+                  elevation={0}
+                  variant="outlined"
                   sx={{
-                    bgcolor: "action.hover",
-                    p: 3,
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderBottom: "1px solid",
-                    borderColor: "divider",
+                    borderRadius: 3,
+                    borderColor: isDisabled ? "error.main" : "divider",
+                    borderWidth: isDisabled ? 2 : 1,
+                    overflow: "hidden",
                   }}
                 >
-                  <BannerAdCard ad={ad} office="nyc" />
-                </Box>
-                <Box
-                  sx={{
-                    p: 2,
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                    gap: 2,
-                  }}
-                >
-                  <Stack
-                    direction="row"
-                    spacing={3}
-                    divider={<Divider orientation="vertical" flexItem />}
+                  <Box
+                    sx={{
+                      bgcolor: "action.hover",
+                      p: 3,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderBottom: "1px solid",
+                      borderColor: "divider",
+                    }}
                   >
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <AccessTimeIcon color="action" fontSize="small" />
-                      <Box>
-                        <Typography
-                          variant="caption"
-                          color="text.secondary"
-                          display="block"
-                          lineHeight={1}
-                        >
-                          Expires
-                        </Typography>
-                        <Typography variant="body2" fontWeight={500}>
-                          {ad.expiresAt.toDate().toLocaleString(undefined, {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                            hour: "numeric",
-                            minute: "2-digit",
-                          })}
-                        </Typography>
-                      </Box>
-                    </Box>
+                    <BannerAdCard ad={ad} office="nyc" />
+                  </Box>
 
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <VisibilityIcon color="action" fontSize="small" />
-                      <Box>
-                        <Typography
-                          variant="caption"
-                          color="text.secondary"
-                          display="block"
-                          lineHeight={1}
-                        >
-                          Views
-                        </Typography>
-                        <Typography variant="body2" fontWeight={500}>
-                          {ad.viewCount || 0}
-                        </Typography>
-                      </Box>
+                  {isDisabled && (
+                    <Box
+                      sx={{
+                        bgcolor: "error.light",
+                        p: 1.5,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1,
+                        borderBottom: "1px solid",
+                        borderColor: "divider",
+                      }}
+                    >
+                      <ReportIcon sx={{ color: "error.dark", fontSize: 20 }} />
+                      <Typography
+                        variant="body2"
+                        fontWeight={600}
+                        sx={{
+                          animation: "flash 1s infinite",
+                          "@keyframes flash": {
+                            "0%, 100%": { color: "black" },
+                            "50%": { color: "white" },
+                          },
+                        }}
+                      >
+                        Disabled by report until{" "}
+                        {ad.disabledUntil!.toDate().toLocaleString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                          hour: "numeric",
+                          minute: "2-digit",
+                        })}
+                      </Typography>
                     </Box>
-                  </Stack>
+                  )}
 
-                  <Chip
-                    label={ad.isActive ? "Active" : "Inactive"}
-                    color={ad.isActive ? "success" : "default"}
-                    size="small"
-                  />
-                </Box>
-              </Paper>
-            ))}
+                  <Box
+                    sx={{
+                      p: 2,
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      gap: 2,
+                    }}
+                  >
+                    <Stack
+                      direction="row"
+                      spacing={3}
+                      divider={<Divider orientation="vertical" flexItem />}
+                    >
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
+                        <AccessTimeIcon color="action" fontSize="small" />
+                        <Box>
+                          <Typography
+                            variant="caption"
+                            color="text.secondary"
+                            display="block"
+                            lineHeight={1}
+                          >
+                            Expires
+                          </Typography>
+                          <Typography variant="body2" fontWeight={500}>
+                            {ad.expiresAt.toDate().toLocaleString(undefined, {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                              hour: "numeric",
+                              minute: "2-digit",
+                            })}
+                          </Typography>
+                        </Box>
+                      </Box>
+
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
+                        <VisibilityIcon color="action" fontSize="small" />
+                        <Box>
+                          <Typography
+                            variant="caption"
+                            color="text.secondary"
+                            display="block"
+                            lineHeight={1}
+                          >
+                            Views
+                          </Typography>
+                          <Typography variant="body2" fontWeight={500}>
+                            {ad.viewCount || 0}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Stack>
+
+                    <Chip
+                      label={
+                        isDisabled
+                          ? "Reported"
+                          : ad.isActive
+                          ? "Active"
+                          : "Inactive"
+                      }
+                      color={
+                        isDisabled
+                          ? "error"
+                          : ad.isActive
+                          ? "success"
+                          : "default"
+                      }
+                      size="small"
+                    />
+                  </Box>
+                </Paper>
+              );
+            })}
           </Box>
         )}
       </DialogContent>
