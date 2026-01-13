@@ -130,7 +130,7 @@ export const MyAdsModal = ({ open, onClose }: MyAdsModalProps) => {
                           },
                         }}
                       >
-                        Disabled by report until{" "}
+                        Disabled by {ad.disabledBy || "someone"} until{" "}
                         {ad.disabledUntil!.toDate().toLocaleString(undefined, {
                           month: "short",
                           day: "numeric",

@@ -58,4 +58,5 @@ export interface BannerAd {
   isActive: boolean;
   viewCount?: number; // Number of times this ad has been displayed
   disabledUntil?: Timestamp; // If set, ad is hidden until this time
+  disabledBy?: string; // Display name of user who reported the ad
 }

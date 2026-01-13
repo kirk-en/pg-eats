@@ -602,6 +602,7 @@ export const disableBannerAd = async (
 
     transaction.update(adRef, {
       disabledUntil: disabledUntil,
+      disabledBy: reporterData.displayName,
     });
   });
 
