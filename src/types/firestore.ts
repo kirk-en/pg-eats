@@ -56,4 +56,6 @@ export interface BannerAd {
   createdAt: Timestamp;
   expiresAt: Timestamp;
   isActive: boolean;
+  viewCount?: number; // Number of times this ad has been displayed
+  disabledUntil?: Timestamp; // If set, ad is hidden until this time
 }

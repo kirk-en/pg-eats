@@ -15,6 +15,7 @@ import {
   getOffice,
   voteForProductBatch,
   getActiveBannerAds,
+  incrementAdViewCount,
 } from "./services/firestore";
 import { useAuth } from "./contexts/AuthContext";
 import { useI18n } from "./contexts/I18nContext";
@@ -71,6 +72,7 @@ function App() {
   const [isVotingActive, setIsVotingActive] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [activeBannerAd, setActiveBannerAd] = useState<BannerAd | null>(null);
+  const [hasIncrementedAdView, setHasIncrementedAdView] = useState(false);
 
   const [isTutorialOpen, setIsTutorialOpen] = useState(false);
 
@@ -263,6 +265,12 @@ function App() {
           if (ads.length > 0) {
             const randomAd = ads[Math.floor(Math.random() * ads.length)];
             setActiveBannerAd(randomAd);
+
+            // Only increment view count once per session
+            if (!hasIncrementedAdView) {
+              await incrementAdViewCount(randomAd.id);
+              setHasIncrementedAdView(true);
+            }
           }
         } catch (error) {
           console.error("Error fetching banner ads:", error);

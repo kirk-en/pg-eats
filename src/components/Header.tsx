@@ -34,6 +34,7 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { CzarPanel } from "./CzarPanel";
 import { AddProductModal } from "./AddProductModal";
 import { PurchaseAdModal } from "./PurchaseAdModal";
+import { MyAdsModal } from "./MyAdsModal";
 
 export interface Category {
   id: string;
@@ -284,6 +285,7 @@ export function Header({
   const [czarPanelOpen, setCzarPanelOpen] = useState(false);
   const [addProductModalOpen, setAddProductModalOpen] = useState(false);
   const [purchaseAdModalOpen, setPurchaseAdModalOpen] = useState(false);
+  const [myAdsModalOpen, setMyAdsModalOpen] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -628,6 +630,14 @@ export function Header({
         </MenuItem>
         <MenuItem
           onClick={() => {
+            setMyAdsModalOpen(true);
+            handleMenuClose();
+          }}
+        >
+          🖼️ My Ads
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
             onOpenTutorial?.();
             handleMenuClose();
           }}
@@ -664,6 +674,11 @@ export function Header({
         open={purchaseAdModalOpen}
         onClose={() => setPurchaseAdModalOpen(false)}
         products={products}
+      />
+
+      <MyAdsModal
+        open={myAdsModalOpen}
+        onClose={() => setMyAdsModalOpen(false)}
       />
 
       <CzarPanel

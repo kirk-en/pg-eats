@@ -329,7 +329,7 @@ export const voteForProduct = async (
     }
 
     // Calculate how much comes from bonus vs regular coins
-    let bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    const bonusCoinsToDeduct = Math.min(bonusCoins, cost);
     regularCoinsSpent = cost - bonusCoinsToDeduct;
 
     const field = `votes_${office}`;
@@ -381,7 +381,7 @@ export const voteForProductBatch = async (
     }
 
     // Calculate how much comes from bonus vs regular coins
-    let bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    const bonusCoinsToDeduct = Math.min(bonusCoins, cost);
     regularCoinsSpent = cost - bonusCoinsToDeduct;
 
     const field = `votes_${office}`;
@@ -463,13 +463,13 @@ export const createBannerAd = async (adData: {
     }
 
     // Calculate how much comes from bonus vs regular coins
-    let bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    const bonusCoinsToDeduct = Math.min(bonusCoins, cost);
     regularCoinsSpent = cost - bonusCoinsToDeduct;
 
-    // Calculate 3-day expiry
+    // Calculate 7-day expiry
     const createdAt = Timestamp.now();
     const expiresAt = new Timestamp(
-      createdAt.seconds + 3 * 24 * 60 * 60,
+      createdAt.seconds + 7 * 24 * 60 * 60,
       createdAt.nanoseconds
     );
 
@@ -519,12 +519,114 @@ export const getActiveBannerAds = async (): Promise<BannerAd[]> => {
   );
 
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(
-    (doc) => ({ id: doc.id, ...doc.data() } as BannerAd)
-  );
+  return querySnapshot.docs
+    .map((doc) => ({ id: doc.id, ...doc.data() } as BannerAd))
+    .filter((ad) => {
+      if (!ad.disabledUntil) return true;
+      return ad.disabledUntil.toMillis() <= now.toMillis();
+    });
 };
 
 export const deleteBannerAd = async (adId: string): Promise<void> => {
   const adRef = doc(db, "bannerAds", adId);
   await updateDoc(adRef, { isActive: false });
+};
+
+export const incrementAdViewCount = async (adId: string): Promise<void> => {
+  const adRef = doc(db, "bannerAds", adId);
+  const randomIncrement = Math.floor(Math.random() * 3) + 1;
+  await updateDoc(adRef, {
+    viewCount: increment(randomIncrement),
+  });
+};
+
+export const getUserBannerAds = async (userId: string): Promise<BannerAd[]> => {
+  const q = query(
+    collection(db, "bannerAds"),
+    where("createdBy", "==", userId),
+    orderBy("createdAt", "desc")
+  );
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as BannerAd)
+  );
+};
+
+export const disableBannerAd = async (
+  adId: string,
+  userId: string
+): Promise<void> => {
+  const cost = 75;
+  let adData: BannerAd;
+  let reporterData: User;
+
+  await runTransaction(db, async (transaction) => {
+    const userRef = doc(db, "users", userId);
+    const adRef = doc(db, "bannerAds", adId);
+
+    const userDoc = await transaction.get(userRef);
+    const adDoc = await transaction.get(adRef);
+
+    if (!userDoc.exists()) {
+      throw new Error("User not found");
+    }
+
+    if (!adDoc.exists()) {
+      throw new Error("Ad not found");
+    }
+
+    const userData = userDoc.data() as User;
+    adData = { id: adDoc.id, ...adDoc.data() } as BannerAd;
+    reporterData = userData;
+
+    const bonusCoins = userData.bonusCoins ?? 0;
+    const totalAvailable = (userData.balance ?? 0) + bonusCoins;
+
+    if (totalAvailable < cost) {
+      throw new Error("Insufficient funds");
+    }
+
+    const bonusCoinsToDeduct = Math.min(bonusCoins, cost);
+    const regularCoinsSpent = cost - bonusCoinsToDeduct;
+
+    const now = Timestamp.now();
+    const disabledUntil = new Timestamp(
+      now.seconds + 48 * 60 * 60,
+      now.nanoseconds
+    );
+
+    transaction.update(userRef, {
+      bonusCoins: bonusCoins - bonusCoinsToDeduct,
+      balance: (userData.balance ?? 0) - regularCoinsSpent,
+    });
+
+    transaction.update(adRef, {
+      disabledUntil: disabledUntil,
+    });
+  });
+
+  // After transaction succeeds, send email notification
+  try {
+    const adOwnerRef = doc(db, "users", adData.createdBy);
+    const adOwnerDoc = await getDoc(adOwnerRef);
+
+    if (adOwnerDoc.exists()) {
+      const adOwnerData = adOwnerDoc.data() as User;
+
+      await fetch("/api/send-ad-disabled-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          adOwnerEmail: adOwnerData.email,
+          adOwnerName: adOwnerData.displayName,
+          reporterName: reporterData.displayName,
+          adText: adData.customText,
+          productImageUrl: adData.productImageUrl,
+        }),
+      });
+    }
+  } catch (error) {
+    console.error("Failed to send ad disabled notification email:", error);
+    // Don't throw - the main action (disabling ad) succeeded
+  }
 };

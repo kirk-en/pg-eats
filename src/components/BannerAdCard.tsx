@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { ThumbUpAlt, ThumbDownAlt, Rocket, Star } from "@mui/icons-material";
 import type { BannerAd } from "../types/firestore";
 import { useAuth } from "../contexts/AuthContext";
+import { ReportAdModal } from "./ReportAdModal";
 import pgCoinImg from "../assets/pg-coin.webp";
 import "../styles/banner-ads.css";
 import "../styles/buttons.css";
@@ -68,6 +69,7 @@ interface BannerAdCardProps {
 export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
   const { user } = useAuth();
   const [floatingCoins, setFloatingCoins] = useState<FloatingCoin[]>([]);
+  const [reportModalOpen, setReportModalOpen] = useState(false);
   const coinIdRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -199,7 +201,39 @@ export const BannerAdCard = ({ ad, onVote }: BannerAdCardProps) => {
           )}
         </div>
       </div>
-      <div className="featured-attribution">Paid for by {ad.displayName}</div>
+      <div
+        className="featured-attribution"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <span>Paid for by {ad.displayName}</span>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setReportModalOpen(true);
+          }}
+          style={{
+            background: "none",
+            border: "none",
+            padding: 0,
+            font: "inherit",
+            cursor: "pointer",
+            textDecoration: "underline",
+            color: "inherit",
+          }}
+        >
+          Report
+        </button>
+      </div>
+
+      <ReportAdModal
+        open={reportModalOpen}
+        onClose={() => setReportModalOpen(false)}
+        adId={ad.id}
+      />
 
       {/* Floating coins */}
       {floatingCoins.map((coin) => (
